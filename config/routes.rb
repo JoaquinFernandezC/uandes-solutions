@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :iics
+  resources :interinstitutional_coordinations
   resources :error_logs
   resources :logs
   resources :tasks

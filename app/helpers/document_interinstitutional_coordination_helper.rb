@@ -1,0 +1,2 @@
+module DocumentInterinstitutionalCoordinationHelper
+end
