@@ -10,6 +10,22 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container">
+      <%= link_to (image_tag 'logo_fiscalia.png', width: '60wv', height: 'auto'), root_path, class: 'navbar-brand' %>
+
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+          <li class="nav-item padded">
+            <%= link_to current_user.name, root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item padded">
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        </ul>
+      <%end %>
+    </div>
+  </nav>
   <div class="container paddedTop">
     <%= yield %>
   </div>
