@@ -13,6 +13,13 @@
  */
 
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+div.paddedSides {
+  padding-right: 15vw;
+  padding-left: 15vw;
+  padding-top: 15vh;
+}
 
 div.paddedTop {
   padding-top: 100px;
@@ -22,12 +29,33 @@ li.padded {
   padding-left: 0.5vw;
 }
 
+.navbar-light:hover {
+  color: darkorange;
+}
+
+nav.menu {
+  background-color:rgba(249, 249, 249, 0.4);
+}
+
+nav.menu a:hover{
+  color: darkorange;
+}
+
+.makeOrange {
+  color: black;
+}
+
+.makeOrange:hover {
+  color: darkorange;
+}
+
 body {
 	background-image: image_url("fondo.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-color: #f0f3f8;	
+	background-color: #f0f3f8;
+    font-family: 'Ubuntu', sans-serif;
 }
 .navbar-nav > li{
   padding-left:10px;

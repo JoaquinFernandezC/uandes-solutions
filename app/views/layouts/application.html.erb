@@ -10,44 +10,49 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-light navbar-expand-sm bg-light fixed-top">
+  <nav class="navbar navbar-expand-lg fixed-top menu">
     <div class="container">
       <%= link_to (image_tag 'logo_fiscalia.png', width: '60wv', height: 'auto'), root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler makeOrange" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon makeOrange"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if user_signed_in? %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle makeOrange" href="#" data-toggle="dropdown">Apoyo a Casos</a>
+              <div class="dropdown-menu">
+                <%= link_to 'Caso', '#', class: 'dropdown-item' %>
+                <%= link_to 'Coordinación Caso', '#', class: 'dropdown-item' %>
+               </div>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'C. Interinstitucional', '#', class: 'nav-link makeOrange' %>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle makeOrange" href="#" data-toggle="dropdown">Fiscal Nacional</a>
+              <div class="dropdown-menu">
+                <%= link_to 'Meta Ues', '#', class: 'dropdown-item' %>
+                <%= link_to 'Proyectos', '#', class: 'dropdown-item' %>
+                <%= link_to 'Derivaciones de Gabinete', '#', class: 'dropdown-item' %>
+               </div>
+            </li>
 
-      <% if user_signed_in? %>
-        <ul class="nav navbar-nav flex-row justify-content-between">
-	        <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Apoyo a Casos</a>
-		        <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Caso</a>
-              <a class="dropdown-item" href="#">Coordinación Caso</a>
-	           </div>
-	        </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">C. Interinstitucional</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Fiscal Nacional</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Metas Ues</a>
-              <a class="dropdown-item" href="#">Proyectos</a>
-              <a class="dropdown-item" href="#">Derivaciones de Gabinete</a>
-             </div>
-          </li>
-          
-        </ul>
-        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-            <li class="nav-item padded">
-              <%= link_to current_user.name, root_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item padded">
-              <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            </li>
-        </ul>
-      <%end %>
+          </ul>
+          <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+              <li class="nav-item padded">
+                <%= link_to current_user.name, root_path, class: 'nav-link makeOrange' %>
+              </li>
+              <li class="nav-item padded">
+                <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link makeOrange' %>
+              </li>
+          </ul>
+        <%end %>
+      </div>
     </div>
   </nav>
-  <div style=" padding-top: 200px; padding-right: 300px; padding-left: 300px;">
+  <div class="container" style="padding-top: 8vw;">
     <%= yield %>
   </div>
   </body>

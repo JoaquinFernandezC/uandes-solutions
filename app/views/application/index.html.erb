@@ -1,33 +1,21 @@
 <div class="card">
 	<div class="card-header bg-info">
-		<h2 class="text-white">Bandeja de Tareas</h2>
+    <h2 class="text-white" style="margin-bottom: 0"><b>Bandeja de Tareas</b></h2>
 	</div>
 	<div class="card-body">
 		<div class="row" style="background: #FFFFFF;">
-			<div class="col-sm-3 hidden-xs" style="border-right:#a7a7a7 solid 1px;">
-				<div class="navbar-header">
-					<a class="navbar-brand" >Opciones</a>
-				</div>
-				<ul class="nav flex-column">
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">Administrar Usuarios</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">Agregar Entidades</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">Tareas Historicas</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">Administrar Usuarios</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">Bitacora de Errores</a>
-				  </li>
-				</ul>
+			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px;">
+        <h4>Opciones</h4>
+        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw">
+          <%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Agregar Entidades', root_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Tareas Historicas', root_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Bitacora de Errores', root_path, class: 'btn btn-outline-secondary' %>
+        </div>
 			</div>
 			<div class="col-sm-9 hidden-xs" style="overflow: auto;">
-				<table class="table"">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>Tarea</th>
