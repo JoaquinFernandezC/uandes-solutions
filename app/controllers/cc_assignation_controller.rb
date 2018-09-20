@@ -1,0 +1,2 @@
+class CcAssignationController < ApplicationController
+end

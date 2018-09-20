@@ -1,0 +1,2 @@
+class CaseAssignationController < ApplicationController
+end

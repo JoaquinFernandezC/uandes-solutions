@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @case.name %>
+</p>
+
+<p>
+  <strong>Regional pros office:</strong>
+  <%= @case.regional_pros_office %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @case.description %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @case.privacy %>
+</p>
+
+<p>
+  <strong>Ruc felony:</strong>
+  <%= @case.ruc_felony %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @case.state %>
+</p>
+
+<p>
+  <strong>Prosecutor:</strong>
+  <%= @case.prosecutor %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @case.estimated_end_date %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @case.log %>
+</p>
+
+<%= link_to 'Edit', edit_case_path(@case) %> |
+<%= link_to 'Back', cases_path %>

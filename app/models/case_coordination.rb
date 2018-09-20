@@ -1,0 +1,2 @@
+class CaseCoordination < ApplicationRecord
+end

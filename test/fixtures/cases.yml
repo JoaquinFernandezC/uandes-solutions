@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  regional_pros_office: one
+  description: MyString
+  privacy: 1
+  ruc_felony: one
+  state: MyString
+  prosecutor: one
+  estimated_end_date: 2018-09-19 21:34:10
+  log: MyString
+
+two:
+  name: MyString
+  regional_pros_office: two
+  description: MyString
+  privacy: 1
+  ruc_felony: two
+  state: MyString
+  prosecutor: two
+  estimated_end_date: 2018-09-19 21:34:10
+  log: MyString

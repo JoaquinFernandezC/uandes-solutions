@@ -1,0 +1,2 @@
+class Ruc < ApplicationRecord
+end

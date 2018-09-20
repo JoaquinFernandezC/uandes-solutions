@@ -1,0 +1,2 @@
+class InvestigatedPersonController < ApplicationController
+end

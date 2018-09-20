@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_183052) do
+ActiveRecord::Schema.define(version: 2018_09_20_003429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "aliases", force: :cascade do |t|
+    t.bigint "person_id"
+    t.string "nickname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_aliases_on_person_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "document_id"
@@ -44,6 +52,151 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_authors_on_document_id"
     t.index ["person_id"], name: "index_authors_on_person_id"
+  end
+
+  create_table "case_assignations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_case_assignations_on_case_id"
+    t.index ["user_id"], name: "index_case_assignations_on_user_id"
+  end
+
+  create_table "case_coordinations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "state"
+    t.datetime "estimated_end_date"
+    t.string "log"
+    t.integer "privacy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "case_documents", force: :cascade do |t|
+    t.bigint "document_id"
+    t.bigint "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_case_documents_on_case_id"
+    t.index ["document_id"], name: "index_case_documents_on_document_id"
+  end
+
+  create_table "case_task_documents", force: :cascade do |t|
+    t.bigint "case_task_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_task_id"], name: "index_case_task_documents_on_case_task_id"
+    t.index ["document_id"], name: "index_case_task_documents_on_document_id"
+  end
+
+  create_table "case_tasks", force: :cascade do |t|
+    t.bigint "task_id"
+    t.bigint "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_case_tasks_on_case_id"
+    t.index ["task_id"], name: "index_case_tasks_on_task_id"
+  end
+
+  create_table "cases", force: :cascade do |t|
+    t.string "name"
+    t.bigint "regional_pros_office_id"
+    t.string "description"
+    t.integer "privacy"
+    t.bigint "ruc_felony_id"
+    t.string "state"
+    t.bigint "prosecutor_id"
+    t.datetime "estimated_end_date"
+    t.string "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prosecutor_id"], name: "index_cases_on_prosecutor_id"
+    t.index ["regional_pros_office_id"], name: "index_cases_on_regional_pros_office_id"
+    t.index ["ruc_felony_id"], name: "index_cases_on_ruc_felony_id"
+  end
+
+  create_table "cc_assignations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_assignations_on_case_coordination_id"
+    t.index ["user_id"], name: "index_cc_assignations_on_user_id"
+  end
+
+  create_table "cc_documents", force: :cascade do |t|
+    t.bigint "document_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_documents_on_case_coordination_id"
+    t.index ["document_id"], name: "index_cc_documents_on_document_id"
+  end
+
+  create_table "cc_inv_leg_people", force: :cascade do |t|
+    t.bigint "legal_person_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_inv_leg_people_on_case_coordination_id"
+    t.index ["legal_person_id"], name: "index_cc_inv_leg_people_on_legal_person_id"
+  end
+
+  create_table "cc_inv_people", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_inv_people_on_case_coordination_id"
+    t.index ["person_id"], name: "index_cc_inv_people_on_person_id"
+  end
+
+  create_table "cc_prosecutors", force: :cascade do |t|
+    t.bigint "case_coordination_id"
+    t.bigint "prosecutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_prosecutors_on_case_coordination_id"
+    t.index ["prosecutor_id"], name: "index_cc_prosecutors_on_prosecutor_id"
+  end
+
+  create_table "cc_regions", force: :cascade do |t|
+    t.bigint "regional_pros_office_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_regions_on_case_coordination_id"
+    t.index ["regional_pros_office_id"], name: "index_cc_regions_on_regional_pros_office_id"
+  end
+
+  create_table "cc_rucs", force: :cascade do |t|
+    t.bigint "ruc_id"
+    t.bigint "case_coordination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_rucs_on_case_coordination_id"
+    t.index ["ruc_id"], name: "index_cc_rucs_on_ruc_id"
+  end
+
+  create_table "cc_task_documents", force: :cascade do |t|
+    t.bigint "cc_task_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cc_task_id"], name: "index_cc_task_documents_on_cc_task_id"
+    t.index ["document_id"], name: "index_cc_task_documents_on_document_id"
+  end
+
+  create_table "cc_tasks", force: :cascade do |t|
+    t.bigint "case_coordination_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_coordination_id"], name: "index_cc_tasks_on_case_coordination_id"
+    t.index ["task_id"], name: "index_cc_tasks_on_task_id"
   end
 
   create_table "commentaries", force: :cascade do |t|
@@ -102,6 +255,13 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "felonies", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "iics", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -140,6 +300,31 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.index ["user_id"], name: "index_internal_member_iics_on_user_id"
   end
 
+  create_table "inv_legal_people", force: :cascade do |t|
+    t.bigint "legal_person_id"
+    t.bigint "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_inv_legal_people_on_case_id"
+    t.index ["legal_person_id"], name: "index_inv_legal_people_on_legal_person_id"
+  end
+
+  create_table "investigated_people", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_investigated_people_on_case_id"
+    t.index ["person_id"], name: "index_investigated_people_on_person_id"
+  end
+
+  create_table "legal_people", force: :cascade do |t|
+    t.string "name"
+    t.string "rut"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "logs", force: :cascade do |t|
     t.string "code"
     t.string "privacy"
@@ -171,6 +356,37 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.string "name"
     t.string "rut"
     t.string "passport"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prosecutors", force: :cascade do |t|
+    t.string "name"
+    t.string "rut"
+    t.string "local_office"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regional_pros_offices", force: :cascade do |t|
+    t.string "region"
+    t.bigint "prosecutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prosecutor_id"], name: "index_regional_pros_offices_on_prosecutor_id"
+  end
+
+  create_table "ruc_felonies", force: :cascade do |t|
+    t.bigint "felony_id"
+    t.bigint "ruc_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["felony_id"], name: "index_ruc_felonies_on_felony_id"
+    t.index ["ruc_id"], name: "index_ruc_felonies_on_ruc_id"
+  end
+
+  create_table "rucs", force: :cascade do |t|
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -217,8 +433,38 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "aliases", "people"
   add_foreign_key "authors", "documents"
   add_foreign_key "authors", "people"
+  add_foreign_key "case_assignations", "cases"
+  add_foreign_key "case_assignations", "users"
+  add_foreign_key "case_documents", "cases"
+  add_foreign_key "case_documents", "documents"
+  add_foreign_key "case_task_documents", "case_tasks"
+  add_foreign_key "case_task_documents", "documents"
+  add_foreign_key "case_tasks", "cases"
+  add_foreign_key "case_tasks", "tasks"
+  add_foreign_key "cases", "prosecutors"
+  add_foreign_key "cases", "regional_pros_offices"
+  add_foreign_key "cases", "ruc_felonies"
+  add_foreign_key "cc_assignations", "case_coordinations"
+  add_foreign_key "cc_assignations", "users"
+  add_foreign_key "cc_documents", "case_coordinations"
+  add_foreign_key "cc_documents", "documents"
+  add_foreign_key "cc_inv_leg_people", "case_coordinations"
+  add_foreign_key "cc_inv_leg_people", "legal_people"
+  add_foreign_key "cc_inv_people", "case_coordinations"
+  add_foreign_key "cc_inv_people", "people"
+  add_foreign_key "cc_prosecutors", "case_coordinations"
+  add_foreign_key "cc_prosecutors", "prosecutors"
+  add_foreign_key "cc_regions", "case_coordinations"
+  add_foreign_key "cc_regions", "regional_pros_offices"
+  add_foreign_key "cc_rucs", "case_coordinations"
+  add_foreign_key "cc_rucs", "rucs"
+  add_foreign_key "cc_task_documents", "cc_tasks"
+  add_foreign_key "cc_task_documents", "documents"
+  add_foreign_key "cc_tasks", "case_coordinations"
+  add_foreign_key "cc_tasks", "tasks"
   add_foreign_key "commentaries", "tasks"
   add_foreign_key "commentaries", "users"
   add_foreign_key "document_iics", "documents"
@@ -231,10 +477,17 @@ ActiveRecord::Schema.define(version: 2018_09_19_183052) do
   add_foreign_key "internal_authors", "users"
   add_foreign_key "internal_member_iics", "iics"
   add_foreign_key "internal_member_iics", "users"
+  add_foreign_key "inv_legal_people", "cases"
+  add_foreign_key "inv_legal_people", "legal_people"
+  add_foreign_key "investigated_people", "cases"
+  add_foreign_key "investigated_people", "people"
   add_foreign_key "manager_iics", "iics"
   add_foreign_key "manager_iics", "users"
   add_foreign_key "member_iics", "employees"
   add_foreign_key "member_iics", "iics"
+  add_foreign_key "regional_pros_offices", "prosecutors"
+  add_foreign_key "ruc_felonies", "felonies"
+  add_foreign_key "ruc_felonies", "rucs"
   add_foreign_key "task_iics", "iics"
   add_foreign_key "task_iics", "tasks"
   add_foreign_key "tasks", "users"

@@ -1,0 +1,2 @@
+class Felony < ApplicationRecord
+end

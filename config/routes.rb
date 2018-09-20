@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :case_coordinations
+  resources :cases
   resources :iics
   resources :interinstitutional_coordinations
   resources :error_logs
