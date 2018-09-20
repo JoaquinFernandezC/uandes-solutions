@@ -10,18 +10,43 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-light navbar-expand-sm bg-light fixed-top">
     <div class="container">
       <%= link_to (image_tag 'logo_fiscalia.png', width: '60wv', height: 'auto'), root_path, class: 'navbar-brand' %>
 
       <% if user_signed_in? %>
+        <ul class="nav navbar-nav flex-row justify-content-between">
+	        <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Apoyo a Casos</a>
+		        <ul class="dropdown-menu" data-no-collapse="true">
+		          <li><a class="nav-link" href="#">Caso</a></li>
+              <li><a class="nav-link" href="#">Coordinación casos</a></li>
+	           </ul>
+	        </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">C. Interinstitucional</a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="#">Bilateral</a></li>
+              <li><a class="nav-link" href="#">Multilateral</a></li>
+             </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Fiscal Nacional</a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="#">Metas Ues</a></li>
+              <li><a class="nav-link" href="#">Proyectos</a></li>
+              <li><a class="nav-link" href="#">Der. de Gabinete</a></li>
+             </ul>
+          </li>
+          
+        </ul>
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-          <li class="nav-item padded">
-            <%= link_to current_user.name, root_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item padded">
-            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-          </li>
+            <li class="nav-item padded">
+              <%= link_to current_user.name, root_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item padded">
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
         </ul>
       <%end %>
     </div>
