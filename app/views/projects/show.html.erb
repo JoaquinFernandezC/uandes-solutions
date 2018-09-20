@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @project.year %>
+</p>
+
+<p>
+  <strong>Project number:</strong>
+  <%= @project.project_number %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Objective:</strong>
+  <%= @project.objective %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @project.state %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @project.start_date %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @project.estimated_end_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @project.end_date %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @project.privacy %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @project.log %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @goal.year %>
+</p>
+
+<p>
+  <strong>Goal number:</strong>
+  <%= @goal.goal_number %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @goal.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @goal.description %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @goal.state %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @goal.estimated_end_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @goal.end_date %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @goal.privacy %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @goal.log %>
+</p>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

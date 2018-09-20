@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :derivations
+  resources :projects
+  resources :goals
   resources :case_coordinations
   resources :cases
   resources :iics

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  derivation: one
+  report_date: 2018-09-20
+  subject: MyString
+  identifier_number: 1
+  action_course: MyString
+
+two:
+  derivation: two
+  report_date: 2018-09-20
+  subject: MyString
+  identifier_number: 1
+  action_course: MyString

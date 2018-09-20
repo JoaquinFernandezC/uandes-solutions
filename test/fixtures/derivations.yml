@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  petitioner: one
+  state: MyString
+  priority: 1
+  derivation_date: 2018-09-20
+  work_start_date: 2018-09-20 03:13:26
+  estimated_work_start_date: MyString
+  estimated_end_date: 2018-09-20
+  end_date: 2018-09-20
+  log: MyString
+  privacy: 1
+
+two:
+  name: MyString
+  description: MyText
+  petitioner: two
+  state: MyString
+  priority: 1
+  derivation_date: 2018-09-20
+  work_start_date: 2018-09-20 03:13:26
+  estimated_work_start_date: MyString
+  estimated_end_date: 2018-09-20
+  end_date: 2018-09-20
+  log: MyString
+  privacy: 1
