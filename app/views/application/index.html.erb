@@ -1,61 +1,67 @@
-<div class="row" style="border-top:#a7a7a7 solid 1px;">
-	<div class="col-sm-3 hidden-xs" style="border-right:#a7a7a7 solid 1px;">
-		<div class="navbar-header">
-		  <a class="navbar-brand" >Opciones</a>
-		</div>
-		<ul class="nav flex-column">
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Instancias de Tema</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Entidades</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Tareas Historicas</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Administrar Usuarios</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Bitacora de Errores</a>
-		  </li>
-		</ul>
-	</div>
-	<div class="col-sm-9 hidden-xs" >
+<div class="card">
+	<div class="card-header bg-primary">
 		<h2>Bandeja de Tareas</h2>
-		<table class="table">
-		<thead>
-			<tr>
-				<th>Tarea</th>
-				<th>Tema</th>
-				<th>Fecha Inicio</th>
-				<% if false %>
-					<th>Encargado</th>
-				<% end %>
-				<th>Accion</th>
-				<th colspan="300"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Comprar Globos</td>
-				<td>Proyecto Avanza</td>
-				<td>3/4/2018</td>
-				<td><button type="button" class="btn btn-info" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-			</tr>
-			<tr>
-				<td>Recopilacion Evidencia</td>
-				<td>Caso Pinta</td>
-				<td>3/3/2013</td>
-				<td><button type="button" class="btn btn-info" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-			</tr>
-			<tr>
-				<td>Revisar Tarea</td>
-				<td>Caso Farmaceuticas</td>
-				<td>1/2/2011</td>
-				<td><button type="button" class="btn btn-secondary" onclick="alert('Aqui se revisa a la tarea.')">Entrar</button></td>
-			</tr>
-		</tbody>
-	</table>
+	</div>
+	<div class="card-body">
+		<div class="row" style="background: #FFFFFF;">
+			<div class="col-sm-3 hidden-xs" style="border-right:#a7a7a7 solid 1px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" >Opciones</a>
+				</div>
+				<ul class="nav flex-column">
+				  <li class="nav-item">
+				    <a class="nav-link" href="#">Instancias de Tema</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#">Entidades</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#">Tareas Historicas</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#">Administrar Usuarios</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#">Bitacora de Errores</a>
+				  </li>
+				</ul>
+			</div>
+			<div class="col-sm-9 hidden-xs" >
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Tarea</th>
+							<th>Tema</th>
+							<th>Fecha Inicio</th>
+							<% if false %>
+								<th>Encargado</th>
+							<% end %>
+							<th>Accion</th>
+							<th colspan="300"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Comprar Globos</td>
+							<td>Proyecto Avanza</td>
+							<td>3/4/2018</td>
+							<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+						</tr>
+						<tr>
+							<td>Recopilacion Evidencia</td>
+							<td>Caso Pinta</td>
+							<td>3/3/2013</td>
+							<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+						</tr>
+						<tr>
+							<td>Revisar Tarea</td>
+							<td>Caso Farmaceuticas</td>
+							<td>1/2/2011</td>
+							<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>

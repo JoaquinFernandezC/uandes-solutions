@@ -21,3 +21,11 @@ div.paddedTop {
 li.padded {
   padding-left: 0.5vw;
 }
+
+body {
+	background-image: image_url("fondo.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #f0f3f8;	
+}
