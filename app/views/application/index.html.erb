@@ -10,10 +10,10 @@
 				</div>
 				<ul class="nav flex-column">
 				  <li class="nav-item">
-				    <a class="nav-link" href="#">Instancias de Tema</a>
+				    <a class="nav-link" href="#">Administrar Usuarios</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" href="#">Entidades</a>
+				    <a class="nav-link" href="#">Agregar Entidades</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link" href="#">Tareas Historicas</a>
@@ -33,6 +33,8 @@
 							<th>Tarea</th>
 							<th>Tema</th>
 							<th>Fecha Inicio</th>
+							<th>Prioridad</th>
+							<th>Privacidad</th>
 							<% if false %>
 								<th>Encargado</th>
 							<% end %>
@@ -45,18 +47,24 @@
 							<td>Comprar Globos</td>
 							<td>Proyecto Avanza</td>
 							<td>3/4/2018</td>
+							<td class="text-danger">Urgente</td>
+							<td>Secreto</td>
 							<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
 						</tr>
 						<tr>
 							<td>Recopilacion Evidencia</td>
 							<td>Caso Pinta</td>
 							<td>3/3/2013</td>
+							<td class="text-warning">Media</td>
+							<td>Privado</td>
 							<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
 						</tr>
 						<tr>
 							<td>Revisar Tarea</td>
 							<td>Caso Farmaceuticas</td>
 							<td>1/2/2011</td>
+							<td>Baja</td>
+							<td>Publico</td>
 							<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
 						</tr>
 					</tbody>
