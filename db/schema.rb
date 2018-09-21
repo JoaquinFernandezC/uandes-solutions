@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_003429) do
+ActiveRecord::Schema.define(version: 2018_09_20_061339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_aliases_on_person_id"
+  end
+
+  create_table "assigned_to_goals", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "goal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_assigned_to_goals_on_goal_id"
+    t.index ["user_id"], name: "index_assigned_to_goals_on_user_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -209,6 +218,73 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
     t.index ["user_id"], name: "index_commentaries_on_user_id"
   end
 
+  create_table "derivation_assignations", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.bigint "user_id"
+    t.date "assignation_date"
+    t.date "deassignment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_derivation_assignations_on_derivation_id"
+    t.index ["user_id"], name: "index_derivation_assignations_on_user_id"
+  end
+
+  create_table "derivation_documents", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_derivation_documents_on_derivation_id"
+    t.index ["document_id"], name: "index_derivation_documents_on_document_id"
+  end
+
+  create_table "derivation_reports", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.date "report_date"
+    t.string "subject"
+    t.integer "identifier_number"
+    t.string "action_course"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_derivation_reports_on_derivation_id"
+  end
+
+  create_table "derivation_task_documents", force: :cascade do |t|
+    t.bigint "derivation_task_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_task_id"], name: "index_derivation_task_documents_on_derivation_task_id"
+    t.index ["document_id"], name: "index_derivation_task_documents_on_document_id"
+  end
+
+  create_table "derivation_tasks", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_derivation_tasks_on_derivation_id"
+    t.index ["task_id"], name: "index_derivation_tasks_on_task_id"
+  end
+
+  create_table "derivations", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "petitioner_id"
+    t.string "state"
+    t.integer "priority"
+    t.date "derivation_date"
+    t.datetime "work_start_date"
+    t.string "estimated_work_start_date"
+    t.date "estimated_end_date"
+    t.date "end_date"
+    t.string "log"
+    t.integer "privacy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["petitioner_id"], name: "index_derivations_on_petitioner_id"
+  end
+
   create_table "document_iics", force: :cascade do |t|
     t.bigint "iic_id"
     t.bigint "document_id"
@@ -258,6 +334,29 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
   create_table "felonies", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "goal_documents", force: :cascade do |t|
+    t.bigint "goal_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_goal_documents_on_document_id"
+    t.index ["goal_id"], name: "index_goal_documents_on_goal_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.integer "year"
+    t.integer "goal_number"
+    t.string "name"
+    t.text "description"
+    t.string "state"
+    t.date "estimated_end_date"
+    t.date "end_date"
+    t.integer "privacy"
+    t.string "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -360,6 +459,102 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "petitioners", force: :cascade do |t|
+    t.bigint "person_id"
+    t.string "position"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_petitioners_on_person_id"
+  end
+
+  create_table "project_documents", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_project_documents_on_document_id"
+    t.index ["project_id"], name: "index_project_documents_on_project_id"
+  end
+
+  create_table "project_institutions", force: :cascade do |t|
+    t.bigint "institution_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["institution_id"], name: "index_project_institutions_on_institution_id"
+    t.index ["project_id"], name: "index_project_institutions_on_project_id"
+  end
+
+  create_table "project_responsables", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_project_responsables_on_employee_id"
+    t.index ["project_id"], name: "index_project_responsables_on_project_id"
+  end
+
+  create_table "project_stage_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_stage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_stage_id"], name: "index_project_stage_users_on_project_stage_id"
+    t.index ["user_id"], name: "index_project_stage_users_on_user_id"
+  end
+
+  create_table "project_stages", force: :cascade do |t|
+    t.bigint "project_id"
+    t.integer "stage_number"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_stages_on_project_id"
+  end
+
+  create_table "project_task_documents", force: :cascade do |t|
+    t.bigint "document_id"
+    t.bigint "project_task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_project_task_documents_on_document_id"
+    t.index ["project_task_id"], name: "index_project_task_documents_on_project_task_id"
+  end
+
+  create_table "project_tasks", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_tasks_on_project_id"
+    t.index ["task_id"], name: "index_project_tasks_on_task_id"
+  end
+
+  create_table "project_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.integer "year"
+    t.integer "project_number"
+    t.string "name"
+    t.string "objective"
+    t.string "state"
+    t.datetime "start_date"
+    t.date "estimated_end_date"
+    t.date "end_date"
+    t.integer "privacy"
+    t.string "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prosecutors", force: :cascade do |t|
     t.string "name"
     t.string "rut"
@@ -376,6 +571,24 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
     t.index ["prosecutor_id"], name: "index_regional_pros_offices_on_prosecutor_id"
   end
 
+  create_table "report_receiver_people", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.bigint "people_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_report_receiver_people_on_derivation_id"
+    t.index ["people_id"], name: "index_report_receiver_people_on_people_id"
+  end
+
+  create_table "report_receiver_ulddecos", force: :cascade do |t|
+    t.bigint "derivation_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["derivation_id"], name: "index_report_receiver_ulddecos_on_derivation_id"
+    t.index ["user_id"], name: "index_report_receiver_ulddecos_on_user_id"
+  end
+
   create_table "ruc_felonies", force: :cascade do |t|
     t.bigint "felony_id"
     t.bigint "ruc_id"
@@ -389,6 +602,24 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "task_goal_documents", force: :cascade do |t|
+    t.bigint "task_goal_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_task_goal_documents_on_document_id"
+    t.index ["task_goal_id"], name: "index_task_goal_documents_on_task_goal_id"
+  end
+
+  create_table "task_goals", force: :cascade do |t|
+    t.bigint "goal_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_task_goals_on_goal_id"
+    t.index ["task_id"], name: "index_task_goals_on_task_id"
   end
 
   create_table "task_iics", force: :cascade do |t|
@@ -434,6 +665,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
   end
 
   add_foreign_key "aliases", "people"
+  add_foreign_key "assigned_to_goals", "goals"
+  add_foreign_key "assigned_to_goals", "users"
   add_foreign_key "authors", "documents"
   add_foreign_key "authors", "people"
   add_foreign_key "case_assignations", "cases"
@@ -467,12 +700,24 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
   add_foreign_key "cc_tasks", "tasks"
   add_foreign_key "commentaries", "tasks"
   add_foreign_key "commentaries", "users"
+  add_foreign_key "derivation_assignations", "derivations"
+  add_foreign_key "derivation_assignations", "users"
+  add_foreign_key "derivation_documents", "derivations"
+  add_foreign_key "derivation_documents", "documents"
+  add_foreign_key "derivation_reports", "derivations"
+  add_foreign_key "derivation_task_documents", "derivation_tasks"
+  add_foreign_key "derivation_task_documents", "documents"
+  add_foreign_key "derivation_tasks", "derivations"
+  add_foreign_key "derivation_tasks", "tasks"
+  add_foreign_key "derivations", "petitioners"
   add_foreign_key "document_iics", "documents"
   add_foreign_key "document_iics", "iics"
   add_foreign_key "document_task_iics", "documents"
   add_foreign_key "document_task_iics", "task_iics"
   add_foreign_key "employees", "institutions"
   add_foreign_key "employees", "people"
+  add_foreign_key "goal_documents", "documents"
+  add_foreign_key "goal_documents", "goals"
   add_foreign_key "internal_authors", "documents"
   add_foreign_key "internal_authors", "users"
   add_foreign_key "internal_member_iics", "iics"
@@ -485,9 +730,33 @@ ActiveRecord::Schema.define(version: 2018_09_20_003429) do
   add_foreign_key "manager_iics", "users"
   add_foreign_key "member_iics", "employees"
   add_foreign_key "member_iics", "iics"
+  add_foreign_key "petitioners", "people"
+  add_foreign_key "project_documents", "documents"
+  add_foreign_key "project_documents", "projects"
+  add_foreign_key "project_institutions", "institutions"
+  add_foreign_key "project_institutions", "projects"
+  add_foreign_key "project_responsables", "employees"
+  add_foreign_key "project_responsables", "projects"
+  add_foreign_key "project_stage_users", "project_stages"
+  add_foreign_key "project_stage_users", "users"
+  add_foreign_key "project_stages", "projects"
+  add_foreign_key "project_task_documents", "documents"
+  add_foreign_key "project_task_documents", "project_tasks"
+  add_foreign_key "project_tasks", "projects"
+  add_foreign_key "project_tasks", "tasks"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
   add_foreign_key "regional_pros_offices", "prosecutors"
+  add_foreign_key "report_receiver_people", "derivations"
+  add_foreign_key "report_receiver_people", "people", column: "people_id"
+  add_foreign_key "report_receiver_ulddecos", "derivations"
+  add_foreign_key "report_receiver_ulddecos", "users"
   add_foreign_key "ruc_felonies", "felonies"
   add_foreign_key "ruc_felonies", "rucs"
+  add_foreign_key "task_goal_documents", "documents"
+  add_foreign_key "task_goal_documents", "task_goals"
+  add_foreign_key "task_goals", "goals"
+  add_foreign_key "task_goals", "tasks"
   add_foreign_key "task_iics", "iics"
   add_foreign_key "task_iics", "tasks"
   add_foreign_key "tasks", "users"
