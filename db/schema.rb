@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_09_20_061339) do
+=======
+ActiveRecord::Schema.define(version: 2018_09_19_183052) do
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+<<<<<<< HEAD
   create_table "aliases", force: :cascade do |t|
     t.bigint "person_id"
     t.string "nickname"
@@ -53,6 +58,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["user_id"], name: "index_assigned_to_goals_on_user_id"
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "authors", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "document_id"
@@ -63,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["person_id"], name: "index_authors_on_person_id"
   end
 
+<<<<<<< HEAD
   create_table "case_assignations", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "case_id"
@@ -208,6 +216,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["task_id"], name: "index_cc_tasks_on_task_id"
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "commentaries", force: :cascade do |t|
     t.text "message"
     t.bigint "task_id"
@@ -218,6 +228,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["user_id"], name: "index_commentaries_on_user_id"
   end
 
+<<<<<<< HEAD
   create_table "derivation_assignations", force: :cascade do |t|
     t.bigint "derivation_id"
     t.bigint "user_id"
@@ -285,6 +296,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["petitioner_id"], name: "index_derivations_on_petitioner_id"
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "document_iics", force: :cascade do |t|
     t.bigint "iic_id"
     t.bigint "document_id"
@@ -331,6 +344,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "felonies", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -361,6 +375,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "iics", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -399,6 +415,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["user_id"], name: "index_internal_member_iics_on_user_id"
   end
 
+<<<<<<< HEAD
   create_table "inv_legal_people", force: :cascade do |t|
     t.bigint "legal_person_id"
     t.bigint "case_id"
@@ -424,6 +441,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "logs", force: :cascade do |t|
     t.string "code"
     t.string "privacy"
@@ -459,6 +478,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "petitioners", force: :cascade do |t|
     t.bigint "person_id"
     t.string "position"
@@ -622,6 +642,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["task_id"], name: "index_task_goals_on_task_id"
   end
 
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   create_table "task_iics", force: :cascade do |t|
     t.bigint "iic_id"
     t.bigint "task_id"
@@ -664,6 +686,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "aliases", "people"
   add_foreign_key "assigned_to_goals", "goals"
   add_foreign_key "assigned_to_goals", "users"
@@ -710,26 +733,39 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
   add_foreign_key "derivation_tasks", "derivations"
   add_foreign_key "derivation_tasks", "tasks"
   add_foreign_key "derivations", "petitioners"
+=======
+  add_foreign_key "authors", "documents"
+  add_foreign_key "authors", "people"
+  add_foreign_key "commentaries", "tasks"
+  add_foreign_key "commentaries", "users"
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   add_foreign_key "document_iics", "documents"
   add_foreign_key "document_iics", "iics"
   add_foreign_key "document_task_iics", "documents"
   add_foreign_key "document_task_iics", "task_iics"
   add_foreign_key "employees", "institutions"
   add_foreign_key "employees", "people"
+<<<<<<< HEAD
   add_foreign_key "goal_documents", "documents"
   add_foreign_key "goal_documents", "goals"
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   add_foreign_key "internal_authors", "documents"
   add_foreign_key "internal_authors", "users"
   add_foreign_key "internal_member_iics", "iics"
   add_foreign_key "internal_member_iics", "users"
+<<<<<<< HEAD
   add_foreign_key "inv_legal_people", "cases"
   add_foreign_key "inv_legal_people", "legal_people"
   add_foreign_key "investigated_people", "cases"
   add_foreign_key "investigated_people", "people"
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   add_foreign_key "manager_iics", "iics"
   add_foreign_key "manager_iics", "users"
   add_foreign_key "member_iics", "employees"
   add_foreign_key "member_iics", "iics"
+<<<<<<< HEAD
   add_foreign_key "petitioners", "people"
   add_foreign_key "project_documents", "documents"
   add_foreign_key "project_documents", "projects"
@@ -757,6 +793,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
   add_foreign_key "task_goal_documents", "task_goals"
   add_foreign_key "task_goals", "goals"
   add_foreign_key "task_goals", "tasks"
+=======
+>>>>>>> 503c5c09b0b1c9678f09eb4cb6818ccdf3222b84
   add_foreign_key "task_iics", "iics"
   add_foreign_key "task_iics", "tasks"
   add_foreign_key "tasks", "users"

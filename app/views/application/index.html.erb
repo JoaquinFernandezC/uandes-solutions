@@ -1,1 +1,64 @@
-<h1>Hello World!</h1>
+<div class="card">
+	<div class="card-header bg-info">
+    <h2 class="text-white" style="margin-bottom: 0"><b>Bandeja de Tareas</b></h2>
+	</div>
+	<div class="card-body">
+		<div class="row" style="background: #FFFFFF;">
+			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px;">
+		        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
+					<%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
+					<%= link_to 'Agregar Entidades', root_path, class: 'btn btn-outline-secondary' %>
+					<%= link_to 'Tareas Historicas', root_path, class: 'btn btn-outline-secondary' %>
+					<%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
+					<%= link_to 'Bitacora de Errores', root_path, class: 'btn btn-outline-secondary' %>
+		        </div>
+			</div>
+			<div class="col-sm-9 hidden-xs" style="margin: auto">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Tarea</th>
+								<th>Tema</th>
+								<th>Fecha</th>
+								<th>Prioridad</th>
+								<th>Privacidad</th>
+								<% if false %>
+									<th>Encargado</th>
+								<% end %>
+								<th></th>
+								<th colspan="300"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Comprar Globos</td>
+								<td>Proyecto Avanza</td>
+								<td>03/04/2019</td>
+								<td class="text-danger">Urgente</td>
+								<td>Secreto</td>
+								<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+							</tr>
+							<tr>
+								<td>Recopilacion Evidencia</td>
+								<td>Caso Pinta</td>
+								<td>30/12/2018</td>
+								<td class="text-warning">Media</td>
+								<td>Privado</td>
+								<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+							</tr>
+							<tr>
+								<td>Revisar Tarea</td>
+								<td>Caso Farmaceuticas</td>
+								<td>17/02/2019</td>
+								<td>Baja</td>
+								<td>Publico</td>
+								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

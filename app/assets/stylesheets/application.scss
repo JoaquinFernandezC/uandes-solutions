@@ -14,6 +14,13 @@
 
 @import "bootstrap";
 @import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+div.paddedSides {
+  padding-right: 15vw;
+  padding-left: 15vw;
+  padding-top: 15vh;
+}
 
 div.paddedTop {
   padding-top: 100px;
@@ -47,3 +54,39 @@ li.padded {
 .banner-text h2{color:#fff; font-weight:600;}
 .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
 .banner-text p{color:#fff;}
+.navbar-light:hover {
+  color: darkorange;
+}
+
+nav.menu {
+  background-color:rgba(249, 249, 249, 0.4);
+}
+
+nav.menu a:hover{
+  color: darkorange;
+}
+
+.makeOrange {
+  color: black;
+}
+
+.makeOrange:hover {
+  color: darkorange;
+}
+
+body {
+	background-image: image_url("fondo.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #f0f3f8;
+    font-family: 'Ubuntu', sans-serif;
+}
+.navbar-nav > li{
+  padding-left:10px;
+  padding-right:10px;
+}
+
+th {
+  text-align: center;
+}
