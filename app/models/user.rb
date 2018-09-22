@@ -23,4 +23,7 @@ class User < ApplicationRecord
   has_many :projects, :through => :project_users
   has_many :report_receiver_ulddecos
   has_many :derivations, :through => :report_receiver_ulddecos
+
+  validates :email, uniqueness: true
+  validates :rut, uniqueness: true
 end

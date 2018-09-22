@@ -25,4 +25,18 @@ class Task < ApplicationRecord
   has_one :case, through: :case_task
   has_one :derivation_task
   has_one :derivation, through: :derivation_task
+
+  validate :estimated_end_date_cannot_be_in_the_past
+  validate :end_date_cannot_be_in_the_past
+
+  def estimated_end_date_cannot_be_in_the_past
+    if estimated_end_date.present? && estimated_end_date < Date.today
+      errors.add(:estimated_end_date, "can't be in the past")
+    end
+  end
+  def end_date_cannot_be_in_the_past
+    if end_date.present? && end_date < Date.today
+      errors.add(:end_date, "can't be in the past")
+    end
+  end
 end
