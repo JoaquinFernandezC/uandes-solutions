@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
   validates :name, presence: true
-  validates :rut, presence: true
+  validates :rut, presence: true, uniqueness: true
   validates :passport, presence: true
 
   has_many :authors
