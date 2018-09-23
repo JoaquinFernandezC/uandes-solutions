@@ -24,6 +24,9 @@ class User < ApplicationRecord
   has_many :report_receiver_ulddecos
   has_many :derivations, :through => :report_receiver_ulddecos
 
-  validates :email, uniqueness: true
-  validates :rut, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :rut, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :position, presence: true
+  validates :rol, presence: true
 end

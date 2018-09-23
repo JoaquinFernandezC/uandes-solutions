@@ -28,4 +28,9 @@ class Document < ApplicationRecord
   has_one :project_task, :through => :project_task_documents
   has_one :task_goal_document
   has_one :task_goal, :through => :task_goal_documents
+
+  validates :name, presence: true
+  validates :classification, presence: true
+  validates :type, presence: true
+  validates :version, presence: true
 end

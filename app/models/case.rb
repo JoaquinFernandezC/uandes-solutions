@@ -12,6 +12,10 @@ class Case < ApplicationRecord
   has_many :investigated_persons
   has_many :people, :through => :investigated_persons
 
+  validates :name, presence: true
+  validates :ruc_felony_id, presence: true
+  validates :privacy, presence: true
+
   validate :estimated_end_date_cannot_be_in_the_past
 
   def estimated_end_date_cannot_be_in_the_past

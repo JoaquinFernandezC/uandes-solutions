@@ -12,6 +12,8 @@ class CaseCoordination < ApplicationRecord
   has_many :cc_rucs
   has_many :rucs, :through => :cc_rucs
 
+  
+  validates :name, presence: true 
   validate :estimated_end_date_cannot_be_in_the_past
 
   def estimated_end_date_cannot_be_in_the_past
