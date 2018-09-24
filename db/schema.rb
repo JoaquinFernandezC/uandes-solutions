@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_061339) do
+ActiveRecord::Schema.define(version: 2018_09_24_163030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
 
   create_table "case_assignations", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "case_id"
+    t.bigint "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_case_assignations_on_case_id"
+    t.index ["cause_id"], name: "index_case_assignations_on_cause_id"
     t.index ["user_id"], name: "index_case_assignations_on_user_id"
   end
 
@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
 
   create_table "case_documents", force: :cascade do |t|
     t.bigint "document_id"
-    t.bigint "case_id"
+    t.bigint "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_case_documents_on_case_id"
+    t.index ["cause_id"], name: "index_case_documents_on_cause_id"
     t.index ["document_id"], name: "index_case_documents_on_document_id"
   end
 
@@ -103,14 +103,14 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
 
   create_table "case_tasks", force: :cascade do |t|
     t.bigint "task_id"
-    t.bigint "case_id"
+    t.bigint "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_case_tasks_on_case_id"
+    t.index ["cause_id"], name: "index_case_tasks_on_cause_id"
     t.index ["task_id"], name: "index_case_tasks_on_task_id"
   end
 
-  create_table "cases", force: :cascade do |t|
+  create_table "causes", force: :cascade do |t|
     t.string "name"
     t.bigint "regional_pros_office_id"
     t.string "description"
@@ -122,9 +122,9 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
     t.string "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["prosecutor_id"], name: "index_cases_on_prosecutor_id"
-    t.index ["regional_pros_office_id"], name: "index_cases_on_regional_pros_office_id"
-    t.index ["ruc_felony_id"], name: "index_cases_on_ruc_felony_id"
+    t.index ["prosecutor_id"], name: "index_causes_on_prosecutor_id"
+    t.index ["regional_pros_office_id"], name: "index_causes_on_regional_pros_office_id"
+    t.index ["ruc_felony_id"], name: "index_causes_on_ruc_felony_id"
   end
 
   create_table "cc_assignations", force: :cascade do |t|
@@ -401,19 +401,19 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
 
   create_table "inv_legal_people", force: :cascade do |t|
     t.bigint "legal_person_id"
-    t.bigint "case_id"
+    t.bigint "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_inv_legal_people_on_case_id"
+    t.index ["cause_id"], name: "index_inv_legal_people_on_cause_id"
     t.index ["legal_person_id"], name: "index_inv_legal_people_on_legal_person_id"
   end
 
   create_table "investigated_people", force: :cascade do |t|
     t.bigint "person_id"
-    t.bigint "case_id"
+    t.bigint "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_investigated_people_on_case_id"
+    t.index ["cause_id"], name: "index_investigated_people_on_cause_id"
     t.index ["person_id"], name: "index_investigated_people_on_person_id"
   end
 
@@ -669,17 +669,17 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
   add_foreign_key "assigned_to_goals", "users"
   add_foreign_key "authors", "documents"
   add_foreign_key "authors", "people"
-  add_foreign_key "case_assignations", "cases"
+  add_foreign_key "case_assignations", "causes"
   add_foreign_key "case_assignations", "users"
-  add_foreign_key "case_documents", "cases"
+  add_foreign_key "case_documents", "causes"
   add_foreign_key "case_documents", "documents"
   add_foreign_key "case_task_documents", "case_tasks"
   add_foreign_key "case_task_documents", "documents"
-  add_foreign_key "case_tasks", "cases"
+  add_foreign_key "case_tasks", "causes"
   add_foreign_key "case_tasks", "tasks"
-  add_foreign_key "cases", "prosecutors"
-  add_foreign_key "cases", "regional_pros_offices"
-  add_foreign_key "cases", "ruc_felonies"
+  add_foreign_key "causes", "prosecutors"
+  add_foreign_key "causes", "regional_pros_offices"
+  add_foreign_key "causes", "ruc_felonies"
   add_foreign_key "cc_assignations", "case_coordinations"
   add_foreign_key "cc_assignations", "users"
   add_foreign_key "cc_documents", "case_coordinations"
@@ -722,9 +722,9 @@ ActiveRecord::Schema.define(version: 2018_09_20_061339) do
   add_foreign_key "internal_authors", "users"
   add_foreign_key "internal_member_iics", "iics"
   add_foreign_key "internal_member_iics", "users"
-  add_foreign_key "inv_legal_people", "cases"
+  add_foreign_key "inv_legal_people", "causes"
   add_foreign_key "inv_legal_people", "legal_people"
-  add_foreign_key "investigated_people", "cases"
+  add_foreign_key "investigated_people", "causes"
   add_foreign_key "investigated_people", "people"
   add_foreign_key "manager_iics", "iics"
   add_foreign_key "manager_iics", "users"

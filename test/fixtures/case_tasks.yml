@@ -2,8 +2,8 @@
 
 one:
   task: one
-  case: one
+  cause: one
 
 two:
   task: two
-  case: two
+  cause: two

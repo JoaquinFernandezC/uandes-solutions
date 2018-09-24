@@ -8,7 +8,7 @@ one:
   ruc_felony: one
   state: MyString
   prosecutor: one
-  estimated_end_date: 2018-09-19 21:34:10
+  estimated_end_date: 2018-09-24 13:30:24
   log: MyString
 
 two:
@@ -19,5 +19,5 @@ two:
   ruc_felony: two
   state: MyString
   prosecutor: two
-  estimated_end_date: 2018-09-19 21:34:10
+  estimated_end_date: 2018-09-24 13:30:24
   log: MyString

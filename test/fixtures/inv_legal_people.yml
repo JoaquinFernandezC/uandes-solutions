@@ -2,8 +2,8 @@
 
 one:
   legal_person: one
-  case: one
+  cause: one
 
 two:
   legal_person: two
-  case: two
+  cause: two
