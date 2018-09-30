@@ -1,0 +1,2 @@
+module CcTaskHelper
+end

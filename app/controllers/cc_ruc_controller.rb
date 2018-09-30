@@ -1,0 +1,2 @@
+class CcRucController < ApplicationController
+end

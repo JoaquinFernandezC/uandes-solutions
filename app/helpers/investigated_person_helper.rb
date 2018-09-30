@@ -1,0 +1,2 @@
+module InvestigatedPersonHelper
+end

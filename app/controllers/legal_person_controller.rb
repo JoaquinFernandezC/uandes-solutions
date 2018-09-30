@@ -1,0 +1,2 @@
+class LegalPersonController < ApplicationController
+end

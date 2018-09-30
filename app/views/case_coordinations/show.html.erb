@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @case_coordination.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @case_coordination.description %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @case_coordination.state %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @case_coordination.estimated_end_date %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @case_coordination.log %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @case_coordination.privacy %>
+</p>
+
+<%= link_to 'Edit', edit_case_coordination_path(@case_coordination) %> |
+<%= link_to 'Back', case_coordinations_path %>

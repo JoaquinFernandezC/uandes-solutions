@@ -1,0 +1,2 @@
+class TaskInterinstitutionalCoordinationController < ApplicationController
+end

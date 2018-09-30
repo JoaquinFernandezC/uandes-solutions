@@ -1,0 +1,77 @@
+<%= form_with(model: derivation, local: true) do |form| %>
+  <% if derivation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(derivation.errors.count, "error") %> prohibited this derivation from being saved:</h2>
+
+      <ul>
+      <% derivation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :petitioner_id %>
+    <%= form.text_field :petitioner_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.number_field :priority %>
+  </div>
+
+  <div class="field">
+    <%= form.label :derivation_date %>
+    <%= form.date_select :derivation_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_start_date %>
+    <%= form.datetime_select :work_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_work_start_date %>
+    <%= form.text_field :estimated_work_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_end_date %>
+    <%= form.date_select :estimated_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :log %>
+    <%= form.text_field :log %>
+  </div>
+
+  <div class="field">
+    <%= form.label :privacy %>
+    <%= form.number_field :privacy %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

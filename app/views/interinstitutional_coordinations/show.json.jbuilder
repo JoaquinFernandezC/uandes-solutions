@@ -1,0 +1,1 @@
+json.partial! "interinstitutional_coordinations/interinstitutional_coordination", interinstitutional_coordination: @interinstitutional_coordination

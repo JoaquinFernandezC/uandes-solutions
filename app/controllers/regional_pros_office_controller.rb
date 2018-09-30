@@ -1,0 +1,2 @@
+class RegionalProsOfficeController < ApplicationController
+end

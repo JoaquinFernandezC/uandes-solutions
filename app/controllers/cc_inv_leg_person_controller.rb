@@ -1,0 +1,2 @@
+class CcInvLegPersonController < ApplicationController
+end
