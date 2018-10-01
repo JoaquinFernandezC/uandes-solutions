@@ -6,11 +6,10 @@
 		<div class="row" style="background: #FFFFFF;">
 			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px;">
 		        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
-					<%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
-					<%= link_to 'Agregar Entidades', root_path, class: 'btn btn-outline-secondary' %>
-					<%= link_to 'Tareas Historicas', root_path, class: 'btn btn-outline-secondary' %>
-					<%= link_to 'Administrar Usuarios', root_path, class: 'btn btn-outline-secondary' %>
-					<%= link_to 'Bitacora de Errores', root_path, class: 'btn btn-outline-secondary' %>
+					<button class="btn btn-outline-secondary" onclick="alert('Aqui se agregan entidades.')">Agregar Entidades</button>
+					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
+					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
+					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ve la bitacora.')">Bitacora de Errores</button>
 		        </div>
 			</div>
 			<div class="col-sm-9 hidden-xs" style="margin: auto">
@@ -22,90 +21,103 @@
 				    <li class="nav-item">
 				      <a class="nav-link makeOrange" data-toggle="pill" href="#menu1">Revisar</a>
 				    </li>
+				    <li class="nav-item ml-auto">
+						<input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Search..">
+					</li>
 				  </ul>
 
-				  <div class="tab-content">
-				    <div id="home" class="container tab-pane active">
-				      <div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Tarea</th>
-										<th>Tema</th>
-										<th>Fecha Estimada</th>
-										<th>Prioridad</th>
-										<th>Privacidad</th>
-										<% if false %>
-											<th>Encargado</th>
-										<% end %>
-										<th></th>
-										<th colspan="300"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Arriendo Centro de Eventos</td>
-										<td>Proyecto Avanza</td>
-										<td>03/04/2019</td>
-										<td class="text-danger">Urgente</td>
-										<td>Secreto</td>
-										<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-									</tr>
-									<tr>
-										<td>Recopilacion Evidencia</td>
-										<td>Caso Pinta</td>
-										<td>30/12/2018</td>
-										<td class="text-warning">Media</td>
-										<td>Privado</td>
-										<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-									</tr>
-									<tr>
-										<td>Entrevista Sospechoso</td>
-										<td>Robos Viñas</td>
-										<td>11/11/2018</td>
-										<td>Baja</td>
-										<td>Publico</td>
-										<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-									</tr>
-								</tbody>
-							</table>
-							<p><strong>Tareas: </strong>3</p>
+					<div class="tab-content">
+						<div id="home" class="container tab-pane active">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Tarea</th>
+											<th>Tema</th>
+											<th>Fecha Estimada</th>
+											<th>Prioridad</th>
+											<th>Privacidad</th>
+											<% if false %>
+												<th>Encargado</th>
+											<% end %>
+											<th></th>
+											<th colspan="300"></th>
+										</tr>
+									</thead>
+									<tbody id="myTable">
+										<tr>
+											<td>Arriendo Centro de Eventos</td>
+											<td>Proyecto Avanza</td>
+											<td>03/04/2019</td>
+											<td class="text-danger">Urgente</td>
+											<td>Secreto</td>
+											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+										</tr>
+										<tr>
+											<td>Recopilacion Evidencia</td>
+											<td>Caso Pinta</td>
+											<td>30/12/2018</td>
+											<td class="text-warning">Media</td>
+											<td>Privado</td>
+											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+										</tr>
+										<tr>
+											<td>Entrevista Sospechoso</td>
+											<td>Robos Viñas</td>
+											<td>11/11/2018</td>
+											<td>Baja</td>
+											<td>Publico</td>
+											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+										</tr>
+									</tbody>
+								</table>
+								<p><strong>Tareas: </strong>3</p>
+							</div>
 						</div>
-				    </div>
-				    <div id="menu1" class="container tab-pane fade">
-				      <div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Tarea</th>
-										<th>Tema</th>
-										<th>Fecha Estimada</th>
-										<th>Prioridad</th>
-										<th>Privacidad</th>
-										<% if false %>
-											<th>Encargado</th>
-										<% end %>
-										<th></th>
-										<th colspan="300"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Audiencia Juridica</td>
-										<td>Caso Farmaceuticas</td>
-										<td>17/02/2019</td>
-										<td>Baja</td>
-										<td>Publico</td>
-										<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
-									</tr>
-								</tbody>
-							</table>
-							<p><strong>Tareas: </strong>1</p>
+						<div id="menu1" class="container tab-pane fade">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Tarea</th>
+											<th>Tema</th>
+											<th>Fecha Estimada</th>
+											<th>Prioridad</th>
+											<th>Privacidad</th>
+											<% if false %>
+												<th>Encargado</th>
+											<% end %>
+											<th></th>
+											<th colspan="300"></th>
+										</tr>
+									</thead>
+									<tbody id="myTable">
+										<tr>
+											<td>Audiencia Juridica</td>
+											<td>Caso Farmaceuticas</td>
+											<td>17/02/2019</td>
+											<td>Baja</td>
+											<td>Publico</td>
+											<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
+										</tr>
+									</tbody>
+								</table>
+								<p><strong>Tareas: </strong>3</p>
+							</div>
 						</div>
-				    </div>
-				  </div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>

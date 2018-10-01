@@ -23,19 +23,19 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle makeOrange" href="#" data-toggle="dropdown">Apoyo a Casos</a>
                 <div class="dropdown-menu">
-                  <%= link_to 'Caso', '#', class: 'dropdown-item' %>
-                  <%= link_to 'Coordinación Caso', '#', class: 'dropdown-item' %>
+                  <%= link_to 'Caso', '#', class: 'dropdown-item', :onclick => 'alert("Aqui se redirige a donde se pueden administrar los casos.")' %>
+                  <%= link_to 'Coordinación Caso', '#', class: 'dropdown-item', :onclick => 'alert("Aqui se redirige a donde se puede administrar la coordinación de casos.")' %>
                  </div>
               </li>
               <li class="nav-item">
-                <%= link_to 'C. Interinstitucional', '#', class: 'nav-link makeOrange' %>
+                <%= link_to 'C. Interinstitucional', '#', class: 'nav-link makeOrange', :onclick => 'alert("Aqui se redirige a la vista de C. Interinstitucional.")' %>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle makeOrange" href="#" data-toggle="dropdown">Fiscal Nacional</a>
                 <div class="dropdown-menu">
-                  <%= link_to 'Meta Ues', '#', class: 'dropdown-item' %>
-                  <%= link_to 'Proyectos', '#', class: 'dropdown-item' %>
-                  <%= link_to 'Derivaciones de Gabinete', '#', class: 'dropdown-item' %>
+                  <%= link_to 'Meta Ues', '#', class: 'dropdown-item', :onclick => 'alert("Aqui se redirige a donde se pueden administrar las metas Ues.")' %>
+                  <%= link_to 'Proyectos', '#', class: 'dropdown-item', :onclick => 'alert("Aqui se redirige a donde se pueden administrar los proyectos.")' %>
+                  <%= link_to 'Derivaciones de Gabinete', '#', class: 'dropdown-item', :onclick => 'alert("Aqui se redirige a la vista de Derivaciones de Gabinete.")' %>
                  </div>
               </li>
 
