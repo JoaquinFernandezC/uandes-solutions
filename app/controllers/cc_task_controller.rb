@@ -1,0 +1,2 @@
+class CcTaskController < ApplicationController
+end

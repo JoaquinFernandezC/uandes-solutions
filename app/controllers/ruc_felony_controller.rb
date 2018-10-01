@@ -1,0 +1,2 @@
+class RucFelonyController < ApplicationController
+end

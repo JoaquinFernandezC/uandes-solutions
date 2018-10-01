@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @error_log.code %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @error_log.privacy %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @error_log.action %>
+</p>
+
+<%= link_to 'Edit', edit_error_log_path(@error_log) %> |
+<%= link_to 'Back', error_logs_path %>

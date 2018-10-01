@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @derivation.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @derivation.description %>
+</p>
+
+<p>
+  <strong>Petitioner:</strong>
+  <%= @derivation.petitioner %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @derivation.state %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @derivation.priority %>
+</p>
+
+<p>
+  <strong>Derivation date:</strong>
+  <%= @derivation.derivation_date %>
+</p>
+
+<p>
+  <strong>Work start date:</strong>
+  <%= @derivation.work_start_date %>
+</p>
+
+<p>
+  <strong>Estimated work start date:</strong>
+  <%= @derivation.estimated_work_start_date %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @derivation.estimated_end_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @derivation.end_date %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @derivation.log %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @derivation.privacy %>
+</p>
+
+<%= link_to 'Edit', edit_derivation_path(@derivation) %> |
+<%= link_to 'Back', derivations_path %>

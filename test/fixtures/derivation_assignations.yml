@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  derivation: one
+  user: one
+  assignation_date: 2018-09-20
+  deassignment_date: 2018-09-20
+
+two:
+  derivation: two
+  user: two
+  assignation_date: 2018-09-20
+  deassignment_date: 2018-09-20

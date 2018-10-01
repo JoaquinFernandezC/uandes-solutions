@@ -1,0 +1,2 @@
+class MemberInterinstitutionalCoordinationController < ApplicationController
+end

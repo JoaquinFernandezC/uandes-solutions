@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  user: one
+  start_date: 2018-09-19 14:29:15
+  estimated_end_date: 2018-09-19 14:29:15
+  end_date: 2018-09-19 14:29:15
+  privacy: 1
+  priority: 1
+  state: MyString
+  needs_checking: false
+  log: MyString
+
+two:
+  name: MyString
+  description: MyText
+  user: two
+  start_date: 2018-09-19 14:29:15
+  estimated_end_date: 2018-09-19 14:29:15
+  end_date: 2018-09-19 14:29:15
+  privacy: 1
+  priority: 1
+  state: MyString
+  needs_checking: false
+  log: MyString

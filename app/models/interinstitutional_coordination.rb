@@ -1,0 +1,2 @@
+class InterinstitutionalCoordination < ApplicationRecord
+end

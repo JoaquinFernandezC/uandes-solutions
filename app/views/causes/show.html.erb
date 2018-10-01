@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cause.name %>
+</p>
+
+<p>
+  <strong>Regional pros office:</strong>
+  <%= @cause.regional_pros_office %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @cause.description %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @cause.privacy %>
+</p>
+
+<p>
+  <strong>Ruc felony:</strong>
+  <%= @cause.ruc_felony %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @cause.state %>
+</p>
+
+<p>
+  <strong>Prosecutor:</strong>
+  <%= @cause.prosecutor %>
+</p>
+
+<p>
+  <strong>Estimated end date:</strong>
+  <%= @cause.estimated_end_date %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @cause.log %>
+</p>
+
+<%= link_to 'Edit', edit_cause_path(@cause) %> |
+<%= link_to 'Back', causes_path %>

@@ -1,0 +1,2 @@
+class ManagerInterinstitutionalCoordinationController < ApplicationController
+end

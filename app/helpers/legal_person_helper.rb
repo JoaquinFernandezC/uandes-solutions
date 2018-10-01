@@ -1,0 +1,2 @@
+module LegalPersonHelper
+end

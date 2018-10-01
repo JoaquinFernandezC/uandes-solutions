@@ -1,0 +1,2 @@
+class CaseTaskController < ApplicationController
+end

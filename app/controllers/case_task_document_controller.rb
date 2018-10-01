@@ -1,0 +1,2 @@
+class CaseTaskDocumentController < ApplicationController
+end

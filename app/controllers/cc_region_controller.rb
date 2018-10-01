@@ -1,0 +1,2 @@
+class CcRegionController < ApplicationController
+end

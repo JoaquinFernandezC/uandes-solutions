@@ -1,0 +1,2 @@
+class CcTaskDocumentController < ApplicationController
+end

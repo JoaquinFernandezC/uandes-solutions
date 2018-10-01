@@ -1,0 +1,2 @@
+class DocumentInterinstitutionalCoordinationController < ApplicationController
+end

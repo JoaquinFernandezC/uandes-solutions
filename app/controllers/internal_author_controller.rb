@@ -1,0 +1,2 @@
+class InternalAuthorController < ApplicationController
+end
