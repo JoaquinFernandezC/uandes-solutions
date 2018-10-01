@@ -79,12 +79,9 @@ nav.menu a:hover{
 }
 
 body {
-	background-image: image_url("fondo.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: #f0f3f8;
-    font-family: 'Ubuntu', sans-serif;
+  background-size: cover;
+  background: #f0f3f8 image_url("fondo.jpg") no-repeat;
+  font-family: 'Ubuntu', sans-serif;
 }
 .navbar-nav > li{
   padding-left:10px;
