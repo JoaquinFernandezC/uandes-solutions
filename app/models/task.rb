@@ -22,7 +22,7 @@ class Task < ApplicationRecord
   has_one :cc_task
   has_one :case_coordination, through: :cc_task
   has_one :case_task
-  has_one :case, through: :case_task
+  has_one :cause, through: :case_task
   has_one :derivation_task
   has_one :derivation, through: :derivation_task
 
