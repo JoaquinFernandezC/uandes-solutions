@@ -5,6 +5,8 @@
 	<div class="card-body">
 		<div class="row" style="background: #FFFFFF;">
 			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px;">
+				<p><%= image_tag("logo_fiscalia.png", class: "img-thumbnail") %></p>
+				<h2 class="text-center"><strong><%= current_user.name %></strong></h2>
 		        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se agregan entidades.')">Agregar Entidades</button>
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
