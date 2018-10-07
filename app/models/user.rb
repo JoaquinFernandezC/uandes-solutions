@@ -26,7 +26,13 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :rut, presence: true, uniqueness: true
-  validates :name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :position, presence: true
   validates :rol, presence: true
+  validates_format_of :rut, with: /\A^\d{1,2,3}\.\d{3}\.\d{3}[-][0-9kK]{1}$\z/i, on: :create
+
+  def name
+    first_name + ' ' + last_name
+  end
 end
