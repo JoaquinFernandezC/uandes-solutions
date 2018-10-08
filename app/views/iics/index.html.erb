@@ -1,43 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Coordinación Interinstitucional</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_iic_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item ">
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis CII <b>(3)</b></a>
+            </li>
+          </ul>
 
-<h1>Iics</h1>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>State</th>
+                    <th>Start date</th>
+                    <th>Estimated end date</th>
+                    <th>End date</th>
+                    <th>Log</th>
+                    <th>Privacy</th>
+                    <th>Multilateral</th>
+                    <th colspan="3"></th>
+                  </tr>
+                  </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>State</th>
-      <th>Start date</th>
-      <th>Estimated end date</th>
-      <th>End date</th>
-      <th>Log</th>
-      <th>Privacy</th>
-      <th>Multilateral</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                  <tbody>
+                  <% @iics.each do |iic| %>
+                    <tr>
+                      <td><%= iic.name %></td>
+                      <td><%= iic.description %></td>
+                      <td><%= iic.state %></td>
+                      <td><%= iic.start_date %></td>
+                      <td><%= iic.estimated_end_date %></td>
+                      <td><%= iic.end_date %></td>
+                      <td><%= iic.log %></td>
+                      <td><%= iic.privacy %></td>
+                      <td><%= iic.multilateral %></td>
+                      <td><%= link_to 'Show', iic %></td>
+                      <td><%= link_to 'Edit', edit_iic_path(iic) %></td>
+                      <td><%= link_to 'Destroy', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @iics.each do |iic| %>
-      <tr>
-        <td><%= iic.name %></td>
-        <td><%= iic.description %></td>
-        <td><%= iic.state %></td>
-        <td><%= iic.start_date %></td>
-        <td><%= iic.estimated_end_date %></td>
-        <td><%= iic.end_date %></td>
-        <td><%= iic.log %></td>
-        <td><%= iic.privacy %></td>
-        <td><%= iic.multilateral %></td>
-        <td><%= link_to 'Show', iic %></td>
-        <td><%= link_to 'Edit', edit_iic_path(iic) %></td>
-        <td><%= link_to 'Destroy', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Iic', new_iic_path %>

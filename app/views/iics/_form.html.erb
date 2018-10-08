@@ -11,52 +11,105 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <br/>
+
+  <div class="form-group">
+    <%= form.label :name, 'Nombre' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, 'Descripción' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :internal_member_iics, 'Miembros Encargados' %>
+        <%= form.select :employee_ids, User.all.pluck("CONCAT(users.first_name, ' ', users.last_name)", :id), {}, {multiple: true, class: 'selectizeType'} %>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :internal_member_iics, 'Miembros Internos' %>
+        <%= form.select :employee_ids, User.all.pluck("CONCAT(users.first_name, ' ', users.last_name)", :id), {}, {multiple: true, class: 'selectizeType'} %>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :employee_ids, 'Miembros Externos' %>
+        <%= form.select :employee_ids, Employee.joins(:person, :institution).pluck("CONCAT('(', institutions.name, ') ', people.name)", :id), {}, {multiple: true, class: 'selectize'} %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :start_date %>
-    <%= form.datetime_select :start_date %>
+    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+      <%= form.datetime_select :start_date, class: 'span2', type: 'text' %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :estimated_end_date %>
     <%= form.datetime_select :estimated_end_date %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :end_date %>
     <%= form.datetime_select :end_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :log %>
-    <%= form.text_field :log %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :privacy %>
-    <%= form.number_field :privacy %>
+    <%= form.number_field :privacy, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :multilateral %>
-    <%= form.check_box :multilateral %>
+  <div class="form-check">
+    <%= form.check_box :multilateral, class: 'form-check-input', type: 'checkbox' %>
+    <%= form.label :multilateral, class: 'form-check-label' %>
   </div>
+
+  <br/>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<div class="modal fade employee-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuevo Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Employee.new do |form| %>
+          <div class="form-group">
+            <%= form.label :person_id %>
+            <%= form.select :person_id, Person.all.pluck(:name, :id), {}, { class: 'selectize' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :institution_id %>
+            <%= form.select :institution_id, Institution.all.pluck(:name, :id), {}, { class: 'selectize' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :position %>
+            <%= form.text_field :position, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>

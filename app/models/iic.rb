@@ -13,8 +13,8 @@ class Iic < ApplicationRecord
   has_many :documents, through: :document_iics
   has_many :internal_member_iics
   has_many :users, through: :internal_member_iics
-  #has_many :manager_iics
-  #has_many :users, through: :manager_iics
+  has_many :manager_iics
+  has_many :managers, class_name: 'User', through: :manager_iics
   has_many :member_iics
   has_many :employees, through: :member_iics
   has_many :task_iics

@@ -11,11 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require activestorage
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require selectize
+//= require_tree .
 
 $(document).ready(function(){
     $("#myInput").on("keyup", function() {
