@@ -24,48 +24,67 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <div class="form-group">
         <%= form.label :internal_member_iics, 'Miembros Encargados' %>
         <%= form.select :employee_ids, User.all.pluck("CONCAT(users.first_name, ' ', users.last_name)", :id), {}, {multiple: true, class: 'selectizeType'} %>
       </div>
-    </div>
 
-    <div class="col-sm-4">
       <div class="form-group">
         <%= form.label :internal_member_iics, 'Miembros Internos' %>
         <%= form.select :employee_ids, User.all.pluck("CONCAT(users.first_name, ' ', users.last_name)", :id), {}, {multiple: true, class: 'selectizeType'} %>
       </div>
-    </div>
 
-    <div class="col-sm-4">
       <div class="form-group">
         <%= form.label :employee_ids, 'Miembros Externos' %>
         <%= form.select :employee_ids, Employee.joins(:person, :institution).pluck("CONCAT('(', institutions.name, ') ', people.name)", :id), {}, {multiple: true, class: 'selectize'} %>
       </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :start_date %>
-    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-      <%= form.datetime_select :start_date, class: 'span2', type: 'text' %>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :start_date, 'Fecha de Inicio' %>
+        <div class="form-group">
+          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <%= form.text_field :start_date, { class: 'form-control', type: 'type', 'data-toggle' => "datetimepicker1" } %>
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :estimated_end_date, 'Fecha Estimada de Término' %>
+        <div class="form-group">
+          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <%= form.text_field :estimated_end_date, { class: 'form-control', type: 'type', 'data-toggle' => "datetimepicker1" } %>
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :end_date, 'Fecha de Término' %>
+        <div class="form-group">
+          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <%= form.text_field :end_date, { class: 'form-control', type: 'type', 'data-toggle' => "datetimepicker1" } %>
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :estimated_end_date %>
-    <%= form.datetime_select :estimated_end_date %>
-  </div>
+
 
   <div class="form-group">
-    <%= form.label :end_date %>
-    <%= form.datetime_select :end_date %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :privacy %>
-    <%= form.number_field :privacy, class: 'form-control' %>
+    <%= form.label :privacy, 'Privacidad' %>
+    <%= form.select :privacy, (1..3).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
   </div>
 
   <div class="form-check">
@@ -74,11 +93,12 @@
   </div>
 
   <br/>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="float-right float-down">
+    <%= link_to 'Cancelar', iics_path, class: 'btn btn-danger' %>
+    <%= form.submit 'Crear', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
 
 <div class="modal fade employee-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

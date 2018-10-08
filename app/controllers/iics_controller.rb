@@ -15,6 +15,7 @@ class IicsController < ApplicationController
   # GET /iics/new
   def new
     @iic = Iic.new
+    @privacy_levels = ['Público', 'Privado', 'Secreto']
   end
 
   # GET /iics/1/edit
@@ -25,7 +26,6 @@ class IicsController < ApplicationController
   # POST /iics.json
   def create
     @iic = Iic.new(iic_params)
-
     respond_to do |format|
       if @iic.save
         format.html { redirect_to @iic, notice: 'Iic was successfully created.' }
