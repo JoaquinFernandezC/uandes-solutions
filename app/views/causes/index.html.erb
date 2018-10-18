@@ -9,7 +9,7 @@
       <th>Regional pros office</th>
       <th>Description</th>
       <th>Privacy</th>
-      <th>Ruc felony</th>
+      <th>Ruc</th>
       <th>State</th>
       <th>Prosecutor</th>
       <th>Estimated end date</th>
@@ -25,11 +25,11 @@
         <td><%= cause.regional_pros_office %></td>
         <td><%= cause.description %></td>
         <td><%= cause.privacy %></td>
-        <td><%= cause.ruc_felony %></td>
+        <td><%= cause.ruc_id %></td>
         <td><%= cause.state %></td>
         <td><%= cause.prosecutor %></td>
         <td><%= cause.estimated_end_date %></td>
-        <td><%= cause.log %></td>
+        <td><%= cause.log_id %></td>
         <td><%= link_to 'Show', cause %></td>
         <td><%= link_to 'Edit', edit_cause_path(cause) %></td>
         <td><%= link_to 'Destroy', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,7 +5,6 @@ class CreateCaseCoordinations < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :state
       t.datetime :estimated_end_date
-      t.string :log
       t.integer :privacy
 
       t.timestamps

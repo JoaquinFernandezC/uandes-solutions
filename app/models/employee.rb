@@ -6,7 +6,7 @@ class Employee < ApplicationRecord
   validates :institution_id, presence: true
   validates :position, presence: true
 
-  has_one :member_iic
+  has_one :iic_member
   has_one :icc, through: :member_iic
 
   has_many :project_responsables

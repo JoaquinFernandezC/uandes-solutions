@@ -1,2 +1,0 @@
-class DocumentTaskInterinstitutionalCoordinationController < ApplicationController
-end

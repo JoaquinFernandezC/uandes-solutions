@@ -1,24 +1,23 @@
 class Iic < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
-  validates :state, presence: true
+  #validates :state, presence: true
   validates :start_date, presence: true
-  validates :estimated_end_date, presence: true
+  #validates :estimated_end_date, presence: true
   validates :end_date, presence: true
-  validates :log, presence: true
-  validates :privacy, presence: true
+  #validates :privacy, presence: true
   validates :multilateral, presence: true
 
-  has_many :document_iics
-  has_many :documents, through: :document_iics
-  has_many :internal_member_iics
-  has_many :users, through: :internal_member_iics
-  has_many :manager_iics
-  has_many :managers, class_name: 'User', through: :manager_iics
-  has_many :member_iics
-  has_many :employees, through: :member_iics
-  has_many :task_iics
-  has_many :tasks, through: :task_iics
+  has_many :iic_documents
+  has_many :documents, through: :iic_documents
+  has_many :iic_internal_members
+  has_many :internal_members, through: :iic_internal_members, source: :users
+  has_many :iic_managers
+  has_many :managers, through: :iic_managers, source: :users
+  has_many :iic_members
+  has_many :external_members, through: :iic_members, source: :users
+  has_many :iic_tasks
+  has_many :tasks, through: :iic_tasks
 
 
   validate :estimated_end_date_cannot_be_in_the_past

@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  task_goal: one
-  document: one
-
-two:
-  task_goal: two
-  document: two

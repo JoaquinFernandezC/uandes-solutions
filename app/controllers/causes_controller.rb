@@ -28,6 +28,9 @@ class CausesController < ApplicationController
 
     respond_to do |format|
       if @cause.save
+        log = Log.new
+        log.save
+        @cause.update(log_id: log.id)
         format.html { redirect_to @cause, notice: 'Cause was successfully created.' }
         format.json { render :show, status: :created, location: @cause }
       else

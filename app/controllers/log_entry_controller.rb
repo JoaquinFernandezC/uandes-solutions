@@ -1,0 +1,2 @@
+class LogEntryController < ApplicationController
+end

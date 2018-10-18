@@ -11,7 +11,6 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.integer :priority
       t.string :state
       t.boolean :needs_checking
-      t.string :log
 
       t.timestamps
     end

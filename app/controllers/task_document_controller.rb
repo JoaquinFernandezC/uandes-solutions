@@ -1,0 +1,2 @@
+class TaskDocumentController < ApplicationController
+end

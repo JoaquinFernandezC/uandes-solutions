@@ -7,7 +7,6 @@ class CreateIics < ActiveRecord::Migration[5.2]
       t.datetime :start_date
       t.datetime :estimated_end_date
       t.datetime :end_date
-      t.string :log
       t.integer :privacy
       t.boolean :multilateral
 

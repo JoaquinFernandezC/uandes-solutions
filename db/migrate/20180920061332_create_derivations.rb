@@ -11,7 +11,6 @@ class CreateDerivations < ActiveRecord::Migration[5.2]
       t.string :estimated_work_start_date
       t.date :estimated_end_date
       t.date :end_date
-      t.string :log
       t.integer :privacy
 
       t.timestamps

@@ -21,3 +21,27 @@ persons = Person.create([
                         { name: 'Angeles Uribe', rut: '14.257.947-2', passport: '14257947' },
                         { name: 'Margarita Estevez', rut: '15.823.662-1', passport: '15823662' },
                         ])
+
+user = User.create!(first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 'Funcionario', position: 'Secretario',
+                    email: 'jflores@ulddeco.cl', password: '123456', password_confirmation: '123456')
+
+ruc = Ruc.create(number: 420)
+
+prosecutor = Prosecutor.create(name: 'Guillermo Toro', rut: '8547962-8', local_office: 'My office')
+
+rpo = RegionalProsOffice.create(region: 'Metropolitana', prosecutor: prosecutor)
+
+log = Log.create
+
+cause = Cause.create(
+    name: 'PENTA',
+    regional_pros_office_id: rpo.id,
+    description: 'This case is really f*cked up yall',
+    privacy: 2,
+    state: 'Open',
+    prosecutor_id: prosecutor.id,
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    ruc_id: ruc.id,
+    log_id: log.id
+)

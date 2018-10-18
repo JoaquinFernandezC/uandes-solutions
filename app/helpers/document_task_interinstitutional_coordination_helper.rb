@@ -1,2 +1,0 @@
-module DocumentTaskInterinstitutionalCoordinationHelper
-end

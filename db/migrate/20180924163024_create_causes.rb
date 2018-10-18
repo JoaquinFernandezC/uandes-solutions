@@ -9,7 +9,6 @@ class CreateCauses < ActiveRecord::Migration[5.2]
       t.string :state
       t.references :prosecutor, foreign_key: true
       t.datetime :estimated_end_date
-      t.string :log
 
       t.timestamps
     end

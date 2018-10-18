@@ -25,9 +25,13 @@ class IicsController < ApplicationController
   # POST /iics
   # POST /iics.json
   def create
+    @privacy_levels = ['Público', 'Privado', 'Secreto']
     @iic = Iic.new(iic_params)
     respond_to do |format|
       if @iic.save
+        log = Log.new
+        log.save
+        @iic.update(log_id: log.id)
         format.html { redirect_to @iic, notice: 'Iic was successfully created.' }
         format.json { render :show, status: :created, location: @iic }
       else
@@ -65,10 +69,11 @@ class IicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_iic
       @iic = Iic.find(params[:id])
+      @privacy_levels = ['Público', 'Privado', 'Secreto']
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def iic_params
-      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :log, :privacy, :multilateral)
+      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral)
     end
 end

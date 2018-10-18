@@ -5,7 +5,6 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.integer :version
       t.string :classification
       t.string :type
-      t.string :log
 
       t.timestamps
     end

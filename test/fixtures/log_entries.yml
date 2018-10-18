@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  log: one
+  user: one
+  privacy: 1
+  message: MyText
+
+two:
+  log: two
+  user: two
+  privacy: 1
+  message: MyText
