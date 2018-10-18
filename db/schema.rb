@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_145243) do
+ActiveRecord::Schema.define(version: 2018_10_18_185409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,11 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.index ["log_id"], name: "index_documents_on_log_id"
   end
 
+  create_table "employee_iics", id: false, force: :cascade do |t|
+    t.bigint "iic_id", null: false
+    t.bigint "employee_id", null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "institution_id"
@@ -281,6 +286,11 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.datetime "updated_at", null: false
     t.index ["institution_id"], name: "index_employees_on_institution_id"
     t.index ["person_id"], name: "index_employees_on_person_id"
+  end
+
+  create_table "employees_iics", id: false, force: :cascade do |t|
+    t.bigint "iic_id", null: false
+    t.bigint "employee_id", null: false
   end
 
   create_table "felonies", force: :cascade do |t|
@@ -372,6 +382,11 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.datetime "updated_at", null: false
     t.bigint "log_id"
     t.index ["log_id"], name: "index_iics_on_log_id"
+  end
+
+  create_table "iics_users", id: false, force: :cascade do |t|
+    t.bigint "iic_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "institutions", force: :cascade do |t|

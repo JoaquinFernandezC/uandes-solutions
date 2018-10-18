@@ -16,10 +16,8 @@ class User < ApplicationRecord
   has_many :derivations, :through => :derivation_assignations
   has_many :internal_authors
   has_many :documents, :through => :internal_authors
-  has_one :iic_internal_members
-  has_one :iic, :through => :iic_internal_members
-  has_one :icc_manager
-  has_one :iic, :through => :IccManager
+  has_and_belongs_to_many :iic_management, class_name: 'Iic'
+  has_and_belongs_to_many :iic_internal_membership, class_name: 'Iic'
   has_many :project_stage_users
   has_many :project_stage, :through => :project_stage_users
   has_many :project_users
@@ -39,6 +37,6 @@ class User < ApplicationRecord
   #validates_format_of :rut, with: /\A\d{1,2,3}\.\d{3}\.\d{3}[-][0-9kK]{1}$\z/i, on: :create
 
   def name
-    first_name + ' ' + last_name
+    "#{try(:first_name)} #{try(:last_name)}".to_s
   end
 end

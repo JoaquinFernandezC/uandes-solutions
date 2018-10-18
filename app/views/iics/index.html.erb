@@ -28,6 +28,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>State</th>
+                    <th>Managers</th>
                     <th>Start date</th>
                     <th>Estimated end date</th>
                     <th>End date</th>
@@ -44,6 +45,7 @@
                       <td><%= iic.name %></td>
                       <td><%= iic.description %></td>
                       <td><%= iic.state %></td>
+                      <td><%= iic.managers.map(&:name).join('\n') %></td>
                       <td><%= iic.start_date %></td>
                       <td><%= iic.estimated_end_date %></td>
                       <td><%= iic.end_date %></td>
