@@ -16,8 +16,8 @@ class User < ApplicationRecord
   has_many :derivations, :through => :derivation_assignations
   has_many :internal_authors
   has_many :documents, :through => :internal_authors
-  has_and_belongs_to_many :iic_management, class_name: 'Iic'
-  has_and_belongs_to_many :iic_internal_membership, class_name: 'Iic'
+  has_and_belongs_to_many :iic_management, class_name: 'Iic', join_table: 'iics_managers', foreign_key: 'user_id'
+  has_and_belongs_to_many :iic_internal_membership, class_name: 'Iic', join_table: 'iics_internal_members', foreign_key: 'user_id'
   has_many :project_stage_users
   has_many :project_stage, :through => :project_stage_users
   has_many :project_users

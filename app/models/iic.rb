@@ -10,8 +10,8 @@ class Iic < ApplicationRecord
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
-  has_and_belongs_to_many :managers, class_name: 'User'
-  has_and_belongs_to_many :internal_members, class_name: 'User'
+  has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
+  has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
   has_and_belongs_to_many :external_members, class_name: 'Employee'
   has_many :iic_tasks
   has_many :tasks, through: :iic_tasks
@@ -28,6 +28,9 @@ class Iic < ApplicationRecord
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
+  end
+  def all_managers
+    (self.managers).uniq
   end
 
 end
