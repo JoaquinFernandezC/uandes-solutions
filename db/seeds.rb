@@ -64,3 +64,5 @@ cause = Cause.create(
     ruc_id: ruc.id,
     log_id: log.id
 )
+
+privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
