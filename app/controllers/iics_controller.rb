@@ -26,7 +26,6 @@ class IicsController < ApplicationController
   # POST /iics.json
   def create
     @iic = Iic.new(iic_params)
-    @iic.state = 'Open'
     params[:iic][:manager_ids].each do |manager_id|
       unless manager_id.empty?
         manager = User.find(manager_id)
@@ -120,5 +119,6 @@ class IicsController < ApplicationController
 
     def get_privacy_levels
       @privacy_levels = PrivacyLevel.all.pluck(:tag)
+      @status = Status.all.pluck(:tag)
     end
 end
