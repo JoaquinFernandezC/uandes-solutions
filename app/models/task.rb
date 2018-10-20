@@ -30,10 +30,21 @@ class Task < ApplicationRecord
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
 
+  before_save :set_defaults
+
+  def set_defaults
+    if self.needs_checking.nil?
+      self.needs_checking= false
+
+    end
+    puts "hola"
+    puts self.needs_checking
+  end
+
+
   @@state = { 1 => 'Abierta', 2 => 'Cerrada', 3 => 'Abortada' }
 
   @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
-
 
   def self.priority
     @@priority

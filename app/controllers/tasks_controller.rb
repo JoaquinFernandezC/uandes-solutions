@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_theme, only: :new
   # GET /tasks
   # GET /tasks.json
   def index
@@ -28,13 +28,19 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        log= Log.create()
+        @task.update(log:log)
+        @theme.tasks<<@task
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
+
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # PATCH/PUT /tasks/1
@@ -61,14 +67,34 @@ class TasksController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_theme
+      @theme_id = params[:theme_id]
+      @theme_name= params[:theme_name]
+
+      if @theme_name=='iic'
+        @theme=Iic.find(@theme_id)
+      end
+
+      puts @theme_id, @theme_name
+
+    end
     def set_task
       @task = Task.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :description, :user_id, :start_date, :estimated_end_date, :end_date, :privacy, :priority, :state, :needs_checking, :log)
+      tema= params[:tema]
+      id_tema = params[:id]
+      if tema=='iic'
+        @var=Iic.find(id_tema)
+      elsif tema=='cause'
+        @var=Cause.find(id_tema)
+      end
+      params.require(:task).permit(:name, :description, :user_id, :start_date, :estimated_end_date, :end_date, :privacy, :priority, :state, :needs_checking)
     end
 end
