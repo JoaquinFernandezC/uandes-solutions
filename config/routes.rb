@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :regional_pros_offices
+  resources :felonies
+  resources :rucs
+  resources :people
+  resources :institutions
+  resources :prosecutors
   resources :causes
   resources :derivations
   resources :projects

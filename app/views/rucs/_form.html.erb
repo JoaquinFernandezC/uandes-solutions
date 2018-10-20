@@ -1,0 +1,17 @@
+<%= form_with(model: ruc, local: true) do |form| %>
+  <% if ruc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ruc.errors.count, "error") %> prohibited this ruc from being saved:</h2>
+
+      <ul>
+      <% ruc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

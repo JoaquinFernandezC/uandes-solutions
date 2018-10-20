@@ -1,0 +1,17 @@
+<%= form_with(model: felony, local: true) do |form| %>
+  <% if felony.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(felony.errors.count, "error") %> prohibited this felony from being saved:</h2>
+
+      <ul>
+      <% felony.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

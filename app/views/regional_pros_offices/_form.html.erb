@@ -1,0 +1,17 @@
+<%= form_with(model: regional_pros_office, local: true) do |form| %>
+  <% if regional_pros_office.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(regional_pros_office.errors.count, "error") %> prohibited this regional_pros_office from being saved:</h2>
+
+      <ul>
+      <% regional_pros_office.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
