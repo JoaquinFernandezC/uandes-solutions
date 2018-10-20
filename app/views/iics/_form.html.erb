@@ -23,6 +23,11 @@
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :state, 'Estado' %>
+    <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+  </div>
+
   <div class="row">
     <div class="col-sm-8">
       <div class="form-group">
@@ -61,7 +66,7 @@
 
   <div class="form-group">
     <%= form.label :privacy, 'Privacidad' %>
-    <%= form.select :privacy, (1..3).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
+    <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
   </div>
 
   <div class="form-check">

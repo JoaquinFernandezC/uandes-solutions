@@ -6,7 +6,6 @@ class Iic < ApplicationRecord
   validates :estimated_end_date, presence: true
   validates :end_date, presence: true
   validates :privacy, presence: true
-  validates :multilateral, presence: true
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
@@ -18,6 +17,7 @@ class Iic < ApplicationRecord
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
+  validate :check_multilateral
 
   def estimated_end_date_cannot_be_in_the_past
     if estimated_end_date.present? && estimated_end_date < Date.today
@@ -33,4 +33,16 @@ class Iic < ApplicationRecord
     (self.managers).uniq
   end
 
+  def check_multilateral
+    unless :multilateral
+      institutions = []
+      :external_members.each do |employee|
+        if institutions.include?(employee.institution.name)
+          errors.add(:internal_members, 'have to be from the same institution')
+        else
+          institutions.append(employee.institution.name)
+        end
+      end
+    end
+  end
 end
