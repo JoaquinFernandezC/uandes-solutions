@@ -11,8 +11,7 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :state, presence: true
   validates :needs_checking, presence: true
-  validates :log, presence: true
-  
+
   has_one :project_task
   has_one :project, through: :project_task
   has_one :task_goal
@@ -30,6 +29,18 @@ class Task < ApplicationRecord
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
+
+  @@state = { 1 => 'Abierta', 2 => 'Cerrada', 3 => 'Abortada' }
+
+  @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
+
+
+  def self.priority
+    @@priority
+  end
+  def self.state
+    @@state
+  end
 
   def estimated_end_date_cannot_be_in_the_past
     if estimated_end_date.present? && estimated_end_date < Date.today
