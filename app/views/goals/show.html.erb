@@ -42,7 +42,14 @@
 
 <p>
   <strong>Log:</strong>
-  <%= @goal.log %>
+  <%= @goal.log_id %>
+</p>
+
+<p>
+  <strong>Assigned users:</strong>
+  <% @goal.assigned_to_goals.each do |assigned| %>
+    <%= assigned.user.name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_goal_path(@goal) %> |

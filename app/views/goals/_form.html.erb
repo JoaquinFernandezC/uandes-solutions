@@ -11,50 +11,71 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :goal_number %>
-    <%= form.number_field :goal_number %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :year %>
+        <%= form.number_field :year, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :goal_number %>
+        <%= form.number_field :goal_number, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :state, 'Estado' %>
+        <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :privacy, 'Privacidad' %>
+        <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :estimated_end_date %>
-    <%= form.date_select :estimated_end_date %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :estimated_end_date %><br/>
+        <%= form.date_select :estimated_end_date, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :end_date %><br/>
+        <%= form.date_select :end_date, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :users, 'Encargados' %><br/>
+        <%= collection_select :goal, :user_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
 
-  <div class="field">
-    <%= form.label :privacy %>
-    <%= form.number_field :privacy %>
-  </div>
 
-  <div class="field">
-    <%= form.label :log %>
-    <%= form.text_field :log %>
-  </div>
+
+
+
+
+
 
   <div class="actions">
     <%= form.submit %>

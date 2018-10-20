@@ -7,7 +7,6 @@ class Goal < ApplicationRecord
   validates :estimated_end_date, presence: true
   validates :end_date, presence: true
   validates :privacy, presence: true
-  validates :log, presence: true
 
   has_many :assigned_to_goals
   has_many :users, through: :assigned_to_goals

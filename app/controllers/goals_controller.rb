@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  before_action :set_clasification
 
   # GET /goals
   # GET /goals.json
@@ -25,9 +26,19 @@ class GoalsController < ApplicationController
   # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    params[:goal][:user_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @goal.users << manager unless @goal.users.include?(manager)
+        end
+      end
+    end
     respond_to do |format|
       if @goal.save
+        log = Log.new
+        log.save
+        @goal.update(log_id: log.id)
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
       else
@@ -40,6 +51,15 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1
   # PATCH/PUT /goals/1.json
   def update
+    @goal.users.delete_all
+    params[:goal][:user_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @goal.users << manager unless @goal.users.include?(manager)
+        end
+      end
+    end
     respond_to do |format|
       if @goal.update(goal_params)
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
@@ -70,5 +90,10 @@ class GoalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
       params.require(:goal).permit(:year, :goal_number, :name, :description, :state, :estimated_end_date, :end_date, :privacy, :log)
+    end
+
+    def set_clasification
+      @privacy_levels = PrivacyLevel.all.pluck(:tag)
+      @status = Status.all.pluck(:tag)
     end
 end
