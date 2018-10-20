@@ -15,6 +15,7 @@ class CausesController < ApplicationController
   # GET /causes/new
   def new
     @cause = Cause.new
+    @privacy_levels = ['Público', 'Privado', 'Secreto']
   end
 
   # GET /causes/1/edit
@@ -24,8 +25,8 @@ class CausesController < ApplicationController
   # POST /causes
   # POST /causes.json
   def create
+    @privacy_levels = ['Público', 'Privado', 'Secreto']
     @cause = Cause.new(cause_params)
-
     respond_to do |format|
       if @cause.save
         log = Log.new
@@ -72,6 +73,6 @@ class CausesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cause_params
-      params.require(:cause).permit(:name, :regional_pros_office_id, :description, :privacy, :ruc_felony_id, :state, :prosecutor_id, :estimated_end_date, :log)
+      params.require(:cause).permit(:name, :regional_pros_office_id, :description, :privacy, :ruc_id, :state, :prosecutor_id, :estimated_end_date, :log)
     end
 end
