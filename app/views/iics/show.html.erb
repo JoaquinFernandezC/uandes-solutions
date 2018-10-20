@@ -45,5 +45,26 @@
   <%= @iic.multilateral %>
 </p>
 
+<p>
+  <strong>Managers:</strong>
+  <% @iic.managers.each do |manager| %>
+    <p style="padding-left: 1vw"><%= manager.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Internal members:</strong>
+  <% @iic.internal_members.each do |member| %>
+  <p style="padding-left: 1vw"><%= member.name %></p>
+<% end %>
+</p>
+
+<p>
+  <strong>External members:</strong>
+  <% @iic.external_members.each do |member| %>
+  <p style="padding-left: 1vw"><%= member.info %></p>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_iic_path(@iic) %> |
 <%= link_to 'Back', iics_path %>

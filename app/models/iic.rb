@@ -1,24 +1,20 @@
 class Iic < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
-  #validates :state, presence: true
+  validates :state, presence: true
   validates :start_date, presence: true
-  #validates :estimated_end_date, presence: true
+  validates :estimated_end_date, presence: true
   validates :end_date, presence: true
-  #validates :privacy, presence: true
+  validates :privacy, presence: true
   validates :multilateral, presence: true
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
-  has_many :iic_internal_members
-  has_many :internal_members, through: :iic_internal_members, source: :users
-  has_many :iic_managers
-  has_many :managers, through: :iic_managers, source: :users
-  has_many :iic_members
-  has_many :external_members, through: :iic_members, source: :users
+  has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
+  has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
+  has_and_belongs_to_many :external_members, class_name: 'Employee'
   has_many :iic_tasks
   has_many :tasks, through: :iic_tasks
-
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
@@ -32,5 +28,9 @@ class Iic < ApplicationRecord
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
-  end 
+  end
+  def all_managers
+    (self.managers).uniq
+  end
+
 end

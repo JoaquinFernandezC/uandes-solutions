@@ -25,7 +25,18 @@
 
   <div class="row">
     <div class="col-sm-8">
-
+      <div class="form-group">
+        <%= form.label :managers, 'Encargados' %><br/>
+        <%= collection_select :iic, :manager_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :internal_members, 'Miembros Internos' %><br/>
+        <%= collection_select :iic, :internal_member_ids, User.all, :id, :name, {}, { id: 'internal_member_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :external_members, 'Miembros Externos' %><br/>
+        <%= collection_select :iic, :external_member_ids, Employee.all, :id, :info, {}, { id: 'external_member_multiselect', :multiple => true } %>
+      </div>
     </div>
 
     <div class="col-sm-4">

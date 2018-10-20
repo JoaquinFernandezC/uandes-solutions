@@ -27,6 +27,27 @@ class IicsController < ApplicationController
   def create
     @privacy_levels = ['Público', 'Privado', 'Secreto']
     @iic = Iic.new(iic_params)
+    @iic.state = 'Open'
+    params[:iic][:manager_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @iic.managers << manager unless @iic.managers.include?(manager)
+        end
+      end
+    end
+    params[:iic][:internal_member_ids].each do |member_id|
+      unless member_id.empty?
+        internal_member = User.find(member_id)
+        @iic.internal_members << internal_member unless @iic.internal_members.include?(internal_member)
+      end
+    end
+    params[:iic][:external_member_ids].each do |member_id|
+      unless member_id.empty?
+        external_member = Employee.find(member_id)
+        @iic.external_members << external_member unless @iic.external_members.include?(external_member)
+      end
+    end
     respond_to do |format|
       if @iic.save
         log = Log.new
@@ -44,6 +65,28 @@ class IicsController < ApplicationController
   # PATCH/PUT /iics/1
   # PATCH/PUT /iics/1.json
   def update
+    @iic.managers.delete_all
+    params[:iic][:manager_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        @iic.managers << manager unless @iic.managers.include?(manager)
+      end
+    end
+    @iic.internal_members.delete_all
+    params[:iic][:internal_member_ids].each do |member_id|
+      unless member_id.empty?
+        internal_member = User.find(member_id)
+        @iic.internal_members << internal_member unless @iic.internal_members.include?(internal_member)
+      end
+    end
+    @iic.external_members.delete_all
+    params[:iic][:external_member_ids].each do |member_id|
+      unless member_id.empty?
+        external_member = Employee.find(member_id)
+        @iic.external_members << external_member unless @iic.external_members.include?(external_member)
+      end
+    end
+    @iic.managers.reload
     respond_to do |format|
       if @iic.update(iic_params)
         format.html { redirect_to @iic, notice: 'Iic was successfully updated.' }
