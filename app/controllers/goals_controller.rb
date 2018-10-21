@@ -51,6 +51,7 @@ class GoalsController < ApplicationController
         @goal.update(log_id: log.id)
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
+        enter_log_message('Se creó una meta de unidad especializada con nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
       else
         format.html { render :new }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -83,6 +84,7 @@ class GoalsController < ApplicationController
       if @goal.update(goal_params)
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
         format.json { render :show, status: :ok, location: @goal }
+        enter_log_message('Se editó la meta de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
       else
         format.html { render :edit }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -97,6 +99,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó la meta de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
     end
   end
 

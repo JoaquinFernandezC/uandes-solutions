@@ -51,6 +51,7 @@ class ProjectsController < ApplicationController
         @project.update(log_id: log.id)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
+        enter_log_message('Se creó un nuevo proyecto con nombre "' + @project.name + '".', @project.log_id, @project.privacy)
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -83,6 +84,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
+        enter_log_message('Se editó proyecto de nombre "' + @project.name + '".', @project.log_id, @project.privacy)
       else
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -97,6 +99,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó proyecto de nombre "' + @project.name + '".', @project.log_id, @project.privacy)
     end
   end
 

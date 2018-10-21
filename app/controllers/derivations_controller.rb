@@ -35,6 +35,7 @@ class DerivationsController < ApplicationController
         @derivation.update(log_id: log.id)
         format.html { redirect_to @derivation, notice: 'Derivation was successfully created.' }
         format.json { render :show, status: :created, location: @derivation }
+        enter_log_message('Se creó una nueva derivación con nombre "' + @derivation.name + '".', @derivation.log_id, @derivation.privacy)
       else
         format.html { render :new }
         format.json { render json: @derivation.errors, status: :unprocessable_entity }
@@ -49,6 +50,7 @@ class DerivationsController < ApplicationController
       if @derivation.update(derivation_params)
         format.html { redirect_to @derivation, notice: 'Derivation was successfully updated.' }
         format.json { render :show, status: :ok, location: @derivation }
+        enter_log_message('Se editó la derivación de nombre "' + @derivation.name + '".', @derivation.log_id, @derivation.privacy)
       else
         format.html { render :edit }
         format.json { render json: @derivation.errors, status: :unprocessable_entity }
@@ -63,6 +65,7 @@ class DerivationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to derivations_url, notice: 'Derivation was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó la derivación de nombre "' + @derivation.name + '".', @derivation.log_id, @derivation.privacy)
     end
   end
 

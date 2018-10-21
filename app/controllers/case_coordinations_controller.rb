@@ -83,6 +83,7 @@ class CaseCoordinationsController < ApplicationController
         @case_coordination.update(log_id: log.id)
         format.html { redirect_to @case_coordination, notice: 'Case coordination was successfully created.' }
         format.json { render :show, status: :created, location: @case_coordination }
+        enter_log_message('Se creó una nueva coordinación de caso con nombre "' + @case_coordination.name + '".', @case_coordination.log_id, @case_coordination.privacy)
       else
         format.html { render :new }
         format.json { render json: @case_coordination.errors, status: :unprocessable_entity }
@@ -151,6 +152,7 @@ class CaseCoordinationsController < ApplicationController
       if @case_coordination.update(case_coordination_params)
         format.html { redirect_to @case_coordination, notice: 'Case coordination was successfully updated.' }
         format.json { render :show, status: :ok, location: @case_coordination }
+        enter_log_message('Se editó la coordinación de casos de nombre "' + @case_coordination.name + '".', @case_coordination.log_id, @case_coordination.privacy)
       else
         format.html { render :edit }
         format.json { render json: @case_coordination.errors, status: :unprocessable_entity }
@@ -165,6 +167,7 @@ class CaseCoordinationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to case_coordinations_url, notice: 'Case coordination was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó la coordinación de casos de nombre "' + @case_coordination.name + '".', @case_coordination.log_id, @case_coordination.privacy)
     end
   end
 

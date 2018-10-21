@@ -59,6 +59,7 @@ class CausesController < ApplicationController
         @cause.update(log_id: log.id)
         format.html { redirect_to @cause, notice: 'Cause was successfully created.' }
         format.json { render :show, status: :created, location: @cause }
+        enter_log_message('Se creó un nuevo caso con nombre "' + @cause.name + '".', @cause.log_id, @cause.privacy)
       else
         format.html { render :new }
         format.json { render json: @cause.errors, status: :unprocessable_entity }
@@ -100,6 +101,7 @@ class CausesController < ApplicationController
       if @cause.update(cause_params)
         format.html { redirect_to @cause, notice: 'Cause was successfully updated.' }
         format.json { render :show, status: :ok, location: @cause }
+        enter_log_message('Se editó el caso de nombre "' + @cause.name + '".', @cause.log_id, @cause.privacy)
       else
         format.html { render :edit }
         format.json { render json: @cause.errors, status: :unprocessable_entity }
@@ -114,6 +116,7 @@ class CausesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to causes_url, notice: 'Cause was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó el caso de nombre "' + @cause.name + '".', @cause.log_id, @cause.privacy)
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_183315) do
+ActiveRecord::Schema.define(version: 2018_10_22_001045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,36 @@ ActiveRecord::Schema.define(version: 2018_10_21_183315) do
     t.datetime "updated_at", null: false
     t.bigint "log_id"
     t.index ["log_id"], name: "index_case_coordinations_on_log_id"
+  end
+
+  create_table "case_coordinations_legal_people", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "legal_person_id", null: false
+  end
+
+  create_table "case_coordinations_people", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "person_id", null: false
+  end
+
+  create_table "case_coordinations_prosecutors", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "prosecutor_id", null: false
+  end
+
+  create_table "case_coordinations_regional_pros_offices", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "regional_pros_office_id", null: false
+  end
+
+  create_table "case_coordinations_rucs", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "ruc_id", null: false
+  end
+
+  create_table "case_coordinations_users", id: false, force: :cascade do |t|
+    t.bigint "case_coordination_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "case_documents", force: :cascade do |t|
