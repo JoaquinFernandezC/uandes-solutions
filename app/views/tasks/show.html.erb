@@ -12,7 +12,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @task.user %>
+  <%= @task.user.first_name+" "+@task.user.last_name %>
 </p>
 
 <p>
@@ -32,17 +32,17 @@
 
 <p>
   <strong>Privacy:</strong>
-  <%= @task.privacy %>
+  <%= @privacy_level.tag %>
 </p>
 
 <p>
   <strong>Priority:</strong>
-  <%= @task.priority %>
+  <%= Task.priority[@task.priority] %>
 </p>
 
 <p>
   <strong>State:</strong>
-  <%= @task.state %>
+  <%=@state.tag %>
 </p>
 
 <p>
@@ -52,7 +52,7 @@
 
 <p>
   <strong>Log:</strong>
-  <%= @task.log %>
+  <%= @task.log_id %>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

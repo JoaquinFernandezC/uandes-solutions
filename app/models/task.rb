@@ -16,22 +16,31 @@ class Task < ApplicationRecord
   has_one :project, through: :project_task
   has_one :task_goal
   has_one :goal, through: :task_goal
-  has_one :iic_task
-  has_one :icc, through: :task_iic
+  has_one :iic_task, dependent:  :destroy
+  has_one :iic, through: :iic_task
   has_one :cc_task
-  has_one :case_coordination, through: :cc_task
+  has_one :case_coordination, through: :cc_tasks
   has_one :case_task
   has_one :cause, through: :case_task
   has_one :derivation_task
   has_one :derivation, through: :derivation_task
   has_many :commentaries
   has_many :commenters, through: :commentaries, source: :users
-
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
 
   before_save :set_defaults
 
+  def get_theme
+    puts self.iic_task
+    if !self.cause.nil?
+      return theme
+    elsif !self.iic.nil?
+      return self.iic
+    else
+      return nil
+    end
+  end
   def set_defaults
     if self.needs_checking.nil?
       self.needs_checking= false
@@ -41,16 +50,9 @@ class Task < ApplicationRecord
     puts self.needs_checking
   end
 
-
-  @@state = { 1 => 'Abierta', 2 => 'Cerrada', 3 => 'Abortada' }
-
   @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
-
   def self.priority
     @@priority
-  end
-  def self.state
-    @@state
   end
 
   def estimated_end_date_cannot_be_in_the_past
