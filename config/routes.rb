@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'entity_selection/index'
   resources :regional_pros_offices
   resources :felonies
   resources :rucs

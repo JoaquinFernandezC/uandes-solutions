@@ -1,19 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @task.user %>
-</p>
+<div class="card">
+  <div class="card-header bg-info">
+    <h2 class="text-white"><b><%= @task.name %></b></h2>
+  </div>
+  <div class="card-body">
+      <div class="col-sm-9 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Tema:</th>
+                    <th>Prioridad: <%= @task.priority %></th>
+                    <th>Privacidad: <%= @task.privacy %> </th>
+                    <th>Estado: <%= @task.state %></th>
+                    <th></th>
+                    <th colspan="300"></th>
+                  </tr>
+                  </thead>
+                </table>
+                <div>
+                  <%= @task.description %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p>
   <strong>Start date:</strong>
@@ -28,21 +45,6 @@
 <p>
   <strong>End date:</strong>
   <%= @task.end_date %>
-</p>
-
-<p>
-  <strong>Privacy:</strong>
-  <%= @task.privacy %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @task.priority %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @task.state %>
 </p>
 
 <p>
