@@ -61,10 +61,16 @@
         <%= form.date_select :end_date, class: 'form-control' %>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-3">
       <div class="form-group">
         <%= form.label :users, 'Encargados' %><br/>
         <%= collection_select :goal, :user_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :users, 'Involucrados' %><br/>
+        <%= collection_select :goal, :involved_user_ids, User.all, :id, :name, {}, { id: 'involved_multiselect', :multiple => true } %>
       </div>
     </div>
   </div>
