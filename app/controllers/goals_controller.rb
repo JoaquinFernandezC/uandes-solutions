@@ -11,6 +11,8 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.json
   def show
+    @log = Log.find(@goal.log_id)
+    enter_log_message('Se accedió a la meta de unidad especializada de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
   end
 
   # GET /goals/new

@@ -10,6 +10,8 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @log = Log.find(@task.log_id)
+    enter_log_message('Se accedió a la tarea de nombre "' + @task.name + '".', @task.log_id, @task.privacy)
   end
 
   # GET /tasks/new
@@ -28,6 +30,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        log = Log.new
+        log.save
+        @task.update(log_id: log.id)
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else

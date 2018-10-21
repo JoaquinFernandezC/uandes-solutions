@@ -11,6 +11,8 @@ class CausesController < ApplicationController
   # GET /causes/1
   # GET /causes/1.json
   def show
+    @log = Log.find(@cause.log_id)
+    enter_log_message('Se accedió al caso de nombre "' + @cause.name + '".', @cause.log_id, @cause.privacy)
   end
 
   # GET /causes/new

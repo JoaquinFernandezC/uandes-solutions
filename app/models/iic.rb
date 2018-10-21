@@ -14,6 +14,8 @@ class Iic < ApplicationRecord
   has_and_belongs_to_many :external_members, class_name: 'Employee'
   has_many :iic_tasks
   has_many :tasks, through: :iic_tasks
+  has_one :log
+  has_many :log_entries, through: :log
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past

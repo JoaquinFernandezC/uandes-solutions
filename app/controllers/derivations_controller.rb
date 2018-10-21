@@ -10,6 +10,8 @@ class DerivationsController < ApplicationController
   # GET /derivations/1
   # GET /derivations/1.json
   def show
+    @log = Log.find(@derivation.log_id)
+    enter_log_message('Se accedió a la derivación de nombre "' + @derivation.name + '".', @derivation.log_id, @derivation.privacy)
   end
 
   # GET /derivations/new
@@ -28,6 +30,9 @@ class DerivationsController < ApplicationController
 
     respond_to do |format|
       if @derivation.save
+        log = Log.new
+        log.save
+        @derivation.update(log_id: log.id)
         format.html { redirect_to @derivation, notice: 'Derivation was successfully created.' }
         format.json { render :show, status: :created, location: @derivation }
       else

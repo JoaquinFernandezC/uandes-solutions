@@ -10,6 +10,8 @@ class CaseCoordinationsController < ApplicationController
   # GET /case_coordinations/1
   # GET /case_coordinations/1.json
   def show
+    @log = Log.find(@case_coordination.log_id)
+    enter_log_message('Se accedió a la coordinación de caso de nombre "' + @case_coordination.name + '".', @case_coordination.log_id, @case_coordination.privacy)
   end
 
   # GET /case_coordinations/new

@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @log = Log.find(@document.log_id)
   end
 
   # GET /documents/new
@@ -28,6 +29,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        log = Log.new
+        log.save
+        @document.update(log_id: log.id)
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else

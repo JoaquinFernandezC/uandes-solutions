@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @log = Log.find(@project.log_id)
+    enter_log_message('Se accedió al proyecto de nombre "' + @project.name + '".', @project.log_id, @project.privacy)
   end
 
   # GET /projects/new
