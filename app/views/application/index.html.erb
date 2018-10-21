@@ -8,7 +8,7 @@
 				<%= image_tag("logo_fiscalia.png", class: 'img-thumbnail', width: '70%', style: 'margin: auto; display: block; margin-top: 10%') %>
 				<h2 class="text-center" style="margin-bottom: 10%"><strong><%= current_user.name %></strong></h2>
         <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
-          <%= button_to "Agregar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary"  ,method: :get  %>
+          <%= button_to "Agregar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary btn-block"  ,method: :get  %>
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
         </div>

@@ -12,6 +12,7 @@
   <tbody>
     <% @felonies.each do |felony| %>
       <tr>
+        <td><%= felony.name %></td>
         <td><%= link_to 'Show', felony %></td>
         <td><%= link_to 'Edit', edit_felony_path(felony) %></td>
         <td><%= link_to 'Destroy', felony, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,3 +24,4 @@
 <br>
 
 <%= link_to 'New Felony', new_felony_path %>
+<%= link_to 'Back', root_path %>
