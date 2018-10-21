@@ -68,16 +68,12 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="float-right float-down">
+    <%= link_to 'Cancelar', goals_path, class: 'btn btn-danger' %>
+    <% if params[:id].present? %>
+      <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+    <% else %>
+      <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

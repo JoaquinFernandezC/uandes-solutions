@@ -77,7 +77,11 @@
   <br/>
   <div class="float-right float-down">
     <%= link_to 'Cancelar', iics_path, class: 'btn btn-danger' %>
-    <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% if params[:id].present? %>
+      <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+    <% else %>
+      <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>
 
