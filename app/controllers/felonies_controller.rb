@@ -69,6 +69,6 @@ class FeloniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def felony_params
-      params.fetch(:felony, {})
+      params.require(:felony).permit(:name, :description)
     end
 end

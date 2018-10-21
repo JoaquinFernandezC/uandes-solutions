@@ -69,6 +69,6 @@ class ProsecutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prosecutor_params
-      params.fetch(:prosecutor, {})
+      params.require(:prosecutor).permit(:name, :rut, :local_office)
     end
 end

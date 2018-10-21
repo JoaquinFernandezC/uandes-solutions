@@ -69,6 +69,6 @@ class RucsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ruc_params
-      params.fetch(:ruc, {})
+      params.require(:ruc).permit(:number)
     end
 end

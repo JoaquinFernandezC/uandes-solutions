@@ -69,6 +69,6 @@ class RegionalProsOfficesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def regional_pros_office_params
-      params.fetch(:regional_pros_office, {})
+      params.require(:regional_pros_office).permit(:region, :prosecutor_id)
     end
 end
