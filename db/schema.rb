@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_151834) do
+ActiveRecord::Schema.define(version: 2018_10_21_004057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,21 @@ ActiveRecord::Schema.define(version: 2018_10_20_151834) do
     t.index ["prosecutor_id"], name: "index_causes_on_prosecutor_id"
     t.index ["regional_pros_office_id"], name: "index_causes_on_regional_pros_office_id"
     t.index ["ruc_id"], name: "index_causes_on_ruc_id"
+  end
+
+  create_table "causes_legal_people", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "legal_person_id", null: false
+  end
+
+  create_table "causes_people", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "person_id", null: false
+  end
+
+  create_table "causes_users", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "cc_assignations", force: :cascade do |t|
