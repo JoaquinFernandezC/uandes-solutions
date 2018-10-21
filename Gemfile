@@ -75,4 +75,4 @@ gem 'selectize-rails'
 
 gem 'momentjs-rails'
 
-gem 'bootstrap4-datetime-picker-rails'
+gem 'bootstrap-multiselect-rails'

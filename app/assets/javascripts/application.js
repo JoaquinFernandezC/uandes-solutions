@@ -19,7 +19,7 @@
 //= require selectize
 //= require_tree .
 //= require moment
-//= require tempusdominus-bootstrap-4.js
+//= require bootstrap-multiselect
 
 $(document).ready(function(){
     $("#myInput").on("keyup", function() {

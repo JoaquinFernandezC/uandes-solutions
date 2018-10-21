@@ -1,43 +1,65 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Metas Unidades</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_goal_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item ">
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Metas<b>(3)</b></a>
+            </li>
+          </ul>
 
-<h1>Goals</h1>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Goal number</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>State</th>
+                      <th>Estimated end date</th>
+                      <th>End date</th>
+                      <th>Privacy</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Goal number</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>State</th>
-      <th>Estimated end date</th>
-      <th>End date</th>
-      <th>Privacy</th>
-      <th>Log</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.year %></td>
-        <td><%= goal.goal_number %></td>
-        <td><%= goal.name %></td>
-        <td><%= goal.description %></td>
-        <td><%= goal.state %></td>
-        <td><%= goal.estimated_end_date %></td>
-        <td><%= goal.end_date %></td>
-        <td><%= goal.privacy %></td>
-        <td><%= goal.log %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>
+                  <tbody>
+                    <% @goals.each do |goal| %>
+                      <tr>
+                        <td><%= goal.year %></td>
+                        <td><%= goal.goal_number %></td>
+                        <td><%= goal.name %></td>
+                        <td><%= goal.description %></td>
+                        <td><%= goal.state %></td>
+                        <td><%= goal.estimated_end_date %></td>
+                        <td><%= goal.end_date %></td>
+                        <td><%= goal.privacy %></td>
+                        <td><%= link_to 'Show', goal %></td>
+                        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+                        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

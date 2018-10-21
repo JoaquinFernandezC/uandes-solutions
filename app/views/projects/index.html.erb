@@ -1,45 +1,67 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Proyectos</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_project_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item ">
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Proyectos<b>(3)</b></a>
+            </li>
+          </ul>
 
-<h1>Projects</h1>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Project number</th>
+                      <th>Name</th>
+                      <th>Objective</th>
+                      <th>State</th>
+                      <th>Start date</th>
+                      <th>Estimated end date</th>
+                      <th>End date</th>
+                      <th>Privacy</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Project number</th>
-      <th>Name</th>
-      <th>Objective</th>
-      <th>State</th>
-      <th>Start date</th>
-      <th>Estimated end date</th>
-      <th>End date</th>
-      <th>Privacy</th>
-      <th>Log</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.year %></td>
-        <td><%= project.project_number %></td>
-        <td><%= project.name %></td>
-        <td><%= project.objective %></td>
-        <td><%= project.state %></td>
-        <td><%= project.start_date %></td>
-        <td><%= project.estimated_end_date %></td>
-        <td><%= project.end_date %></td>
-        <td><%= project.privacy %></td>
-        <td><%= project.log %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+                  <tbody>
+                    <% @projects.each do |project| %>
+                      <tr>
+                        <td><%= project.year %></td>
+                        <td><%= project.project_number %></td>
+                        <td><%= project.name %></td>
+                        <td><%= project.objective %></td>
+                        <td><%= project.state %></td>
+                        <td><%= project.start_date %></td>
+                        <td><%= project.estimated_end_date %></td>
+                        <td><%= project.end_date %></td>
+                        <td><%= project.privacy %></td>
+                        <td><%= link_to 'Show', project %></td>
+                        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+                        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
