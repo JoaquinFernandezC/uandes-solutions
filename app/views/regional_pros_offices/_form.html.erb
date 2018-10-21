@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :region %><br />
-    <%= form.text_field :region %>
+  <div class="form-group">
+    <%= form.label :region, 'Región' %><br />
+    <%= form.text_field :region, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :prosecutor_id %><br />
-    <%= form.text_field :prosecutor_id %>
+  <div class="form-group">
+    <%= form.label :prosecutor_id, 'Fiscal' %><br />
+    <%= form.select(:prosecutor_id, Prosecutor.all.collect { |prosecutor| [prosecutor.name, prosecutor.id] }, { prompt: '' }, { class: 'form-control' }) %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

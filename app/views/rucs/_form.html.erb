@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :number %><br />
-    <%= form.text_field :number %>
+  <div class="form-group">
+    <%= form.label :number, 'Número Identificador' %><br />
+    <%= form.text_field :number, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

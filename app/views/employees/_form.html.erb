@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :person_id %><br />
-    <%= form.text_field :person_id %>
+  <div class="form-group">
+    <%= form.label :person_id, 'Persona' %><br />
+    <%= form.select(:person_id, Person.all.collect { |person| [person.name, person.id] }, { prompt: '' }, { class: 'form-control' }) %>
   </div>
 
-  <div class="field">
-    <%= form.label :institution_id %><br />
-    <%= form.text_field :institution_id %>
+  <div class="form-group">
+    <%= form.label :institution_id, 'Institución' %><br />
+    <%= form.select(:institution_id, Institution.all.collect { |institution| [institution.name, institution.id] }, { prompt: '' }, { class: 'form-control' }) %>
   </div>
 
-  <div class="field">
-    <%= form.label :position %><br />
-    <%= form.text_field :position %>
+  <div class="form-group">
+    <%= form.label :position, 'Cargo' %><br />
+    <%= form.text_field :position, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

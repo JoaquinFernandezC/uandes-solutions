@@ -12,22 +12,23 @@
   <% end %>
 
 
-  <div class="field">
-    <%= form.label :name %><br />
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, 'Nombre Completo' %><br />
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :rut %><br />
-    <%= form.text_field :rut %>
+  <div class="form-group">
+    <%= form.label :rut, 'RUT' %><br />
+    <%= form.text_field :rut, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :local_office %><br />
-    <%= form.text_field :local_office %>
+  <div class="form-group">
+    <%= form.label :local_office, 'Localía' %><br />
+    <%= form.text_field :local_office, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
   </div>
 <% end %>
