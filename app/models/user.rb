@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :case_assignations
-  has_many :assigned_cases, through: :case_assignations, source: :causes
+  has_and_belongs_to_many :causes
   has_many :assigned_to_goals
   has_many :goals, :through => :assigned_to_goals
   has_many :cc_assignations

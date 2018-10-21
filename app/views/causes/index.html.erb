@@ -27,6 +27,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Regional pros office</th>
+                    <th>Managers</th>
                     <th>Description</th>
                     <th>Privacy</th>
                     <th>Ruc</th>
@@ -41,12 +42,13 @@
                   <% @causes.each do |cause| %>
                     <tr>
                       <td><%= cause.name %></td>
-                      <td><%= cause.regional_pros_office %></td>
+                      <td><%= cause.regional_pros_office.region %></td>
+                      <td><%= cause.users.map(&:name).join(', ') %></td>
                       <td><%= cause.description %></td>
                       <td><%= cause.privacy %></td>
                       <td><%= cause.ruc_id %></td>
                       <td><%= cause.state %></td>
-                      <td><%= cause.prosecutor %></td>
+                      <td><%= cause.prosecutor.name %></td>
                       <td><%= cause.estimated_end_date %></td>
                       <td><%= link_to 'Show', cause %></td>
                       <td><%= link_to 'Edit', edit_cause_path(cause) %></td>

@@ -12,4 +12,6 @@ class Person < ApplicationRecord
   has_one :petitioner
   has_one :report_receiver_people
   has_one :derivation, through: :report_receiver_people
+
+  has_and_belongs_to_many :causes
 end
