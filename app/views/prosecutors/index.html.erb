@@ -12,6 +12,7 @@
   <tbody>
     <% @prosecutors.each do |prosecutor| %>
       <tr>
+        <td><%= prosecutor.name %></td>
         <td><%= link_to 'Show', prosecutor %></td>
         <td><%= link_to 'Edit', edit_prosecutor_path(prosecutor) %></td>
         <td><%= link_to 'Destroy', prosecutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -28,7 +28,7 @@ class FeloniesController < ApplicationController
 
     respond_to do |format|
       if @felony.save
-        format.html { redirect_to @felony, notice: 'Felony was successfully created.' }
+        format.html { redirect_to felonies_path, notice: 'Felony was successfully created.' }
         format.json { render :show, status: :created, location: @felony }
       else
         format.html { render :new }
