@@ -31,13 +31,10 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-<<<<<<< HEAD
 
-
-=======
     @log = Log.find(@task.log_id)
     enter_log_message('Se accedió a la tarea de nombre "' + @task.name + '".', @task.log_id, @task.privacy)
->>>>>>> c6b8970a4cc1ddf6b9dcf5ca43a5a8a85a60a81a
+
   end
 
   # GET /tasks/new
@@ -56,21 +53,13 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-<<<<<<< HEAD
+
         log= Log.create()
         @task.update(log_id:log.id)
         @theme.tasks<<@task
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
 
-=======
-        log = Log.new
-        log.save
-        @task.update(log_id: log.id)
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-        enter_log_message('Se creó una nueva tarea con nombre "' + @task.name + '".', @task.log_id, @task.privacy)
->>>>>>> c6b8970a4cc1ddf6b9dcf5ca43a5a8a85a60a81a
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
