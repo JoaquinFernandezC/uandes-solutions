@@ -15,4 +15,5 @@ class Person < ApplicationRecord
 
   has_and_belongs_to_many :causes
   has_and_belongs_to_many :case_coordinations
+  has_and_belongs_to_many :derivations
 end

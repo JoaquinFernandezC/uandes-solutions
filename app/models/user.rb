@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :causes
   has_and_belongs_to_many :case_coordinations
+  has_and_belongs_to_many :derivation_management, class_name: 'Derivation', join_table: 'derivations_users', foreign_key: 'user_id'
+  has_and_belongs_to_many :derivation_reports, class_name: 'Derivation', join_table: 'derivations_user_reports', foreign_key: 'user_id'
   has_many :assigned_to_goals
   has_many :goals, :through => :assigned_to_goals
   has_many :commentaries

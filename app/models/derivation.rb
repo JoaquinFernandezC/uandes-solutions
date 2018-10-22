@@ -1,16 +1,10 @@
 class Derivation < ApplicationRecord
   belongs_to :petitioner
-  has_many :derivations_assignations
-  has_many :users, :through => :derivations_assignations
   has_many :derivations_documents
   has_many :documents, :through => :derivations_documents
   has_many :derivation_reports
   has_many :derivation_tasks
   has_many :tasks, :through => :derivation_tasks
-  has_many :report_receiver_people
-  has_many :people, :through => :report_receiver_people
-  has_many :report_receiver_ulddecos
-  has_many :users, :through => :report_receiver_ulddecos
   
   validates :name, presence: true
   validates :petitioner_id, presence: true
@@ -18,6 +12,10 @@ class Derivation < ApplicationRecord
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
+
+  has_and_belongs_to_many :people
+  has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'derivations_users', class_name: 'User'
+  has_and_belongs_to_many :report_receivers, association_foreign_key: 'user_id', join_table: 'derivations_user_reports', class_name: 'User'
 
   def estimated_end_date_cannot_be_in_the_past
     if estimated_end_date.present? && estimated_end_date < Date.today
