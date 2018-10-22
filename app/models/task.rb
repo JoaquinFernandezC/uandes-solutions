@@ -31,11 +31,12 @@ class Task < ApplicationRecord
   before_save :set_defaults
 
   def get_theme
-    puts self.iic_task
     if !self.cause.nil?
-      return theme
+      return self.cause
     elsif !self.iic.nil?
       return self.iic
+    elsif !self.goal.nil?
+      return self.goal
     else
       return nil
     end

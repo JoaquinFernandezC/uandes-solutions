@@ -107,6 +107,8 @@ class TasksController < ApplicationController
         @theme=Iic.find_by_id(@theme_id)
       elsif @theme_name==Cause.NAME
         @theme=Cause.find(@theme_id)
+      elsif @theme_name==Goal.NAME
+        @theme=Goal.find(@theme_id)
       end
 
       if @theme.nil?

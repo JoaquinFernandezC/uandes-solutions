@@ -59,5 +59,7 @@
   <% end %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME)%>|
 <%= link_to 'Edit', edit_goal_path(@goal) %> |
 <%= link_to 'Back', goals_path %>
+
