@@ -11,8 +11,7 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :state, presence: true
   validates :needs_checking, presence: true
-  validates :log, presence: true
-  
+
   has_one :project_task
   has_one :project, through: :project_task
   has_one :task_goal

@@ -11,9 +11,9 @@
                 <table id="dtBasicExample" class="table table-hover">
                   <thead>
                   <tr>
-                    <th>Tema:</th>
+                    <th>Tema: </th>
                     <th>Prioridad: <%= @task.priority %></th>
-                    <th>Privacidad: <%= @task.privacy %> </th>
+                    <th>Privacidad: <%= PrivacyLevel.find(@task.privacy).tag %> </th>
                     <th>Estado: <%= @task.state %></th>
                     <th></th>
                     <th colspan="300"></th>
@@ -51,10 +51,6 @@
   <%= @task.needs_checking %>
 </p>
 
-<p>
-  <strong>Log:</strong>
-  <%= @task.log %>
-</p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
