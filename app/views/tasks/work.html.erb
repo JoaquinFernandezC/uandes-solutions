@@ -45,6 +45,14 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <p>
+        <strong>Documents:</strong>
+        <% @task.documents.each do |document| %>
+          <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+        <% end %>
+      </p>
     </div>
   </div>
 
