@@ -25,6 +25,30 @@ persons = Person.create([
                         { name: 'Margarita Estevez', rut: '15.823.662-1', passport: '15823662' },
                         ])
 
+<<<<<<< HEAD
+=======
+employees = Employee.create([
+                              { person_id: 1, institution_id: 5, position: 'Cargo 1' },
+                              { person_id: 5, institution_id: 4, position: 'Cargo 2' },
+                              { person_id: 6, institution_id: 8, position: 'Cargo 3' },
+                              { person_id: 8, institution_id: 2, position: 'Cargo 4' },
+                              { person_id: 1, institution_id: 1, position: 'Cargo 5' },
+                              { person_id: 3, institution_id: 4, position: 'Cargo 6' },
+                              { person_id: 2, institution_id: 9, position: 'Cargo 7' },
+                            ])
+
+user = User.create!([
+                    {first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 'Funcionario',
+                     position: 'Secretario', email: 'jflores@ulddeco.cl', password: '123456',
+                     password_confirmation: '123456'},
+                    {first_name: 'Alfonso', last_name: 'Zúñiga', rut: '19.475.275-K', rol: 'Funcionario',
+                     position: 'Gerencia', email: 'ajzuniga1@miuandes.cl', password: '123456',
+                     password_confirmation: '123456'},
+                    {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 'Funcionario',
+                     position: 'Secretaria', email: 'adaldunate@miuandes.cl', password: '123456',
+                     password_confirmation: '123456'},
+                    ])
+>>>>>>> 7acf0768c5107ce826b6d2047b9c9d7f29d406fb
 
 ruc = Ruc.create(number: 420)
 
@@ -47,6 +71,7 @@ cause = Cause.create(
     log_id: log.id
 )
 
+<<<<<<< HEAD
 task = Task.create([
     {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Reviso', needs_checking: true},
@@ -63,3 +88,8 @@ task = Task.create([
     {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
     ])
+=======
+privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
+
+status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])
+>>>>>>> 7acf0768c5107ce826b6d2047b9c9d7f29d406fb

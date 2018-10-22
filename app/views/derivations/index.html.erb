@@ -1,49 +1,71 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Derivaciones de Gabinete</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_derivation_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item ">
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Derivaciones<b>(3)</b></a>
+            </li>
+          </ul>
 
-<h1>Derivations</h1>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Petitioner</th>
+                      <th>State</th>
+                      <th>Priority</th>
+                      <th>Derivation date</th>
+                      <th>Work start date</th>
+                      <th>Estimated work start date</th>
+                      <th>Estimated end date</th>
+                      <th>End date</th>
+                      <th>Privacy</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Petitioner</th>
-      <th>State</th>
-      <th>Priority</th>
-      <th>Derivation date</th>
-      <th>Work start date</th>
-      <th>Estimated work start date</th>
-      <th>Estimated end date</th>
-      <th>End date</th>
-      <th>Log</th>
-      <th>Privacy</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @derivations.each do |derivation| %>
-      <tr>
-        <td><%= derivation.name %></td>
-        <td><%= derivation.description %></td>
-        <td><%= derivation.petitioner %></td>
-        <td><%= derivation.state %></td>
-        <td><%= derivation.priority %></td>
-        <td><%= derivation.derivation_date %></td>
-        <td><%= derivation.work_start_date %></td>
-        <td><%= derivation.estimated_work_start_date %></td>
-        <td><%= derivation.estimated_end_date %></td>
-        <td><%= derivation.end_date %></td>
-        <td><%= derivation.log %></td>
-        <td><%= derivation.privacy %></td>
-        <td><%= link_to 'Show', derivation %></td>
-        <td><%= link_to 'Edit', edit_derivation_path(derivation) %></td>
-        <td><%= link_to 'Destroy', derivation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Derivation', new_derivation_path %>
+                  <tbody>
+                    <% @derivations.each do |derivation| %>
+                      <tr>
+                        <td><%= derivation.name %></td>
+                        <td><%= derivation.description %></td>
+                        <td><%= derivation.petitioner %></td>
+                        <td><%= derivation.state %></td>
+                        <td><%= derivation.priority %></td>
+                        <td><%= derivation.derivation_date %></td>
+                        <td><%= derivation.work_start_date %></td>
+                        <td><%= derivation.estimated_work_start_date %></td>
+                        <td><%= derivation.estimated_end_date %></td>
+                        <td><%= derivation.end_date %></td>
+                        <td><%= derivation.privacy %></td>
+                        <td><%= link_to 'Show', derivation %></td>
+                        <td><%= link_to 'Edit', edit_derivation_path(derivation) %></td>
+                        <td><%= link_to 'Destroy', derivation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

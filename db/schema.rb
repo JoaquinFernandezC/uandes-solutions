@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_145243) do
+ActiveRecord::Schema.define(version: 2018_10_20_151834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -283,6 +283,11 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.index ["person_id"], name: "index_employees_on_person_id"
   end
 
+  create_table "employees_iics", id: false, force: :cascade do |t|
+    t.bigint "iic_id", null: false
+    t.bigint "employee_id", null: false
+  end
+
   create_table "felonies", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -323,24 +328,6 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.index ["iic_id"], name: "index_iic_documents_on_iic_id"
   end
 
-  create_table "iic_internal_members", force: :cascade do |t|
-    t.bigint "iic_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["iic_id"], name: "index_iic_internal_members_on_iic_id"
-    t.index ["user_id"], name: "index_iic_internal_members_on_user_id"
-  end
-
-  create_table "iic_managers", force: :cascade do |t|
-    t.bigint "iic_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["iic_id"], name: "index_iic_managers_on_iic_id"
-    t.index ["user_id"], name: "index_iic_managers_on_user_id"
-  end
-
   create_table "iic_members", force: :cascade do |t|
     t.bigint "iic_id"
     t.bigint "employee_id"
@@ -372,6 +359,25 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.datetime "updated_at", null: false
     t.bigint "log_id"
     t.index ["log_id"], name: "index_iics_on_log_id"
+  end
+
+  create_table "iics_internal_members", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "iic_id"
+    t.index ["iic_id"], name: "index_iics_internal_members_on_iic_id"
+    t.index ["user_id"], name: "index_iics_internal_members_on_user_id"
+  end
+
+  create_table "iics_managers", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "iic_id"
+    t.index ["iic_id"], name: "index_iics_managers_on_iic_id"
+    t.index ["user_id"], name: "index_iics_managers_on_user_id"
+  end
+
+  create_table "iics_users", id: false, force: :cascade do |t|
+    t.bigint "iic_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "institutions", force: :cascade do |t|
@@ -445,6 +451,12 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_petitioners_on_person_id"
+  end
+
+  create_table "privacy_levels", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "project_documents", force: :cascade do |t|
@@ -575,6 +587,12 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "task_documents", force: :cascade do |t|
     t.bigint "task_id"
     t.bigint "document_id"
@@ -679,10 +697,6 @@ ActiveRecord::Schema.define(version: 2018_10_18_145243) do
   add_foreign_key "goals", "logs"
   add_foreign_key "iic_documents", "documents"
   add_foreign_key "iic_documents", "iics"
-  add_foreign_key "iic_internal_members", "iics"
-  add_foreign_key "iic_internal_members", "users"
-  add_foreign_key "iic_managers", "iics"
-  add_foreign_key "iic_managers", "users"
   add_foreign_key "iic_members", "employees"
   add_foreign_key "iic_members", "iics"
   add_foreign_key "iic_tasks", "iics"

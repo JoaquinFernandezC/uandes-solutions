@@ -1,5 +1,6 @@
 class IicsController < ApplicationController
   before_action :set_iic, only: [:show, :edit, :update, :destroy]
+  before_action :get_privacy_levels
 
   # GET /iics
   # GET /iics.json
@@ -15,7 +16,6 @@ class IicsController < ApplicationController
   # GET /iics/new
   def new
     @iic = Iic.new
-    @privacy_levels = ['Público', 'Privado', 'Secreto']
   end
 
   # GET /iics/1/edit
@@ -25,8 +25,27 @@ class IicsController < ApplicationController
   # POST /iics
   # POST /iics.json
   def create
-    @privacy_levels = ['Público', 'Privado', 'Secreto']
     @iic = Iic.new(iic_params)
+    params[:iic][:manager_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @iic.managers << manager unless @iic.managers.include?(manager)
+        end
+      end
+    end
+    params[:iic][:internal_member_ids].each do |member_id|
+      unless member_id.empty?
+        internal_member = User.find(member_id)
+        @iic.internal_members << internal_member unless @iic.internal_members.include?(internal_member)
+      end
+    end
+    params[:iic][:external_member_ids].each do |member_id|
+      unless member_id.empty?
+        external_member = Employee.find(member_id)
+        @iic.external_members << external_member unless @iic.external_members.include?(external_member)
+      end
+    end
     respond_to do |format|
       if @iic.save
         log = Log.new
@@ -44,6 +63,28 @@ class IicsController < ApplicationController
   # PATCH/PUT /iics/1
   # PATCH/PUT /iics/1.json
   def update
+    @iic.managers.delete_all
+    @iic.internal_members.delete_all
+    @iic.external_members.delete_all
+    params[:iic][:manager_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        @iic.managers << manager unless @iic.managers.include?(manager)
+      end
+    end
+    params[:iic][:internal_member_ids].each do |member_id|
+      unless member_id.empty?
+        internal_member = User.find(member_id)
+        @iic.internal_members << internal_member unless @iic.internal_members.include?(internal_member)
+      end
+    end
+    params[:iic][:external_member_ids].each do |member_id|
+      unless member_id.empty?
+        external_member = Employee.find(member_id)
+        @iic.external_members << external_member unless @iic.external_members.include?(external_member)
+      end
+    end
+    @iic.managers.reload
     respond_to do |format|
       if @iic.update(iic_params)
         format.html { redirect_to @iic, notice: 'Iic was successfully updated.' }
@@ -69,11 +110,15 @@ class IicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_iic
       @iic = Iic.find(params[:id])
-      @privacy_levels = ['Público', 'Privado', 'Secreto']
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def iic_params
       params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral)
+    end
+
+    def get_privacy_levels
+      @privacy_levels = PrivacyLevel.all.pluck(:tag)
+      @status = Status.all.pluck(:tag)
     end
 end
