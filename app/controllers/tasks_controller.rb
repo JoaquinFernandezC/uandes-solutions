@@ -54,7 +54,7 @@ class TasksController < ApplicationController
     else
       @posible_state = Status.all
     end
-    
+
   end
 
   # POST /tasks

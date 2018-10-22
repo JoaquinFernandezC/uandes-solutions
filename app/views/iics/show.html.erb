@@ -67,6 +67,13 @@
       <p style="padding-left: 1vw"><%= member.info %></p>
     <% end %>
     </p>
+
+    <p>
+      <strong>Documents:</strong>
+      <% @iic.documents.each do |document| %>
+        <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+      <% end %>
+    </p>
   </div>
 
   <div class="col-sm-4">

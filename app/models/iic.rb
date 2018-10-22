@@ -4,12 +4,11 @@ class Iic < ApplicationRecord
   validates :state, presence: true
   validates :start_date, presence: true
   validates :estimated_end_date, presence: true
-  validates :end_date, presence: true
   validates :privacy, presence: true
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
-  accepts_nested_attributes_for :documents
+  accepts_nested_attributes_for :documents, allow_destroy: true
   has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
   has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
   has_and_belongs_to_many :external_members, class_name: 'Employee'

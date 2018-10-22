@@ -5,7 +5,6 @@ class Goal < ApplicationRecord
   validates :description, presence: true
   validates :state, presence: true
   validates :estimated_end_date, presence: true
-  validates :end_date, presence: true
   validates :privacy, presence: true
 
   has_and_belongs_to_many :users, association_foreign_key: 'user_id', join_table: 'assigned_to_goals', class_name: 'User'

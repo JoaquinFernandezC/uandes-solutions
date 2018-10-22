@@ -74,54 +74,25 @@
         <%= form.datetime_select :estimated_end_date %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :end_date, 'Fecha de Término' %><br/>
-        <%= form.datetime_select :end_date %>
-      </div>
+      <% if params[:id].present? %>
+        <div class="form-group">
+          <%= form.label :end_date, 'Fecha de Término'%><br/>
+          <%= form.datetime_select :end_date %>
+        </div>
+      <% end %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
           <%= form.label :documents, 'Documentos de entrada', class: 'card-title' %>
-          <%= form.fields_for :documents, iic.documents.build do |documents_fields| %>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= documents_fields.label :name, 'Nombre' %>
-                  <%= documents_fields.text_field :name, class: 'form-control' %>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= documents_fields.label :file, 'Archivos' %>
-                  <%= documents_fields.file_field :file %>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <%= documents_fields.label :docType, 'Tipo' %>
-                  <%= documents_fields.text_field :docType, class: 'form-control' %>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <%= documents_fields.label :version, 'Versión' %>
-                  <%= documents_fields.text_field :version, class: 'form-control' %>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <%= documents_fields.label :classification, 'Clasificación' %>
-                  <%= documents_fields.text_field :classification, class: 'form-control' %>
-                </div>
-              </div>
-            </div>
+          <%= form.fields_for :documents do |documents_fields| %>
+            <%= render 'document_fields', f: documents_fields %>
           <% end %>
+          <br/>
+          <%= link_to_add_fields "Add Document", form, :documents %>
         </div>
       </div>
     </div>
