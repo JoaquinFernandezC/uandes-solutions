@@ -48,7 +48,7 @@
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+									<td><%= link_to 'Ver', task_path(task.id) %> | <%= link_to 'Editar', edit_task_path(task.id) %>
 								</tr>
 							<% end %>
 						</tbody>
