@@ -4,13 +4,12 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
-  validates :start_date, presence: true
   validates :estimated_end_date, presence: true
-  validates :end_date, presence: true
   validates :privacy, presence: true
   validates :priority, presence: true
   validates :state, presence: true
-  validates :needs_checking, presence: true
+
+
 
   has_one :project_task
   has_one :project, through: :project_task
