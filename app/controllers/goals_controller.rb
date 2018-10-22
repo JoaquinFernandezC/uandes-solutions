@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  before_action :set_clasification
 
   # GET /goals
   # GET /goals.json
@@ -10,6 +11,8 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.json
   def show
+    @log = Log.find(@goal.log_id)
+    enter_log_message('Se accedió a la meta de unidad especializada de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
   end
 
   # GET /goals/new
@@ -25,11 +28,30 @@ class GoalsController < ApplicationController
   # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    params[:goal][:user_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @goal.users << manager unless @goal.users.include?(manager)
+        end
+      end
+    end
+    params[:goal][:involved_user_ids].each do |user_id|
+      unless user_id.empty?
+        user = User.find(user_id)
+        unless user.nil?
+          @goal.involved_users << user unless @goal.involved_users.include?(user)
+        end
+      end
+    end
     respond_to do |format|
       if @goal.save
+        log = Log.new
+        log.save
+        @goal.update(log_id: log.id)
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
+        enter_log_message('Se creó una meta de unidad especializada con nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
       else
         format.html { render :new }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -40,10 +62,29 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1
   # PATCH/PUT /goals/1.json
   def update
+    @goal.users.delete_all
+    @goal.involved_users.delete_all
+    params[:goal][:user_ids].each do |manager_id|
+      unless manager_id.empty?
+        manager = User.find(manager_id)
+        unless manager.nil?
+          @goal.users << manager unless @goal.users.include?(manager)
+        end
+      end
+    end
+    params[:goal][:involved_user_ids].each do |user_id|
+      unless user_id.empty?
+        user = User.find(user_id)
+        unless user.nil?
+          @goal.involved_users << user unless @goal.involved_users.include?(user)
+        end
+      end
+    end
     respond_to do |format|
       if @goal.update(goal_params)
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
         format.json { render :show, status: :ok, location: @goal }
+        enter_log_message('Se editó la meta de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
       else
         format.html { render :edit }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -58,6 +99,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó la meta de nombre "' + @goal.name + '".', @goal.log_id, @goal.privacy)
     end
   end
 
@@ -70,5 +112,10 @@ class GoalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
       params.require(:goal).permit(:year, :goal_number, :name, :description, :state, :estimated_end_date, :end_date, :privacy, :log)
+    end
+
+    def set_clasification
+      @privacy_levels = PrivacyLevel.all.pluck(:tag)
+      @status = Status.all.pluck(:tag)
     end
 end

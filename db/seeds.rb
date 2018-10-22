@@ -44,8 +44,7 @@ user = User.create!([
                      password_confirmation: '123456'},
                     {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 'Funcionario',
                      position: 'Secretaria', email: 'adaldunate@miuandes.cl', password: '123456',
-                     password_confirmation: '123456'},
-                    ])
+                     password_confirmation: '123456'}]),
 
 ruc = Ruc.create(number: 420)
 
@@ -68,6 +67,10 @@ cause = Cause.create(
     log_id: log.id
 )
 
+privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
+
+status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])
+
 task = Task.create([
     {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Reviso', needs_checking: true},
@@ -84,6 +87,3 @@ task = Task.create([
     {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
     ])
-privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
-
-status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])

@@ -16,8 +16,8 @@ class Document < ApplicationRecord
   has_one :derivation, :through => :derivation_documents
   has_one :derivation_task_document
   has_one :derivation_task, :through => :derivation_task_document
-  has_one :iic_documents
-  has_one :iic, :through => :iic_documents
+  has_one :iic_document
+  has_one :iic, :through => :iic_document
   has_one :iic_task_documents
   has_one :task_iic, :through => :iic_task_documents
   has_one :goal_document
@@ -31,6 +31,6 @@ class Document < ApplicationRecord
 
   validates :name, presence: true
   validates :classification, presence: true
-  validates :type, presence: true
+  validates :docType, presence: true
   validates :version, presence: true
 end

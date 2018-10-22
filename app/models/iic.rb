@@ -9,11 +9,14 @@ class Iic < ApplicationRecord
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
+  accepts_nested_attributes_for :documents
   has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
   has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
   has_and_belongs_to_many :external_members, class_name: 'Employee'
   has_many :iic_tasks
   has_many :tasks, through: :iic_tasks
+  has_one :log
+  has_many :log_entries, through: :log
 
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
@@ -34,6 +37,14 @@ class Iic < ApplicationRecord
   end
   def all_managers
     (self.managers).uniq
+  end
+
+  def documents_attributes=(documents_attributes)
+    documents_attributes.values.each do |document_attribute|
+      document = Document.new(document_attribute)
+      document.save
+      self.documents << document
+    end
   end
 
   def check_multilateral

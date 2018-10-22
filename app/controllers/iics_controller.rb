@@ -11,6 +11,8 @@ class IicsController < ApplicationController
   # GET /iics/1
   # GET /iics/1.json
   def show
+    @log = Log.find(@iic.log_id)
+    enter_log_message('Se accedió la coordinación interinstitucional de nombre "' + @iic.name + '".', @iic.log_id, @iic.privacy)
   end
 
   # GET /iics/new
@@ -53,6 +55,7 @@ class IicsController < ApplicationController
         @iic.update(log_id: log.id)
         format.html { redirect_to @iic, notice: 'Iic was successfully created.' }
         format.json { render :show, status: :created, location: @iic }
+        enter_log_message('Se creó una nueva coordinación interinstitucional con nombre "' + @iic.name + '".', @iic.log_id, @iic.privacy)
       else
         format.html { render :new }
         format.json { render json: @iic.errors, status: :unprocessable_entity }
@@ -89,6 +92,7 @@ class IicsController < ApplicationController
       if @iic.update(iic_params)
         format.html { redirect_to @iic, notice: 'Iic was successfully updated.' }
         format.json { render :show, status: :ok, location: @iic }
+        enter_log_message('Se editó la coordinación interinstitucional de nombre "' + @iic.name + '".', @iic.log_id, @iic.privacy)
       else
         format.html { render :edit }
         format.json { render json: @iic.errors, status: :unprocessable_entity }
@@ -103,6 +107,7 @@ class IicsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to iics_url, notice: 'Iic was successfully destroyed.' }
       format.json { head :no_content }
+      enter_log_message('Se eliminó la coordinación interinstitucional de nombre "' + @iic.name + '".', @iic.log_id, @iic.privacy)
     end
   end
 
@@ -114,7 +119,7 @@ class IicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def iic_params
-      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral)
+      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral, documents_attributes: [:name, :file, :version, :docType, :classification])
     end
 
     def get_privacy_levels
