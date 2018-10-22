@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_001045) do
+ActiveRecord::Schema.define(version: 2018_10_22_154104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -294,11 +294,11 @@ ActiveRecord::Schema.define(version: 2018_10_22_001045) do
     t.bigint "petitioner_id"
     t.string "state"
     t.integer "priority"
-    t.date "derivation_date"
+    t.datetime "derivation_date"
     t.datetime "work_start_date"
-    t.string "estimated_work_start_date"
-    t.date "estimated_end_date"
-    t.date "end_date"
+    t.datetime "estimated_work_start_date"
+    t.datetime "estimated_end_date"
+    t.datetime "end_date"
     t.integer "privacy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -307,11 +307,30 @@ ActiveRecord::Schema.define(version: 2018_10_22_001045) do
     t.index ["petitioner_id"], name: "index_derivations_on_petitioner_id"
   end
 
+  create_table "derivations_people", id: false, force: :cascade do |t|
+    t.bigint "derivation_id", null: false
+    t.bigint "person_id", null: false
+  end
+
+  create_table "derivations_user_reports", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "derivation_id"
+    t.index ["derivation_id"], name: "index_derivations_user_reports_on_derivation_id"
+    t.index ["user_id"], name: "index_derivations_user_reports_on_user_id"
+  end
+
+  create_table "derivations_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "derivation_id"
+    t.index ["derivation_id"], name: "index_derivations_users_on_derivation_id"
+    t.index ["user_id"], name: "index_derivations_users_on_user_id"
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "name"
     t.integer "version"
     t.string "classification"
-    t.string "type"
+    t.string "docType"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "log_id"

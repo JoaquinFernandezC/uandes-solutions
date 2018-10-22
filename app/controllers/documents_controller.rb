@@ -73,6 +73,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :version, :classification, :type, :log, :file)
+      params.require(:document).permit(:name, :version, :classification, :docType, :log_id, :file)
     end
 end

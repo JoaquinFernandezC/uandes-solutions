@@ -119,7 +119,7 @@ class IicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def iic_params
-      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral)
+      params.require(:iic).permit(:name, :description, :state, :start_date, :estimated_end_date, :end_date, :privacy, :multilateral, documents_attributes: [:name, :file, :version, :docType, :classification])
     end
 
     def get_privacy_levels
