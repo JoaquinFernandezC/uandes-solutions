@@ -15,7 +15,7 @@
 			</div>
 			<div class="col-sm-9 hidden-xs">
 				<div class="container">
-					<table id="myTable" class="table table-responsive table-striped table-sm">
+					<table id="myTable" class="table table-responsive table-striped">
 						<thead>
 							<tr>
 								<th>Tarea</th>
@@ -28,78 +28,29 @@
 							</tr>
 						</thead>
 						<tbody id="myTable">
-							<tr>
-								<td>Recopilacion Evidencia</td>
-								<td>El Cucharero</td>
-								<td>21/12/2018</td>
-								<td>Urgente</td>
-								<td>Secreto</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
-							<tr>
-								<td>Conferencia de Prensa</td>
-								<td>El Cucharero</td>
-								<td>21/12/2018</td>
-								<td>Media</td>
-								<td>Publico</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
-							<tr>
-								<td>Arriendo Centro de Eventos</td>
-								<td>Proyecto Avanza</td>
-								<td>03/04/2019</td>
-								<td>Urgente</td>
-								<td>Publico</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
-							<tr>
-								<td>Audiencia Juridica</td>
-								<td>Caso Farmaceuticas</td>
-								<td>17/02/2019</td>
-								<td>Baja</td>
-								<td>Publico</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
-							<tr>
-								<td>Imprimir Flyers</td>
-								<td>Puntualidad en Reuniones</td>
-								<td>07/02/2019</td>
-								<td>Baja</td>
-								<td>Publico</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
-							<tr>
-								<td>Reunion con Comisario</td>
-								<td>Coordinacion Policial</td>
-								<td>21/04/2019</td>
-								<td>Media</td>
-								<td>Privada</td>
-								<td>Revision</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
-							</tr>
-							<tr>
-								<td>Reunion Fica-Com</td>
-								<td>Ingenieria de Software</td>
-								<td>05/11/2019</td>
-								<td>Urgente</td>
-								<td>Privada</td>
-								<td>Revision</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
-							</tr>
-							<tr>
-								<td>Entrega Final</td>
-								<td>Ingenieria de Software</td>
-								<td>10/11/2018</td>
-								<td>Urgente</td>
-								<td>Publico</td>
-								<td>Abierta</td>
-								<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-							</tr>
+							<% @user_tasks.each do |task| %>
+								<tr>
+									<td><%= task.name %></td>
+									<% if task.case_task.present? %>
+										<td><%= task.cause.name %></td>
+									<% elsif task.cc_task.present? %>
+										<td><%= task.case_coordination.name %></td>
+									<% elsif task.derivation_task.present? %>
+										<td><%= task.derivation.name %></td>
+									<% elsif task.task_goal.present? %>
+										<td><%= task.goal.name %></td>
+									<% elsif task.iic_task.present? %>
+										<td><%= task.iic.name %></td>
+									<% else  %>
+										<td>None</td>										
+									<% end %>
+									<td><%= task.estimated_end_date.to_date %></td>
+									<td><%= task.priority %></td>
+									<td><%= task.privacy %></td>
+									<td><%= task.state %></td>
+									<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
+								</tr>
+							<% end %>
 						</tbody>
 					</table>
 				</div>
