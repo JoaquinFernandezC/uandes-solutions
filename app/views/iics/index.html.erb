@@ -25,17 +25,14 @@
                 <table class="table table-hover">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>State</th>
-                    <th>Managers</th>
-                    <th>Start date</th>
-                    <th>Estimated end date</th>
-                    <th>End date</th>
-                    <th>Log</th>
-                    <th>Privacy</th>
-                    <th>Multilateral</th>
-                    <th colspan="3"></th>
+                    <th>Nombre</th>
+                    <th>Encargados</th>
+                    <th>Tipo</th>
+                    <th>Fecha inicio</th>
+                    <th>Privacidad</th>
+                    <th>Estado</th>
+                    <th>Fecha Estimada Término</th>
+                    <th colspan="3">Acciones</th>
                   </tr>
                   </thead>
 
@@ -43,18 +40,19 @@
                   <% @iics.each do |iic| %>
                     <tr>
                       <td><%= iic.name %></td>
-                      <td><%= iic.description %></td>
-                      <td><%= iic.state %></td>
                       <td><%= iic.all_managers.map(&:name).join(', ') %></td>
+                      <% if iic.multilateral %>
+                        <td>Multilateral</td>
+                      <% else %>
+                        <td>Bilateral</td>
+                      <% end %>
                       <td><%= iic.start_date %></td>
-                      <td><%= iic.estimated_end_date %></td>
-                      <td><%= iic.end_date %></td>
-                      <td><%= iic.log_id %></td>
                       <td><%= iic.privacy %></td>
-                      <td><%= iic.multilateral %></td>
-                      <td><%= link_to 'Show', iic %></td>
-                      <td><%= link_to 'Edit', edit_iic_path(iic) %></td>
-                      <td><%= link_to 'Destroy', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= iic.state %></td>
+                      <td><%= iic.estimated_end_date %></td>
+                      <td><%= link_to 'Ver', iic %></td>
+                      <td><%= link_to 'Editar', edit_iic_path(iic) %></td>
+                      <td><%= link_to 'Eliminar', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
                   <% end %>
                   </tbody>

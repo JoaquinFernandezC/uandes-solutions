@@ -25,34 +25,32 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>Year</th>
-                      <th>Project number</th>
-                      <th>Name</th>
-                      <th>Objective</th>
-                      <th>State</th>
-                      <th>Start date</th>
-                      <th>Estimated end date</th>
-                      <th>End date</th>
-                      <th>Privacy</th>
-                      <th colspan="3"></th>
+                      <th>Nombre</th>
+                      <th>Encargados</th>
+                      <th>Año</th>
+                      <th>Número Proyecto</th>
+                      <th>Privacidad</th>
+                      <th>Estado</th>
+                      <th>Fecha Inicio</th>
+                      <th>Fecha Estimada Término</th>
+                      <th colspan="3">Acciones</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <% @projects.each do |project| %>
                       <tr>
+                        <td><%= project.name %></td>
+                        <td><%= project.users.map(&:name).join(', ') %></td>
                         <td><%= project.year %></td>
                         <td><%= project.project_number %></td>
-                        <td><%= project.name %></td>
-                        <td><%= project.objective %></td>
+                        <td><%= project.privacy %></td>
                         <td><%= project.state %></td>
                         <td><%= project.start_date %></td>
                         <td><%= project.estimated_end_date %></td>
-                        <td><%= project.end_date %></td>
-                        <td><%= project.privacy %></td>
-                        <td><%= link_to 'Show', project %></td>
-                        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-                        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to 'Ver', project %></td>
+                        <td><%= link_to 'Editar', edit_project_path(project) %></td>
+                        <td><%= link_to 'Eliminar', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       </tr>
                     <% end %>
                   </tbody>

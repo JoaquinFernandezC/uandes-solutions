@@ -1,49 +1,71 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @cause.name %>
 </p>
 
 <p>
-  <strong>Regional pros office:</strong>
-  <%= @cause.regional_pros_office %>
+  <strong>RUC:</strong>
+  <%= @cause.ruc.number %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
   <%= @cause.description %>
 </p>
 
 <p>
-  <strong>Privacy:</strong>
+  <strong>Encargados:</strong>
+  <% @cause.users.each do |manager| %>
+    <p style="padding-left: 1vw"><%= manager.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Fiscal:</strong>
+  <%= @cause.prosecutor.name %>
+</p>
+
+<p>
+  <strong>Oficina Regional:</strong>
+  <%= @cause.regional_pros_office.region %>
+</p>
+
+
+<p>
+  <strong>Personas:</strong>
+  <% @cause.people.each do |person| %>
+    <p style="padding-left: 1vw"><%= person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Personas Legales:</strong>
+  <% @cause.legal_people.each do |legal_person| %>
+    <p style="padding-left: 1vw"><%= legal_person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Privacidad:</strong>
   <%= @cause.privacy %>
 </p>
 
 <p>
-  <strong>Ruc:</strong>
-  <%= @cause.ruc %>
-</p>
-
-<p>
-  <strong>State:</strong>
+  <strong>Estado:</strong>
   <%= @cause.state %>
 </p>
 
 <p>
-  <strong>Prosecutor:</strong>
-  <%= @cause.prosecutor %>
-</p>
-
-<p>
-  <strong>Estimated end date:</strong>
+  <strong>Fecha Estimada de Término:</strong>
   <%= @cause.estimated_end_date %>
 </p>
 
 <p>
-  <strong>End date:</strong>
+  <strong>Fecha de Término:</strong>
   <%= @cause.end_date %>
 </p>
 
-<%= link_to 'Edit', edit_cause_path(@cause) %> |
-<%= link_to 'Back', causes_path %>
+<%= link_to 'Volver', causes_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_cause_path(@cause), :class => "btn btn-success" %>

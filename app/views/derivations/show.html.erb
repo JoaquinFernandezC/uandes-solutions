@@ -1,59 +1,75 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @derivation.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Peticionario:</strong>
+  <%= @derivation.petitioner.person.name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
   <%= @derivation.description %>
 </p>
 
 <p>
-  <strong>Petitioner:</strong>
-  <%= @derivation.petitioner %>
+  <strong>Encargados:</strong>
+  <% @derivation.managers.each do |person| %>
+    <p style="padding-left: 1vw"><%= person.name %></p>
+  <% end %>
 </p>
 
 <p>
-  <strong>State:</strong>
+  <strong>Personas Reportes:</strong>
+  <% @derivation.report_receivers.each do |person| %>
+    <p style="padding-left: 1vw"><%= person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Personas Reportes:</strong>
+  <% @derivation.people.each do |person| %>
+    <p style="padding-left: 1vw"><%= person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Privacidad:</strong>
+  <%= @derivation.privacy %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
   <%= @derivation.state %>
 </p>
 
 <p>
-  <strong>Priority:</strong>
-  <%= @derivation.priority %>
-</p>
-
-<p>
-  <strong>Derivation date:</strong>
+  <strong>Fecha Derivación:</strong>
   <%= @derivation.derivation_date %>
 </p>
 
 <p>
-  <strong>Work start date:</strong>
+  <strong>Fecha Inicio:</strong>
   <%= @derivation.work_start_date %>
 </p>
 
 <p>
-  <strong>Estimated work start date:</strong>
+  <strong>Fecha Estimada Inicio:</strong>
   <%= @derivation.estimated_work_start_date %>
 </p>
 
 <p>
-  <strong>Estimated end date:</strong>
+  <strong>Fecha Estimada Término:</strong>
   <%= @derivation.estimated_end_date %>
 </p>
 
 <p>
-  <strong>End date:</strong>
+  <strong>Fecha Término:</strong>
   <%= @derivation.end_date %>
 </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @derivation.privacy %>
-</p>
-
-<%= link_to 'Edit', edit_derivation_path(@derivation) %> |
-<%= link_to 'Back', derivations_path %>
+<%= link_to 'Volver', derivations_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_derivation_path(@derivation), :class => "btn btn-success" %>
