@@ -11,6 +11,9 @@ class CaseCoordination < ApplicationRecord
   has_and_belongs_to_many :prosecutors
   has_and_belongs_to_many :regional_pros_offices
 
+  has_many :cc_tasks
+  has_many :tasks, through: :cc_tasks
+
   validates :name, presence: true 
   validate :estimated_end_date_cannot_be_in_the_past
 

@@ -18,7 +18,7 @@ class Task < ApplicationRecord
   has_one :iic_task, dependent:  :destroy
   has_one :iic, through: :iic_task
   has_one :cc_task
-  has_one :case_coordination, through: :cc_tasks
+  has_one :case_coordination, through: :cc_task
   has_one :case_task
   has_one :cause, through: :case_task
   has_one :derivation_task
@@ -37,6 +37,12 @@ class Task < ApplicationRecord
       return self.iic
     elsif !self.goal.nil?
       return self.goal
+    elsif !self.project.nil?
+      return self.project
+    elsif !self.derivation.nil?
+      return self.derivation
+    elsif !self.case_coordination.nil?
+      return self.case_coordination
     else
       return nil
     end

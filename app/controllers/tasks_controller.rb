@@ -109,6 +109,12 @@ class TasksController < ApplicationController
         @theme=Cause.find(@theme_id)
       elsif @theme_name==Goal.NAME
         @theme=Goal.find(@theme_id)
+      elsif @theme_name==Project.NAME
+        @theme=Project.find(@theme_id)
+      elsif @theme_name==Derivation.NAME
+        @theme=Derivation.find(@theme_id)
+      elsif @theme_name==CaseCoordination.NAME
+        @theme=CaseCoordination.find(@theme_id)
       end
 
       if @theme.nil?

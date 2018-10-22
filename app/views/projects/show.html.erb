@@ -64,5 +64,6 @@
   <% end %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@project.id,theme_name:Project.NAME)%>|
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
