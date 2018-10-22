@@ -8,7 +8,7 @@ class Iic < ApplicationRecord
 
   has_many :iic_documents
   has_many :documents, through: :iic_documents
-  accepts_nested_attributes_for :documents
+  accepts_nested_attributes_for :documents, allow_destroy: true
   has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
   has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
   has_and_belongs_to_many :external_members, class_name: 'Employee'

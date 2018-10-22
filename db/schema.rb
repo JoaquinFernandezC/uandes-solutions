@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_154104) do
+ActiveRecord::Schema.define(version: 2018_10_22_200048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_154104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "log_id"
+    t.datetime "end_date"
     t.index ["log_id"], name: "index_case_coordinations_on_log_id"
   end
 
@@ -602,8 +603,8 @@ ActiveRecord::Schema.define(version: 2018_10_22_154104) do
     t.string "objective"
     t.string "state"
     t.datetime "start_date"
-    t.date "estimated_end_date"
-    t.date "end_date"
+    t.datetime "estimated_end_date"
+    t.datetime "end_date"
     t.integer "privacy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

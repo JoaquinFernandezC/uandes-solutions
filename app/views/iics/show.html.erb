@@ -66,6 +66,13 @@
       <strong>Fecha de Término:</strong>
       <%= @iic.end_date %>
     </p>
+
+    <p>
+      <strong>Documents:</strong>
+      <% @iic.documents.each do |document| %>
+        <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+      <% end %>
+    </p>
   </div>
 
   <div class="col-sm-4">

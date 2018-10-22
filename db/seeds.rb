@@ -6,9 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!(first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 'Funcionario', position: 'Secretario',
-                    email: 'jflores@ulddeco.cl', password: '123456', password_confirmation: '123456')
-
 institutions = Institution.create([{ name: 'Burger King' }, { name: 'Nike' }, { name: 'Reebok' }, { name: 'Uandes' }, { name: 'Google' },
                                    { name: 'Wallmart' }, { name: 'Amazon' }, { name: 'Copec' }, { name: 'Falabella' }, { name: 'HP' },{ name: 'Microsoft' }])
 
