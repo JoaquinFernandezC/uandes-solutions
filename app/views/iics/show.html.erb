@@ -66,5 +66,6 @@
 <% end %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@iic.id,theme_name:Iic.NAME)%>|
 <%= link_to 'Edit', edit_iic_path(@iic) %> |
 <%= link_to 'Back', iics_path %>

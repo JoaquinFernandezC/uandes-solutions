@@ -2,7 +2,8 @@
 	<div class="card-header bg-info">
     <h2 class="text-white"><b>Bandeja de Tareas</b></h2>
 	</div>
-	<div class="card-body">
+	<divgit status
+          class="card-body">
 		<div class="row" style="background: #FFFFFF;">
 			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px">
 				<%= image_tag("logo_fiscalia.png", class: 'img-thumbnail', width: '70%', style: 'margin: auto; display: block; margin-top: 10%') %>
@@ -15,98 +16,50 @@
 			</div>
 			<div class="col-sm-9 hidden-xs">
 				<div class="container">
-				  <ul class="nav nav-tabs" role="tablist">
-				    <li class="nav-item ">
-				      <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Tareas <b>(3)</b></a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link makeOrange" data-toggle="pill" href="#menu1">Revisar <b>(1)</b></a>
-				    </li>
-				    <li class="nav-item ml-auto">
-						<input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Search..">
-					</li>
-				  </ul>
-
-					<div class="tab-content">
-						<div id="home" class="tab-pane active">
-							<div class="table-responsive">
-								<table id="dtBasicExample" class="table table-hover">
-									<thead>
-										<tr>
-											<th>Tarea</th>
-											<th>Tema</th>
-											<th>Fecha Estimada</th>
-											<th>Prioridad</th>
-											<th>Privacidad</th>
-											<% if false %>
-												<th>Encargado</th>
-											<% end %>
-											<th></th>
-											<th colspan="300"></th>
-										</tr>
-									</thead>
-									<tbody id="myTable">
-										<tr>
-											<td>Arriendo Centro de Eventos</td>
-											<td>Proyecto Avanza</td>
-											<td>03/04/2019</td>
-											<td class="text-danger">Urgente</td>
-											<td>Secreto</td>
-											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-										</tr>
-										<tr>
-											<td>Recopilacion Evidencia</td>
-											<td>Caso Pinta</td>
-											<td>30/12/2018</td>
-											<td class="text-warning">Media</td>
-											<td>Privado</td>
-											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-										</tr>
-										<tr>
-											<td>Entrevista Sospechoso</td>
-											<td>Robos Viñas</td>
-											<td>11/11/2018</td>
-											<td>Baja</td>
-											<td>Publico</td>
-											<td><button type="button" class="btn btn-info" style="width:90px" onclick="alert('Aqui se entra a la tarea.')">Entrar</button></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div id="menu1" class="tab-pane fade">
-							<div class="table-responsive">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Tarea</th>
-											<th>Tema</th>
-											<th>Fecha Estimada</th>
-											<th>Prioridad</th>
-											<th>Privacidad</th>
-											<% if false %>
-												<th>Encargado</th>
-											<% end %>
-											<th></th>
-											<th colspan="300"></th>
-										</tr>
-									</thead>
-									<tbody id="myTable">
-										<tr>
-											<td>Audiencia Juridica</td>
-											<td>Caso Farmaceuticas</td>
-											<td>17/02/2019</td>
-											<td>Baja</td>
-											<td>Publico</td>
-											<td><button type="button" class="btn btn-secondary" style="width:90px" onclick="alert('Aqui se revisa a la tarea.')">Revisar</button></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+					<table id="myTable" class="table table-responsive table-striped">
+						<thead>
+							<tr>
+								<th>Tarea</th>
+								<th>Tema</th>
+								<th>Fecha Estimada</th>
+								<th>Prioridad</th>
+								<th>Privacidad</th>
+								<th>Estado</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody id="myTable">
+							<% @user_tasks.each do |task| %>
+								<tr>
+									<td><%= task.name %></td>
+									<% if task.case_task.present? %>
+										<td><%= task.cause.name %></td>
+									<% elsif task.cc_task.present? %>
+										<td><%= task.case_coordination.name %></td>
+									<% elsif task.derivation_task.present? %>
+										<td><%= task.derivation.name %></td>
+									<% elsif task.task_goal.present? %>
+										<td><%= task.goal.name %></td>
+									<% elsif task.iic_task.present? %>
+										<td><%= task.iic.name %></td>
+									<% else  %>
+										<td>None</td>										
+									<% end %>
+									<td><%= task.estimated_end_date.to_date %></td>
+									<td><%= task.priority %></td>
+									<td><%= task.privacy %></td>
+									<td><%= task.state %></td>
+									<td><%= link_to 'Ver', task_path(task.id) %> | <%= link_to 'Editar', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Reviso' %><%= link_to 'Revisar', edit_task_path(task.id) %><% else  %><%= link_to 'Trabajar', edit_task_path(task.id) %><% end %>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-	</div>
+	</divgit>
 </div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>
