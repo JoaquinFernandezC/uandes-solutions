@@ -99,5 +99,6 @@
   </div>
 </div>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@iic.id,theme_name:Iic.NAME)%>|
 <%= link_to 'Volver', iics_path, :class => "btn btn-danger"%>
 <%= link_to 'Editar', edit_iic_path(@iic), :class => "btn btn-success" %>

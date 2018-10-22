@@ -54,5 +54,7 @@
   <%= @goal.end_date %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME)%>|
 <%= link_to 'Volver', goals_path, :class => "btn btn-danger"%>
 <%= link_to 'Editar', edit_goal_path(@goal), :class => "btn btn-success" %>
+

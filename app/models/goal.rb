@@ -15,4 +15,9 @@ class Goal < ApplicationRecord
 
   has_many :task_goals
   has_many :tasks, through: :task_goals
+
+  def self.NAME
+    'goal'
+  end
+
 end

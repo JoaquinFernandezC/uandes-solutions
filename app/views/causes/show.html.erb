@@ -62,10 +62,13 @@
   <%= @cause.estimated_end_date %>
 </p>
 
+
+
 <p>
   <strong>Fecha de Término:</strong>
   <%= @cause.end_date %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@cause.id,theme_name:Cause.NAME)%>|
 <%= link_to 'Volver', causes_path, :class => "btn btn-danger"%>
 <%= link_to 'Editar', edit_cause_path(@cause), :class => "btn btn-success" %>

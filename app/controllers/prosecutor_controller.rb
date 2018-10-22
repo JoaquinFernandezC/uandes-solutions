@@ -1,2 +1,0 @@
-class ProsecutorController < ApplicationController
-end

@@ -21,6 +21,9 @@ class Iic < ApplicationRecord
   validate :end_date_cannot_be_in_the_past
   validate :check_multilateral
 
+  def self.NAME
+    'iic'
+  end
   def estimated_end_date_cannot_be_in_the_past
     if estimated_end_date.present? && estimated_end_date < Date.today
       errors.add(:estimated_end_date, "can't be in the past")

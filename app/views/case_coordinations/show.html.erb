@@ -72,5 +72,7 @@
   <%= @case_coordination.end_date %>
 </p>
 
+
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@case_coordination.id,theme_name:CaseCoordination.NAME)%>|
 <%= link_to 'Volver', case_coordinations_path, :class => "btn btn-danger"%>
 <%= link_to 'Editar', edit_case_coordination_path(@case_coordination), :class => "btn btn-success" %>

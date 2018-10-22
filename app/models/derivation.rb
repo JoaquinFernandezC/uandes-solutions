@@ -26,5 +26,10 @@ class Derivation < ApplicationRecord
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
     end
-  end 
+  end
+
+  def self.NAME
+    'derivation'
+  end
+
 end

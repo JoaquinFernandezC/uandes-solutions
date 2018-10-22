@@ -71,5 +71,7 @@
   <%= @derivation.end_date %>
 </p>
 
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@derivation.id,theme_name:Derivation.NAME)%>|
+
 <%= link_to 'Volver', derivations_path, :class => "btn btn-danger"%>
 <%= link_to 'Editar', edit_derivation_path(@derivation), :class => "btn btn-success" %>

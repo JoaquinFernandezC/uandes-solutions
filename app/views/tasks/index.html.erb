@@ -2,10 +2,57 @@
 
 <h1>Tasks</h1>
 
-<table>
+<div class="filter">
+  <%=select_tag :filter_type,options_for_select([[ "Por nombre", 1],[ "Por asignados", 2],[ "Por estado", 3],[ "Por privacidad", 4],[ "Por Fecha inicio", 5]]),class:"form-control"%>
+<%= form_with url: tasks_path,local:true,:html => { :method => 'GET' } do |form| %>
+
+    <div class="filter_field" id="name_filter_div" style="display:none">
+      <label for="name">Nombre</label>
+      <%= collection_select :filter, :tasks_ids, Task.all, :id, :name, {}, { id: 'task_name_multiselect', :multiple => true } %>
+    </div>
+    <div class="filter_field", id="assigned_filter_div", style="display:none">
+      <label for="manager_multiselect">Asignado(s)</label>
+      <%= collection_select :filter, :assigned_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+    </div>
+
+    <div class="filter_field", id="status_filter_div", style="display:none">
+      <%=form.label :status, "Estado"%>
+      <%= form.select :status, Status.all.collect{|r| [r.tag,r.id]}.insert(0,["Todos",0])%>
+
+
+    </div>
+    <div class = "filter_field", id="privacy_filter_div", style="display:none" >
+      <label for="manager_multiselect">Privacidad</label>
+      <%= form.select :estado, PrivacyLevel.all.collect{|r| [r.tag,r.id]}.insert(0,["Todas",0])%>
+    </div>
+      <br>
+    <div class = "filter_field", id="start_date_filter_div", style="display:none">
+     <%=form.label :min_start_date, "Inicio desde"%>
+    <%= form.date_field :min_start_date%>
+
+    <%=form.label :max_start_date, "hasta"%>
+    <%= form.date_field :max_start_date%>
+    </div>
+      <br>
+  </div>
+
+
+
+
+
+
+
+
+
+  <%= form.submit "Filtrar"%>
+
+<% end %>
+
+
+<table id="myTable" class="table table-responsive table-striped">
   <thead>
-    <tr>
-      <th>Name</th>
+    <tr role="row">
+      <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Name</th>
       <th>Description</th>
       <th>User</th>
       <th>Start date</th>
@@ -15,17 +62,18 @@
       <th>Priority</th>
       <th>State</th>
       <th>Needs checking</th>
-      <th>Log</th>
-      <th colspan="3"></th>
+      <th>Tema</th>
+      <th>Acciones</th>
+
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="myTable">
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
-        <td><%= task.user %></td>
+        <td><%= task.user.first_name+" "+task.user.last_name %></td>
         <td><%= task.start_date %></td>
         <td><%= task.estimated_end_date %></td>
         <td><%= task.end_date %></td>
@@ -33,15 +81,57 @@
         <td><%= task.priority %></td>
         <td><%= task.state %></td>
         <td><%= task.needs_checking %></td>
-        <td><%= task.log %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+        <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
+        <!--<td><%= task.log_id %></td>-->
+
+        <td><%= link_to 'Show', task %> |
+          <%= link_to 'Edit', edit_task_path(task) %>|
+          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+  <script>
+    $(document).ready(function(){
+        $('#example').DataTable();
 
+
+        $('.dataTables_length').addClass('bs-select');
+        document.getElementById('filter_type').onchange();
+    })
+      document.getElementById('filter_type').onchange = function() {
+          filter_divs = document.getElementsByClassName("filter_field");
+          for (var i = 0; i < filter_divs.length; i++) {
+              filter_divs[i].style.display="none";
+
+              //Do something
+          }
+          var newaction = this.value;
+          if(newaction == 1){
+              document.getElementById("name_filter_div").style.display="block";
+          }
+          else if(newaction==2){
+              document.getElementById("assigned_filter_div").style.display="block";
+          }
+          else if(newaction==3){
+              document.getElementById("status_filter_div").style.display="block";
+          }
+          else if(newaction==4){
+              document.getElementById("privacy_filter_div").style.display="block";
+          }
+          else if(newaction==5){
+              document.getElementById("start_date_filter_div").style.display="block";
+          }
+      };
+
+  </script>
 <%= link_to 'New Task', new_task_path %>
+
+  </div>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>

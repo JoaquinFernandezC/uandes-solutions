@@ -1,0 +1,122 @@
+<h1>Trabajar Tarea </h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="card">
+    <div class="card-header bg-info">
+      <h2 class="text-white"><b><%= @task.name %></b></h2>
+    </div>
+    <div class="card-body">
+      <div class="col-sm-9 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Tema: <%=  @task.get_theme.name%> </th>
+                    <th>Prioridad: <%= @task.priority %></th>
+                    <th>Privacidad: <%= PrivacyLevel.find(@task.privacy).tag %> </th>
+                    <th>Estado: <%= Status.find(@task.state).tag %></th>
+                    <th></th>
+                    <th colspan="300"></th>
+                  </tr>
+                  </thead>
+                </table>
+                <div>
+                  <%= @task.description %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <p>
+        <strong>Documents:</strong>
+        <% @task.documents.each do |document| %>
+          <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :state , 'Estado'%>
+    <%= form.select :state, @posible_state.collect{|s| [s.tag,s.id]} %>
+  </div>
+
+  <!--<div class="field">-->
+  <!--
+<!--</div>-->
+
+  <!--<div class="field">-->
+  <!--<%= form.label :log %>-->
+  <!--<%= form.text_field :log %>-->
+  <!--</div>-->
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <%= form.label :documents, 'Documentos de salida', class: 'card-title' %>
+          <%= form.fields_for :documents, @task.documents.build do |documents_fields| %>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= documents_fields.label :name, 'Nombre' %>
+                  <%= documents_fields.text_field :name, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= documents_fields.label :file, 'Archivos' %>
+                  <%= documents_fields.file_field :file %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <%= documents_fields.label :docType, 'Tipo' %>
+                  <%= documents_fields.text_field :docType, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <%= documents_fields.label :version, 'Versión' %>
+                  <%= documents_fields.text_field :version, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <%= documents_fields.label :classification, 'Clasificación' %>
+                  <%= documents_fields.text_field :classification, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'OK' %>
+  </div>
+<% end %>
