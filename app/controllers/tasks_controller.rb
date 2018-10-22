@@ -132,6 +132,6 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       set_theme
-      params.require(:task).permit(:name, :description, :user_id, :start_date, :estimated_end_date, :end_date, :privacy, :priority, :state, :needs_checking)
+      params.require(:task).permit(:name, :description, :user_id, :start_date, :estimated_end_date, :end_date, :privacy, :priority, :state, :needs_checking,  documents_attributes: [:name, :file, :version, :docType, :classification])
     end
 end

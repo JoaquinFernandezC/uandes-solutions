@@ -25,6 +25,8 @@ class Task < ApplicationRecord
   has_one :derivation, through: :derivation_task
   has_many :commentaries
   has_many :commenters, through: :commentaries, source: :users
+  has_many :task_documents
+  has_many :documents, through: :task_documents
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
 
@@ -69,6 +71,14 @@ class Task < ApplicationRecord
   def end_date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "can't be in the past")
+    end
+  end
+
+  def documents_attributes=(documents_attributes)
+    documents_attributes.values.each do |document_attribute|
+      document = Document.new(document_attribute)
+      document.save
+      self.documents << document
     end
   end
 end
