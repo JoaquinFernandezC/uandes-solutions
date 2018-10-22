@@ -1,0 +1,34 @@
+<%= form_with(model: prosecutor, local: true) do |form| %>
+  <% if prosecutor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prosecutor.errors.count, "error") %> prohibited this prosecutor from being saved:</h2>
+
+      <ul>
+      <% prosecutor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label :name, 'Nombre Completo' %><br />
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rut, 'RUT' %><br />
+    <%= form.text_field :rut, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :local_office, 'Localía' %><br />
+    <%= form.text_field :local_office, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>

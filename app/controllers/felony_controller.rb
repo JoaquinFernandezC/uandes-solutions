@@ -1,2 +1,0 @@
-class FelonyController < ApplicationController
-end
