@@ -55,12 +55,14 @@
         <%= form.date_select :estimated_end_date, class: 'form-control' %>
       </div>
     </div>
-    <div class="col-sm-3">
-      <div class="form-group">
-        <%= form.label :end_date %><br/>
-        <%= form.date_select :end_date, class: 'form-control' %>
+    <% if params[:id].present? %>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <%= form.label :end_date %><br/>
+          <%= form.date_select :end_date, class: 'form-control' %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="col-sm-3">
       <div class="form-group">
         <%= form.label :users, 'Encargados' %><br/>

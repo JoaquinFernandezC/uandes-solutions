@@ -4,7 +4,6 @@ class Iic < ApplicationRecord
   validates :state, presence: true
   validates :start_date, presence: true
   validates :estimated_end_date, presence: true
-  validates :end_date, presence: true
   validates :privacy, presence: true
 
   has_many :iic_documents

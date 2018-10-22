@@ -179,7 +179,7 @@ class CaseCoordinationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def case_coordination_params
-      params.require(:case_coordination).permit(:name, :description, :state, :estimated_end_date, :privacy)
+      params.require(:case_coordination).permit(:name, :description, :state, :estimated_end_date, :end_date, :privacy)
     end
 
     def get_privacy_levels

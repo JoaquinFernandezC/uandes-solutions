@@ -49,24 +49,28 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="form-group">
         <%= form.label :start_date %><br/>
-        <%= form.date_select :start_date, class: 'form-control' %>
+        <%= form.datetime_select :start_date, class: 'form-control' %>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="form-group">
         <%= form.label :estimated_end_date %><br/>
-        <%= form.date_select :estimated_end_date, class: 'form-control' %>
+        <%= form.datetime_select :estimated_end_date, class: 'form-control' %>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="form-group">
-        <%= form.label :end_date %><br/>
-        <%= form.date_select :end_date, class: 'form-control' %>
+  </div>
+  <div class="row">
+    <% if params[:id].present? %>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label :end_date %><br/>
+          <%= form.datetime_select :end_date, class: 'form-control' %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <div class="row">

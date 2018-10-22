@@ -55,10 +55,12 @@
         <%= form.datetime_select :estimated_end_date %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :end_date, 'Fecha de Término' %><br/>
-        <%= form.datetime_select :end_date %>
-      </div>
+      <% if params[:id].present? %>
+        <div class="form-group">
+          <%= form.label :end_date, 'Fecha de Término'%><br/>
+          <%= form.datetime_select :end_date %>
+        </div>
+      <% end %>
     </div>
   </div>
 
