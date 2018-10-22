@@ -21,14 +21,16 @@
 </p>
 
 <p>
-  <strong>Log:</strong>
-  <%= @case_coordination.log %>
+  <strong>End date:</strong>
+  <%= @case_coordination.end_date %>
 </p>
 
 <p>
   <strong>Privacy:</strong>
   <%= @case_coordination.privacy %>
 </p>
+
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@case_coordination.id,theme_name:CaseCoordination.NAME)%>|
 
 <%= link_to 'Edit', edit_case_coordination_path(@case_coordination) %> |
 <%= link_to 'Back', case_coordinations_path %>

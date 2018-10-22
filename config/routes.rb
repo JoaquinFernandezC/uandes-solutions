@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   resources :tasks
   resources :documents
   # devise_for :users
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'application#index'
   resources :employees
+  get '/tasks/:id/work', to: "tasks#work"
+
 end

@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
+
   def index
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
     if user_signed_in?
     	@user_tasks = Task.where('user_id = ?', current_user.id)
     end
   end
+
+  def enter_log_message(message, log_id, privacy)
+    log_entry = LogEntry.new(log_id: log_id, message: message, user_id: current_user.id, privacy: privacy)
+    log_entry.save
+  end
+
 end

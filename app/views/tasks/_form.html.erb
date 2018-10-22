@@ -11,54 +11,56 @@
     </div>
   <% end %>
 
+    <input type="hidden" name ="theme_id" value =<%=@theme_id%>>
+    <input type="hidden" name ="theme_name" value =<%=@theme_name%>>
+
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Nombre' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, 'Descripción' %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.label :user_id, 'Usuario asignado' %>
+    <%= form.select :user_id, User.all.collect{|u| [u.name,u.id]} %>
   </div>
 
   <div class="field">
-    <%= form.label :start_date %>
+    <%= form.label :start_date, 'Fecha inicio' %>
     <%= form.datetime_select :start_date %>
   </div>
 
   <div class="field">
-    <%= form.label :estimated_end_date %>
+    <%= form.label :estimated_end_date, 'Fecha término estimada' %>
     <%= form.datetime_select :estimated_end_date %>
   </div>
 
   <div class="field">
-    <%= form.label :end_date %>
+    <%= form.label :end_date, 'Fecha término' %>
     <%= form.datetime_select :end_date %>
   </div>
 
   <div class="field">
-    <%= form.label :privacy %>
-    <%= form.number_field :privacy %>
+    <%= form.label :privacy, 'Privacidad' %>
+      <%= form.select :privacy, PrivacyLevel.all.collect{|p| [p.tag,p.id]} %>
   </div>
 
   <div class="field">
-    <%= form.label :priority %>
-    <%= form.number_field :priority %>
+    <%= form.label :priority ,'Prioridad'%>
+    <%= form.select :priority, Task.priority.invert %>
   </div>
 
   <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <%= form.label :needs_checking %>
+  <%= form.check_box :needs_checking %>
   </div>
-
   <div class="field">
-    <%= form.label :needs_checking %>
-    <%= form.check_box :needs_checking %>
+    <%= form.label :state , 'Estado'%>
+    <%= form.select :state, Status.all.collect{|s| [s.tag,s.id]} %>
   </div>
 
   <div class="field">
@@ -66,7 +68,24 @@
     <%= form.text_field :log_id %>
   </div>
 
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form.label :documents, 'Documentos de entrada', class: 'card-title' %>
+          <%= form.fields_for :documents do |documents_fields| %>
+            <%= render 'document_fields', f: documents_fields %>
+          <% end %>
+          <br/>
+          <%= link_to_add_fields "Add Document", form, :documents %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Crear tarea' %>
   </div>
 <% end %>

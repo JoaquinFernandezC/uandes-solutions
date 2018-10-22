@@ -1,3 +1,8 @@
+
+<p id="notice"><%= notice %></p>
+
+
+
 <div class="card">
   <div class="card-header bg-info">
     <h2 class="text-white"><b><%= @task.name %></b></h2>
@@ -31,25 +36,6 @@
     </div>
   </div>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @task.start_date %>
-</p>
-
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @task.estimated_end_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @task.end_date %>
-</p>
-
-<p>
-  <strong>Needs checking:</strong>
-  <%= @task.needs_checking %>
-</p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
