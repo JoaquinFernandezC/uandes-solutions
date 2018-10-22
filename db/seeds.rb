@@ -68,7 +68,7 @@ cause = Cause.create(
 
 task = Task.create([
     {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Reviso', needs_checking: true},
+    estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Revisión', needs_checking: true},
     {name: 'Arriendo Centro de Eventos', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '03/04/2019', privacy: 2, priority: 0, state: 'Abierto', needs_checking: true},
     {name: 'Audiencia Juridica', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
@@ -76,7 +76,7 @@ task = Task.create([
     {name: 'Imprimir Flyers', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '07/02/2019', privacy: 0, priority: 0, state: 'Abierto', needs_checking: false},
     {name: 'Reunion con Comisario', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Abierto', needs_checking: true},
+    estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Revisión', needs_checking: true},
     {name: 'Reunion Fica-Com', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '05/11/2018', privacy: 2, priority: 2, state: 'Abierto', needs_checking: false},
     {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 

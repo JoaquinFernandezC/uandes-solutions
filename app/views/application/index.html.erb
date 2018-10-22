@@ -1,21 +1,21 @@
 <div class="card">
 	<div class="card-header bg-info">
-    <h2 class="text-white"><b>Bandeja de Tareas</b></h2>
+    	<h2 class="text-white"><b>Bandeja de Tareas</b></h2>
 	</div>
 	<div class="card-body">
 		<div class="row" style="background: #FFFFFF;">
 			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px">
 				<%= image_tag("logo_fiscalia.png", class: 'img-thumbnail', width: '70%', style: 'margin: auto; display: block; margin-top: 10%') %>
 				<h2 class="text-center" style="margin-bottom: 10%"><strong><%= current_user.name %></strong></h2>
-        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se agregan entidades.')">Agregar Entidades</button>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
-        </div>
+			        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
+								<button class="btn btn-outline-secondary" onclick="alert('Aqui se agregan entidades.')">Agregar Entidades</button>
+								<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
+								<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
+			        </div>
 			</div>
 			<div class="col-sm-9 hidden-xs">
 				<div class="container">
-					<table id="myTable" class="table table-responsive table-striped">
+					<table id="myTable" class="display table-responsive table-striped">
 						<thead>
 							<tr>
 								<th>Tarea</th>
@@ -48,7 +48,7 @@
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><%= link_to 'Ver', task_path(task.id) %> | <%= link_to 'Editar', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Reviso' %><%= link_to 'Revisar', edit_task_path(task.id) %><% else  %><%= link_to 'Trabajar', edit_task_path(task.id) %><% end %>
+									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', edit_task_path(task.id) %><% end %>
 								</tr>
 							<% end %>
 						</tbody>
