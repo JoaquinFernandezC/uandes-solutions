@@ -6,11 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
-tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'In progress', needs_checking: true}])
+tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), 
+    end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'In progress', needs_checking: true}])
 
-=======
->>>>>>> 908a8d803f7b83694a5db63d94dbba86603fa569
 institutions = Institution.create([{ name: 'Burger King' }, { name: 'Nike' }, { name: 'Reebok' }, { name: 'Uandes' }, { name: 'Google' },
                                    { name: 'Wallmart' }, { name: 'Amazon' }, { name: 'Copec' }, { name: 'Falabella' }, { name: 'HP' },
                                    { name: 'Microsoft' }])
@@ -73,20 +71,3 @@ cause = Cause.create(
 privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
 
 status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])
-
-task = Task.create([
-    {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Revisión', needs_checking: true},
-    {name: 'Arriendo Centro de Eventos', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '03/04/2019', privacy: 2, priority: 0, state: 'Abierto', needs_checking: true},
-    {name: 'Audiencia Juridica', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '17/02/2019', privacy: 0, priority: 1, state: 'Abierto', needs_checking: false},
-    {name: 'Imprimir Flyers', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '07/02/2019', privacy: 0, priority: 0, state: 'Abierto', needs_checking: false},
-    {name: 'Reunion con Comisario', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Revisión', needs_checking: true},
-    {name: 'Reunion Fica-Com', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '05/11/2018', privacy: 2, priority: 2, state: 'Abierto', needs_checking: false},
-    {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
-    ])

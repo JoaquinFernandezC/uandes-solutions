@@ -16,7 +16,7 @@
 			</div>
 			<div class="col-sm-9 hidden-xs">
 				<div class="container">
-					<table id="myTable" class="display table-responsive table-striped">
+					<table id="myTable" class="table table-responsive table-striped">
 						<thead>
 							<tr>
 								<th>Tarea</th>
@@ -49,7 +49,7 @@
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', edit_task_path(task.id) %><% end %>
+									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', 'tasks/' + task.id.to_s + '/work' %><% end %>
 								</tr>
 							<% end %>
 						</tbody>
