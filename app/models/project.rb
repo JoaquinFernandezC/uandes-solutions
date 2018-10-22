@@ -20,4 +20,9 @@ class Project < ApplicationRecord
       errors.add(:end_date, "can't be in the past")
     end
   end
+
+  def self.NAME
+    'project'
+  end
+
 end

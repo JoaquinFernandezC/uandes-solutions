@@ -11,4 +11,9 @@ class Cause < ApplicationRecord
   has_and_belongs_to_many :users
   has_and_belongs_to_many :people
   has_and_belongs_to_many :legal_people
+
+  def self.NAME
+    'case'
+  end
+
 end

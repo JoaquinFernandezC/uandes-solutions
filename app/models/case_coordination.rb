@@ -18,5 +18,10 @@ class CaseCoordination < ApplicationRecord
     if estimated_end_date.present? && estimated_end_date < Date.today
       errors.add(:estimated_end_date, "can't be in the past")
     end
-  end 
+  end
+
+  def self.NAME
+    'cc'
+  end
+
 end
