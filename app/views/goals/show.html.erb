@@ -42,8 +42,24 @@
 
 <p>
   <strong>Log:</strong>
-  <%= @goal.log %>
+  <%= @goal.log_id %>
 </p>
 
+<p>
+  <strong>Assigned users:</strong>
+  <% @goal.users.each do |assigned| %>
+    <%= assigned.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Involved users:</strong>
+  <% @goal.involved_users.each do |assigned| %>
+    <%= assigned.name %>
+  <% end %>
+</p>
+
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME)%>|
 <%= link_to 'Edit', edit_goal_path(@goal) %> |
 <%= link_to 'Back', goals_path %>
+

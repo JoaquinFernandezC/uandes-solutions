@@ -11,67 +11,95 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, 'Nombre' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, 'Descripción' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :petitioner_id %>
-    <%= form.text_field :petitioner_id %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= form.label :managers, 'Encargados' %><br/>
+        <%= collection_select :derivation, :manager_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :report_receivers, 'Encargados Reportes' %><br/>
+        <%= collection_select :derivation, :report_receiver_ids, User.all, :id, :name, {}, { id: 'report_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :people, 'Personas Reportes' %><br/>
+        <%= collection_select :derivation, :person_ids, Person.all, :id, :name, {}, { id: 'people_multiselect', :multiple => true } %>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :petitioner_id %>
+        <%= form.select(:petitioner_id, Petitioner.all.collect {|p| [ p.person.name, p.id ] }, { include_blank: true }, { class: 'form-control' }) %>
+      </div>
+      <div class="form-group">
+        <%= form.label :state, 'Estado' %>
+        <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+      </div>
+      <div class="form-group">
+        <%= form.label :privacy, 'Privacidad' %>
+        <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :derivation_date %>
+        <%= form.datetime_select :derivation_date %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.number_field :priority %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :estimated_work_start_date %>
+        <%= form.datetime_select :estimated_work_start_date %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :work_start_date %>
+        <%= form.datetime_select :work_start_date %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :derivation_date %>
-    <%= form.date_select :derivation_date %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :estimated_end_date %>
+        <%= form.datetime_select :estimated_end_date %>
+      </div>
+    </div>
+    <% if params[:id].present? %>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label :end_date %>
+          <%= form.datetime_select :end_date %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :work_start_date %>
-    <%= form.datetime_select :work_start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimated_work_start_date %>
-    <%= form.text_field :estimated_work_start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimated_end_date %>
-    <%= form.date_select :estimated_end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :log %>
-    <%= form.text_field :log %>
-  </div>
-
-  <div class="field">
-    <%= form.label :privacy %>
-    <%= form.number_field :privacy %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="float-right float-down">
+    <%= link_to 'Cancelar', derivations_path, class: 'btn btn-danger' %>
+    <% if params[:id].present? %>
+      <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+    <% else %>
+      <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

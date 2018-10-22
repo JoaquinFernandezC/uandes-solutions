@@ -1,2 +1,0 @@
-class RucController < ApplicationController
-end

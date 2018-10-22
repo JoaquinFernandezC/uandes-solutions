@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Regional Pros Offices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regional_pros_offices.each do |regional_pros_office| %>
+      <tr>
+        <td><%= regional_pros_office.region %></td>
+        <td><%= link_to 'Show', regional_pros_office %></td>
+        <td><%= link_to 'Edit', edit_regional_pros_office_path(regional_pros_office) %></td>
+        <td><%= link_to 'Destroy', regional_pros_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Regional Pros Office', new_regional_pros_office_path %>
+<%= link_to 'Back', root_path %>
