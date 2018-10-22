@@ -46,6 +46,17 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def work
+    @task = Task.find(params[:id])
+
+    if !@task.needs_checking
+      @posible_state = Status.where.not(tag: "Revisión")
+    else
+      @posible_state = Status.all
+    end
+    
+  end
+
   # POST /tasks
   # POST /tasks.json
   def create
