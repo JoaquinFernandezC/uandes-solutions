@@ -5,10 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :causes
+  has_and_belongs_to_many :case_coordinations
   has_many :assigned_to_goals
   has_many :goals, :through => :assigned_to_goals
-  has_many :cc_assignations
-  has_many :case_coordinations, :through => :cc_assignations
   has_many :commentaries
   has_many :commented_tasks, through: :commentaries, source: :tasks
   has_many :derivation_assignations

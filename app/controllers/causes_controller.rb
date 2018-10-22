@@ -1,7 +1,7 @@
 class CausesController < ApplicationController
   before_action :set_cause, only: [:show, :edit, :update, :destroy]
   before_action :get_privacy_levels
-
+  
   # GET /causes
   # GET /causes.json
   def index
