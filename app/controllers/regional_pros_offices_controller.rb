@@ -28,7 +28,7 @@ class RegionalProsOfficesController < ApplicationController
 
     respond_to do |format|
       if @regional_pros_office.save
-        format.html { redirect_to regional_pros_office_path, notice: 'Regional pros office was successfully created.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Regional pros office was successfully created.' }
         format.json { render :show, status: :created, location: @regional_pros_office }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class RegionalProsOfficesController < ApplicationController
   def update
     respond_to do |format|
       if @regional_pros_office.update(regional_pros_office_params)
-        format.html { redirect_to regional_pros_office_path, notice: 'Regional pros office was successfully updated.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Regional pros office was successfully updated.' }
         format.json { render :show, status: :ok, location: @regional_pros_office }
       else
         format.html { render :edit }

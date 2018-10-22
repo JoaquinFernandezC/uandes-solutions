@@ -28,7 +28,7 @@ class ProsecutorsController < ApplicationController
 
     respond_to do |format|
       if @prosecutor.save
-        format.html { redirect_to prosecutor_path, notice: 'Prosecutor was successfully created.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Prosecutor was successfully created.' }
         format.json { render :show, status: :created, location: @prosecutor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProsecutorsController < ApplicationController
   def update
     respond_to do |format|
       if @prosecutor.update(prosecutor_params)
-        format.html { redirect_to prosecutor_path, notice: 'Prosecutor was successfully updated.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Prosecutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @prosecutor }
       else
         format.html { render :edit }
