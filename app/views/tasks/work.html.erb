@@ -80,13 +80,13 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <%= documents_fields.label :name, 'Nombre' %>
-                  <%= documents_fields.text_field :name, class: 'form-control' %>
+                  <%= documents_fields.text_field :name, class: 'form-control', :required => 'required' %>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <%= documents_fields.label :file, 'Archivos' %>
-                  <%= documents_fields.file_field :file %>
+                  <%= documents_fields.file_field :file, :required => 'required' %>
                 </div>
               </div>
             </div>
@@ -94,19 +94,19 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <%= documents_fields.label :docType, 'Tipo' %>
-                  <%= documents_fields.text_field :docType, class: 'form-control' %>
+                  <%= documents_fields.text_field :docType, class: 'form-control', :required => 'required' %>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
                   <%= documents_fields.label :version, 'Versión' %>
-                  <%= documents_fields.text_field :version, class: 'form-control' %>
+                  <%= documents_fields.text_field :version, class: 'form-control', :required => 'required' %>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
                   <%= documents_fields.label :classification, 'Clasificación' %>
-                  <%= documents_fields.text_field :classification, class: 'form-control' %>
+                  <%= documents_fields.text_field :classification, class: 'form-control', :required => 'required'%>
                 </div>
               </div>
             </div>

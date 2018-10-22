@@ -54,6 +54,10 @@ class TasksController < ApplicationController
     else
       @posible_state = Status.all
     end
+    if Status.find(@task.state).tag == "Cerrado"
+
+      redirect_to(root_path, notice: 'No puede trabajar una tarea cerrada' )
+    end
     @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
 
     @priority_task = @@priority[@task.priority]
