@@ -29,7 +29,7 @@
                   <thead>
                   <tr>
                     <th>Tema: <%=  @task.get_theme.name%> </th>
-                    <th>Prioridad: <%= @task.priority %></th>
+                    <th>Prioridad: <%= @priority_task %></th>
                     <th>Privacidad: <%= PrivacyLevel.find(@task.privacy).tag %> </th>
                     <th>Estado: <%= Status.find(@task.state).tag %></th>
                     <th></th>

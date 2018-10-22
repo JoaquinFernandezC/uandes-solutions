@@ -87,7 +87,7 @@
         <!--<td><%= task.log_id %></td>-->
 
         <td><%= link_to 'Show', task %> |
-          <%= link_to 'Edit', edit_task_path(task) %>|
+          <%= link_to 'Edit', edit_task_path(task) %>| <%= link_to 'Work', "/tasks/"+task.id.to_s+"/work" %>|
           <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

@@ -54,6 +54,9 @@ class TasksController < ApplicationController
     else
       @posible_state = Status.all
     end
+    @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
+
+    @priority_task = @@priority[@task.priority]
 
   end
 
