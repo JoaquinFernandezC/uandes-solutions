@@ -47,8 +47,15 @@
 
 <p>
   <strong>Assigned users:</strong>
-  <% @goal.assigned_to_goals.each do |assigned| %>
-    <%= assigned.user.name %>
+  <% @goal.users.each do |assigned| %>
+    <%= assigned.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Involved users:</strong>
+  <% @goal.involved_users.each do |assigned| %>
+    <%= assigned.name %>
   <% end %>
 </p>
 

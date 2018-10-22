@@ -34,6 +34,14 @@ class GoalsController < ApplicationController
         end
       end
     end
+    params[:goal][:involved_user_ids].each do |user_id|
+      unless user_id.empty?
+        user = User.find(user_id)
+        unless user.nil?
+          @goal.involved_users << user unless @goal.involved_users.include?(user)
+        end
+      end
+    end
     respond_to do |format|
       if @goal.save
         log = Log.new
@@ -52,11 +60,20 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1.json
   def update
     @goal.users.delete_all
+    @goal.involved_users.delete_all
     params[:goal][:user_ids].each do |manager_id|
       unless manager_id.empty?
         manager = User.find(manager_id)
         unless manager.nil?
           @goal.users << manager unless @goal.users.include?(manager)
+        end
+      end
+    end
+    params[:goal][:involved_user_ids].each do |user_id|
+      unless user_id.empty?
+        user = User.find(user_id)
+        unless user.nil?
+          @goal.involved_users << user unless @goal.involved_users.include?(user)
         end
       end
     end

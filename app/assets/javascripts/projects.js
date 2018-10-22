@@ -1,5 +1,5 @@
 $(document).on("turbolinks:load", function() {
-    $('#manager_multiselect').multiselect({
+    $('#employee_multiselect').multiselect({
         enableFiltering: true,
         buttonWidth: '100%',
         maxHeight: 400,
@@ -24,7 +24,8 @@ $(document).on("turbolinks:load", function() {
             }
         }
     });
-    $('#involved_multiselect').multiselect({
+
+    $('#manager_multiselect').multiselect({
         enableFiltering: true,
         buttonWidth: '100%',
         maxHeight: 400,

@@ -1,0 +1,2 @@
+class GoalUserController < ApplicationController
+end

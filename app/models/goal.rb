@@ -8,8 +8,8 @@ class Goal < ApplicationRecord
   validates :end_date, presence: true
   validates :privacy, presence: true
 
-  has_many :assigned_to_goals
-  has_many :users, through: :assigned_to_goals
+  has_and_belongs_to_many :users, association_foreign_key: 'user_id', join_table: 'assigned_to_goals', class_name: 'User'
+  has_and_belongs_to_many :involved_users, association_foreign_key: 'user_id', join_table: 'goal_users', class_name: 'User'
 
   has_many :goal_documents
   has_many :documents, through: :goal_documents

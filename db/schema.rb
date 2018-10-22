@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_151834) do
+ActiveRecord::Schema.define(version: 2018_10_21_183315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,21 @@ ActiveRecord::Schema.define(version: 2018_10_20_151834) do
     t.index ["prosecutor_id"], name: "index_causes_on_prosecutor_id"
     t.index ["regional_pros_office_id"], name: "index_causes_on_regional_pros_office_id"
     t.index ["ruc_id"], name: "index_causes_on_ruc_id"
+  end
+
+  create_table "causes_legal_people", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "legal_person_id", null: false
+  end
+
+  create_table "causes_people", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "person_id", null: false
+  end
+
+  create_table "causes_users", id: false, force: :cascade do |t|
+    t.bigint "cause_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "cc_assignations", force: :cascade do |t|
@@ -302,6 +317,15 @@ ActiveRecord::Schema.define(version: 2018_10_20_151834) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_goal_documents_on_document_id"
     t.index ["goal_id"], name: "index_goal_documents_on_goal_id"
+  end
+
+  create_table "goal_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "goal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_goal_users_on_goal_id"
+    t.index ["user_id"], name: "index_goal_users_on_user_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -694,6 +718,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_151834) do
   add_foreign_key "employees", "people"
   add_foreign_key "goal_documents", "documents"
   add_foreign_key "goal_documents", "goals"
+  add_foreign_key "goal_users", "goals"
+  add_foreign_key "goal_users", "users"
   add_foreign_key "goals", "logs"
   add_foreign_key "iic_documents", "documents"
   add_foreign_key "iic_documents", "iics"

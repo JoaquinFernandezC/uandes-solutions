@@ -47,7 +47,21 @@
 
 <p>
   <strong>Log:</strong>
-  <%= @project.log %>
+  <%= @project.log_id %>
+</p>
+
+<p>
+  <strong>Encargados Internos:</strong>
+  <% @project.users.each do |user| %>
+    <br/><%= user.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Responsables Externos:</strong>
+  <% @project.employees.each do |employee| %>
+    <br/><%= employee.info %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
