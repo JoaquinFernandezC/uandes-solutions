@@ -21,11 +21,19 @@
 //= require moment
 //= require bootstrap-multiselect
 
-$(document).ready(function(){
+$(document).on("turbolinks:load", function() {
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
+    });
+    $('#myTable').DataTable({
+        pageLength : 5,
+        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+        searching: true,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
+        }
     });
 });
