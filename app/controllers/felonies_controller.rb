@@ -28,7 +28,7 @@ class FeloniesController < ApplicationController
 
     respond_to do |format|
       if @felony.save
-        format.html { redirect_to felonies_path, notice: 'Felony was successfully created.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Felony was successfully created.' }
         format.json { render :show, status: :created, location: @felony }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FeloniesController < ApplicationController
   def update
     respond_to do |format|
       if @felony.update(felony_params)
-        format.html { redirect_to @felony, notice: 'Felony was successfully updated.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Felony was successfully updated.' }
         format.json { render :show, status: :ok, location: @felony }
       else
         format.html { render :edit }
