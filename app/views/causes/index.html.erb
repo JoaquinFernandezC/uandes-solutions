@@ -25,16 +25,15 @@
                 <table class="table table-hover">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Regional pros office</th>
-                    <th>Managers</th>
-                    <th>Description</th>
-                    <th>Privacy</th>
-                    <th>Ruc</th>
-                    <th>State</th>
-                    <th>Prosecutor</th>
-                    <th>Estimated end date</th>
-                    <th colspan="3"></th>
+                    <th>Nombre</th>
+                    <th>RUC</th>
+                    <th>Encargados</th>
+                    <th>Fiscal</th>
+                    <th>Oficina Regional</th>
+                    <th>Privacidad</th>
+                    <th>Estado</th>
+                    <th>Fecha Estimada Término</th>
+                    <th colspan="3">Acciones</th>
                   </tr>
                   </thead>
 
@@ -42,17 +41,16 @@
                   <% @causes.each do |cause| %>
                     <tr>
                       <td><%= cause.name %></td>
-                      <td><%= cause.regional_pros_office.region %></td>
+                      <td><%= cause.ruc.number %></td>
                       <td><%= cause.users.map(&:name).join(', ') %></td>
-                      <td><%= cause.description %></td>
-                      <td><%= cause.privacy %></td>
-                      <td><%= cause.ruc_id %></td>
-                      <td><%= cause.state %></td>
                       <td><%= cause.prosecutor.name %></td>
+                      <td><%= cause.regional_pros_office.region %></td>
+                      <td><%= cause.privacy %></td>
+                      <td><%= cause.state %></td>
                       <td><%= cause.estimated_end_date %></td>
-                      <td><%= link_to 'Show', cause %></td>
-                      <td><%= link_to 'Edit', edit_cause_path(cause) %></td>
-                      <td><%= link_to 'Destroy', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to 'Ver', cause %></td>
+                      <td><%= link_to 'Editar', edit_cause_path(cause) %></td>
+                      <td><%= link_to 'Eliminar', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
                   <% end %>
                   </tbody>

@@ -1,61 +1,103 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @derivation.name %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @derivation.name %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @derivation.description %>
-</p>
+    <p>
+      <strong>Peticionario:</strong>
+      <%= @derivation.petitioner.person.name %>
+    </p>
 
-<p>
-  <strong>Petitioner:</strong>
-  <%= @derivation.petitioner %>
-</p>
+    <p>
+      <strong>Descripción:</strong>
+      <%= @derivation.description %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @derivation.state %>
-</p>
+    <p>
+      <strong>Encargados:</strong>
+      <% @derivation.managers.each do |person| %>
+        <p style="padding-left: 1vw"><%= person.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @derivation.priority %>
-</p>
+    <p>
+      <strong>Personas Reportes:</strong>
+      <% @derivation.report_receivers.each do |person| %>
+        <p style="padding-left: 1vw"><%= person.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Derivation date:</strong>
-  <%= @derivation.derivation_date %>
-</p>
+    <p>
+      <strong>Personas Reportes:</strong>
+      <% @derivation.people.each do |person| %>
+        <p style="padding-left: 1vw"><%= person.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Work start date:</strong>
-  <%= @derivation.work_start_date %>
-</p>
+    <p>
+      <strong>Privacidad:</strong>
+      <%= @derivation.privacy %>
+    </p>
 
-<p>
-  <strong>Estimated work start date:</strong>
-  <%= @derivation.estimated_work_start_date %>
-</p>
+    <p>
+      <strong>Estado:</strong>
+      <%= @derivation.state %>
+    </p>
 
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @derivation.estimated_end_date %>
-</p>
+    <p>
+      <strong>Fecha Derivación:</strong>
+      <%= @derivation.derivation_date %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @derivation.end_date %>
-</p>
+    <p>
+      <strong>Fecha Inicio:</strong>
+      <%= @derivation.work_start_date %>
+    </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @derivation.privacy %>
-</p>
+    <p>
+      <strong>Fecha Estimada Inicio:</strong>
+      <%= @derivation.estimated_work_start_date %>
+    </p>
 
-<%= link_to 'Agregar Tarea', new_task_url(theme_id:@derivation.id,theme_name:Derivation.NAME)%>|
+    <p>
+      <strong>Fecha Estimada Término:</strong>
+      <%= @derivation.estimated_end_date %>
+    </p>
 
-<%= link_to 'Edit', edit_derivation_path(@derivation) %> |
-<%= link_to 'Back', derivations_path %>
+    <p>
+      <strong>Fecha Término:</strong>
+      <%= @derivation.end_date %>
+    </p>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h4 class="text-white">Bitácora</h4>
+      </div>
+      <div class="card-body">
+        <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
+          <% @log.log_entries.reverse_each do |log_entry| %>
+            <div class="card" style="width: 100%">
+              <div class="card-body">
+                <p style="padding-left: 1vw">
+                  <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+                  <i style="font-size: small"><%= log_entry.message %></i><br/>
+                  <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Volver', derivations_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_derivation_path(@derivation), :class => "btn btn-success" %>
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@derivation.id,theme_name:Derivation.NAME),:class => "btn btn-info"%>

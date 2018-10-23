@@ -1,65 +1,87 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @goal.year %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @goal.name %>
+    </p>
 
-<p>
-  <strong>Goal number:</strong>
-  <%= @goal.goal_number %>
-</p>
+    <p>
+      <strong>Año:</strong>
+      <%= @goal.year %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @goal.name %>
-</p>
+    <p>
+      <strong>Número Meta:</strong>
+      <%= @goal.goal_number %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @goal.description %>
-</p>
+    <p>
+      <strong>Descripción:</strong>
+      <%= @goal.description %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @goal.state %>
-</p>
+    <p>
+      <strong>Encargados:</strong>
+      <% @goal.users.each do |assigned| %>
+        <p style="padding-left: 1vw"><%= assigned.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @goal.estimated_end_date %>
-</p>
+    <p>
+      <strong>Involucrados:</strong>
+      <% @goal.involved_users.each do |assigned| %>
+        <p style="padding-left: 1vw"><%= assigned.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @goal.end_date %>
-</p>
+    <p>
+      <strong>Privacidad:</strong>
+      <%= @goal.privacy %>
+    </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @goal.privacy %>
-</p>
+    <p>
+      <strong>Estado:</strong>
+      <%= @goal.state %>
+    </p>
 
-<p>
-  <strong>Log:</strong>
-  <%= @goal.log_id %>
-</p>
+    <p>
+      <strong>Fecha Estimada de Término:</strong>
+      <%= @goal.estimated_end_date %>
+    </p>
 
-<p>
-  <strong>Assigned users:</strong>
-  <% @goal.users.each do |assigned| %>
-    <%= assigned.name %>
-  <% end %>
-</p>
+    <p>
+      <strong>Fecha de Término:</strong>
+      <%= @goal.end_date %>
+    </p>
+  </div>
 
-<p>
-  <strong>Involved users:</strong>
-  <% @goal.involved_users.each do |assigned| %>
-    <%= assigned.name %>
-  <% end %>
-</p>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h4 class="text-white">Bitácora</h4>
+      </div>
+      <div class="card-body">
+        <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
+          <% @log.log_entries.reverse_each do |log_entry| %>
+            <div class="card" style="width: 100%">
+              <div class="card-body">
+                <p style="padding-left: 1vw">
+                  <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+                  <i style="font-size: small"><%= log_entry.message %></i><br/>
+                  <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME)%>|
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<%= link_to 'Volver', goals_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_goal_path(@goal), :class => "btn btn-success" %>
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME), :class => "btn btn-info"%>
 
