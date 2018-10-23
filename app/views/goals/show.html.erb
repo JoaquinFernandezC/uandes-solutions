@@ -1,65 +1,60 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Year:</strong>
-  <%= @goal.year %>
-</p>
-
-<p>
-  <strong>Goal number:</strong>
-  <%= @goal.goal_number %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @goal.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Año:</strong>
+  <%= @goal.year %>
+</p>
+
+<p>
+  <strong>Número Meta:</strong>
+  <%= @goal.goal_number %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
   <%= @goal.description %>
 </p>
 
 <p>
-  <strong>State:</strong>
-  <%= @goal.state %>
+  <strong>Encargados:</strong>
+  <% @goal.users.each do |assigned| %>
+    <p style="padding-left: 1vw"><%= assigned.name %></p>
+  <% end %>
 </p>
 
 <p>
-  <strong>Estimated end date:</strong>
-  <%= @goal.estimated_end_date %>
+  <strong>Involucrados:</strong>
+  <% @goal.involved_users.each do |assigned| %>
+    <p style="padding-left: 1vw"><%= assigned.name %></p>
+  <% end %>
 </p>
 
 <p>
-  <strong>End date:</strong>
-  <%= @goal.end_date %>
-</p>
-
-<p>
-  <strong>Privacy:</strong>
+  <strong>Privacidad:</strong>
   <%= @goal.privacy %>
 </p>
 
 <p>
-  <strong>Log:</strong>
-  <%= @goal.log_id %>
+  <strong>Estado:</strong>
+  <%= @goal.state %>
 </p>
 
 <p>
-  <strong>Assigned users:</strong>
-  <% @goal.users.each do |assigned| %>
-    <%= assigned.name %>
-  <% end %>
+  <strong>Fecha Estimada de Término:</strong>
+  <%= @goal.estimated_end_date %>
 </p>
 
 <p>
-  <strong>Involved users:</strong>
-  <% @goal.involved_users.each do |assigned| %>
-    <%= assigned.name %>
-  <% end %>
+  <strong>Fecha de Término:</strong>
+  <%= @goal.end_date %>
 </p>
 
 <%= link_to 'Agregar Tarea', new_task_url(theme_id:@goal.id,theme_name:Goal.NAME)%>|
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<%= link_to 'Volver', goals_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_goal_path(@goal), :class => "btn btn-success" %>
 

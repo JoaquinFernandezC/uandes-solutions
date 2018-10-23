@@ -39,7 +39,7 @@
 
     <div class="col-sm-4">
       <div class="form-group">
-        <%= form.label :petitioner_id %>
+        <%= form.label :petitioner_id, 'Peticionario' %>
         <%= form.select(:petitioner_id, Petitioner.all.collect {|p| [ p.person.name, p.id ] }, { include_blank: true }, { class: 'form-control' }) %>
       </div>
       <div class="form-group">
@@ -56,7 +56,7 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :derivation_date %>
+        <%= form.label :derivation_date, 'Fecha Derivación' %>
         <%= form.datetime_select :derivation_date %>
       </div>
     </div>
@@ -65,13 +65,13 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :estimated_work_start_date %>
+        <%= form.label :estimated_work_start_date, 'Fecha Estimada Inicio' %>
         <%= form.datetime_select :estimated_work_start_date %>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :work_start_date %>
+        <%= form.label :work_start_date, 'Fecha Inicio'%>
         <%= form.datetime_select :work_start_date %>
       </div>
     </div>
@@ -80,14 +80,14 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :estimated_end_date %>
+        <%= form.label :estimated_end_date, 'Fecha Estimada Término'%>
         <%= form.datetime_select :estimated_end_date %>
       </div>
     </div>
     <% if params[:id].present? %>
       <div class="col-sm-6">
         <div class="form-group">
-          <%= form.label :end_date %>
+          <%= form.label :end_date, 'Fecha Término'%>
           <%= form.datetime_select :end_date %>
         </div>
       </div>

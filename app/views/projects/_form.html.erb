@@ -12,25 +12,25 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name %>
+    <%= form.label :name, 'Nombre'%>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :objective %>
+    <%= form.label :objective, 'Objetivo'%>
     <%= form.text_field :objective, class: 'form-control' %>
   </div>
 
   <div class="row">
     <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :year %>
+        <%= form.label :year, 'Año' %>
         <%= form.number_field :year, class: 'form-control' %>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :project_number %>
+        <%= form.label :project_number, 'Número Proyecto' %>
         <%= form.number_field :project_number, class: 'form-control' %>
       </div>
     </div>
@@ -51,13 +51,13 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :start_date %><br/>
+        <%= form.label :start_date, 'Fecha Inicio' %><br/>
         <%= form.datetime_select :start_date, class: 'form-control' %>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <%= form.label :estimated_end_date %><br/>
+        <%= form.label :estimated_end_date, 'Fecha Estimada de Término' %><br/>
         <%= form.datetime_select :estimated_end_date, class: 'form-control' %>
       </div>
     </div>
@@ -66,7 +66,7 @@
     <% if params[:id].present? %>
       <div class="col-sm-6">
         <div class="form-group">
-          <%= form.label :end_date %><br/>
+          <%= form.label :end_date, 'Fecha de Término' %><br/>
           <%= form.datetime_select :end_date, class: 'form-control' %>
         </div>
       </div>

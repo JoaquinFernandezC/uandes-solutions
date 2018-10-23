@@ -6,7 +6,7 @@ class Iic < ApplicationRecord
   validates :estimated_end_date, presence: true
   validates :privacy, presence: true
 
-  has_many :iic_documents
+  has_many :iic_documents, dependent: :destroy
   has_many :documents, through: :iic_documents
   accepts_nested_attributes_for :documents, allow_destroy: true
   has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
@@ -40,9 +40,11 @@ class Iic < ApplicationRecord
 
   def documents_attributes=(documents_attributes)
     documents_attributes.values.each do |document_attribute|
-      document = Document.new(document_attribute)
-      document.save
-      self.documents << document
+      unless document_attribute[:file].nil?
+        document = Document.new(document_attribute)
+        document.save
+        self.documents << document
+      end
     end
   end
 

@@ -1,36 +1,78 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @case_coordination.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>RUCs:</strong>
+  <% @case_coordination.rucs.each do |ruc| %>
+    <p style="padding-left: 1vw"><%= ruc.number %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
   <%= @case_coordination.description %>
 </p>
 
 <p>
-  <strong>State:</strong>
+  <strong>Encargados:</strong>
+  <% @case_coordination.users.each do |manager| %>
+    <p style="padding-left: 1vw"><%= manager.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Fiscales:</strong>
+  <% @case_coordination.prosecutors.each do |prosecutor| %>
+    <p style="padding-left: 1vw"><%= prosecutor.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Oficinas Regionales:</strong>
+  <% @case_coordination.regional_pros_offices.each do |office| %>
+    <p style="padding-left: 1vw"><%= office.region %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Personas:</strong>
+  <% @case_coordination.people.each do |person| %>
+    <p style="padding-left: 1vw"><%= person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Personas Legales:</strong>
+  <% @case_coordination.legal_people.each do |legal_person| %>
+    <p style="padding-left: 1vw"><%= legal_person.name %></p>
+  <% end %>
+</p>
+
+<p>
+  <strong>Privacidad:</strong>
+  <%= @case_coordination.privacy %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
   <%= @case_coordination.state %>
 </p>
 
 <p>
-  <strong>Estimated end date:</strong>
+  <strong>Fecha Estimada de Término:</strong>
   <%= @case_coordination.estimated_end_date %>
 </p>
 
 <p>
-  <strong>End date:</strong>
+  <strong>Fecha de Término:</strong>
   <%= @case_coordination.end_date %>
 </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @case_coordination.privacy %>
-</p>
 
 <%= link_to 'Agregar Tarea', new_task_url(theme_id:@case_coordination.id,theme_name:CaseCoordination.NAME)%>|
-
-<%= link_to 'Edit', edit_case_coordination_path(@case_coordination) %> |
-<%= link_to 'Back', case_coordinations_path %>
+<%= link_to 'Volver', case_coordinations_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_case_coordination_path(@case_coordination), :class => "btn btn-success" %>
