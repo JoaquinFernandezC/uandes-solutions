@@ -1,54 +1,91 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @project.year %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @project.name %>
+    </p>
 
-<p>
-  <strong>Project number:</strong>
-  <%= @project.project_number %>
-</p>
+    <p>
+      <strong>Año:</strong>
+      <%= @project.year %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+    <p>
+      <strong>Número Proyecto:</strong>
+      <%= @project.project_number %>
+    </p>
 
-<p>
-  <strong>Objective:</strong>
-  <%= @project.objective %>
-</p>
+    <p>
+      <strong>Objectivo:</strong>
+      <%= @project.objective %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @project.state %>
-</p>
+    <p>
+      <strong>Encargados Internos:</strong>
+      <% @project.users.each do |user| %>
+        <p style="padding-left: 1vw"><%= user.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
+    <p>
+      <strong>Responsables Externos:</strong>
+      <% @project.employees.each do |employee| %>
+        <p style="padding-left: 1vw"><%= employee.info %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @project.estimated_end_date %>
-</p>
+    <p>
+      <strong>Privacidad:</strong>
+      <%= @project.privacy %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
+    <p>
+      <strong>Estado:</strong>
+      <%= @project.state %>
+    </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @project.privacy %>
-</p>
+    <p>
+      <strong>Fecha Inicio:</strong>
+      <%= @project.start_date %>
+    </p>
 
-<p>
-  <strong>Log:</strong>
-  <%= @project.log %>
-</p>
+    <p>
+      <strong>Fecha Estimada de Término:</strong>
+      <%= @project.estimated_end_date %>
+    </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <p>
+      <strong>Fecha de Término:</strong>
+      <%= @project.end_date %>
+    </p>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h4 class="text-white">Bitácora</h4>
+      </div>
+      <div class="card-body">
+        <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
+          <% @log.log_entries.reverse_each do |log_entry| %>
+            <div class="card" style="width: 100%">
+              <div class="card-body">
+                <p style="padding-left: 1vw">
+                  <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+                  <i style="font-size: small"><%= log_entry.message %></i><br/>
+                  <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Volver', projects_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_project_path(@project), :class => "btn btn-success" %>
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@project.id,theme_name:Project.NAME), :class => "btn btn-info"%>

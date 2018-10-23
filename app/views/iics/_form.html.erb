@@ -23,10 +23,29 @@
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :state, 'Estado' %>
-    <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :privacy, 'Privacidad' %>
+        <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :state, 'Estado' %>
+        <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-check">
+        <%= form.check_box :multilateral, class: 'form-check-input', type: 'checkbox' %>
+        <%= form.label :multilateral, class: 'form-check-label' %>
+      </div>
+
+    </div>
   </div>
+
+
 
   <div class="row">
     <div class="col-sm-8">
@@ -55,29 +74,38 @@
         <%= form.datetime_select :estimated_end_date %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :end_date, 'Fecha de Término' %><br/>
-        <%= form.datetime_select :end_date %>
-      </div>
+      <% if params[:id].present? %>
+        <div class="form-group">
+          <%= form.label :end_date, 'Fecha de Término'%><br/>
+          <%= form.datetime_select :end_date %>
+        </div>
+      <% end %>
     </div>
   </div>
 
-
-
-  <div class="form-group">
-    <%= form.label :privacy, 'Privacidad' %>
-    <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
-  </div>
-
-  <div class="form-check">
-    <%= form.check_box :multilateral, class: 'form-check-input', type: 'checkbox' %>
-    <%= form.label :multilateral, class: 'form-check-label' %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form.label :documents, 'Documentos de entrada', class: 'card-title' %>
+          <%= form.fields_for :documents do |documents_fields| %>
+            <%= render 'document_fields', f: documents_fields %>
+          <% end %>
+          <br/>
+          <%= link_to_add_fields "Add Document", form, :documents %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <br/>
   <div class="float-right float-down">
     <%= link_to 'Cancelar', iics_path, class: 'btn btn-danger' %>
-    <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% if params[:id].present? %>
+      <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+    <% else %>
+      <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>
 

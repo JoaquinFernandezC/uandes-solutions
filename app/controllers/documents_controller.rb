@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @log = Log.find(@document.log_id)
   end
 
   # GET /documents/new
@@ -28,6 +29,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        log = Log.new
+        log.save
+        @document.update(log_id: log.id)
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
@@ -69,6 +73,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :version, :classification, :type, :log, :file)
+      params.require(:document).permit(:name, :version, :classification, :docType, :log_id, :file)
     end
 end

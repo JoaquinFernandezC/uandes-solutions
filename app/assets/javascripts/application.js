@@ -36,4 +36,18 @@ $(document).on("turbolinks:load", function() {
             url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
         }
     });
+    jQuery(function() {
+        return $('form').on('click', '.remove_fields', function(event) {
+            $(this).prev('input[type=hidden]').val('1');
+            $(this).closest('fieldset').hide();
+            return event.preventDefault();
+        });
+    });
+    $('form').on('click', '.add_fields', function(event) {
+        var regexp, time;
+        time = new Date().getTime();
+        regexp = new RegExp($(this).data('id'), 'g');
+        $(this).before($(this).data('fields').replace(regexp, time));
+        return event.preventDefault();
+    });
 });

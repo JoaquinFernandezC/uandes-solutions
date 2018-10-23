@@ -1,0 +1,2 @@
+module EntitySelectionHelper
+end

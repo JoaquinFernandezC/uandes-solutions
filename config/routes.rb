@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'entity_selection/index'
+  resources :regional_pros_offices
+  resources :felonies
+  resources :rucs
+  resources :people
+  resources :institutions
+  resources :prosecutors
   resources :causes
   resources :derivations
   resources :projects
@@ -11,9 +18,12 @@ Rails.application.routes.draw do
   resources :tasks
   resources :documents
   # devise_for :users
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'application#index'
   resources :employees
 
   get 'theme_finder', to: 'theme_finder#index'
+  get '/tasks/:id/work', to: "tasks#work"
+
 end

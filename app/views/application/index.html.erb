@@ -2,13 +2,14 @@
 	<div class="card-header bg-info">
     <h2 class="text-white"><b>Bandeja de Tareas</b></h2>
 	</div>
-	<div class="card-body">
+	<divgit status
+          class="card-body">
 		<div class="row" style="background: #FFFFFF;">
 			<div class="col-sm-3 hidden-xs" style="border-right:#FF8C00 solid 2px">
 				<%= image_tag("logo_fiscalia.png", class: 'img-thumbnail', width: '70%', style: 'margin: auto; display: block; margin-top: 10%') %>
 				<h2 class="text-center" style="margin-bottom: 10%"><strong><%= current_user.name %></strong></h2>
         <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se agregan entidades.')">Agregar Entidades</button>
+          <%= link_to "Agregar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary btn-block"  ,method: :get %>
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
 					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
           <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
@@ -58,7 +59,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</divgit>
 </div>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>

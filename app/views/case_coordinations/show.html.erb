@@ -1,34 +1,105 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @case_coordination.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @case_coordination.description %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @case_coordination.name %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @case_coordination.state %>
-</p>
+    <p>
+      <strong>RUCs:</strong>
+      <% @case_coordination.rucs.each do |ruc| %>
+        <p style="padding-left: 1vw"><%= ruc.number %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @case_coordination.estimated_end_date %>
-</p>
+    <p>
+      <strong>Descripción:</strong>
+      <%= @case_coordination.description %>
+    </p>
 
-<p>
-  <strong>Log:</strong>
-  <%= @case_coordination.log %>
-</p>
+    <p>
+      <strong>Encargados:</strong>
+      <% @case_coordination.users.each do |manager| %>
+        <p style="padding-left: 1vw"><%= manager.name %></p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @case_coordination.privacy %>
-</p>
+    <p>
+      <strong>Fiscales:</strong>
+      <% @case_coordination.prosecutors.each do |prosecutor| %>
+        <p style="padding-left: 1vw"><%= prosecutor.name %></p>
+      <% end %>
+    </p>
 
-<%= link_to 'Edit', edit_case_coordination_path(@case_coordination) %> |
-<%= link_to 'Back', case_coordinations_path %>
+    <p>
+      <strong>Oficinas Regionales:</strong>
+      <% @case_coordination.regional_pros_offices.each do |office| %>
+        <p style="padding-left: 1vw"><%= office.region %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Personas:</strong>
+      <% @case_coordination.people.each do |person| %>
+        <p style="padding-left: 1vw"><%= person.name %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Personas Legales:</strong>
+      <% @case_coordination.legal_people.each do |legal_person| %>
+        <p style="padding-left: 1vw"><%= legal_person.name %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Privacidad:</strong>
+      <%= @case_coordination.privacy %>
+    </p>
+
+    <p>
+      <strong>Estado:</strong>
+      <%= @case_coordination.state %>
+    </p>
+
+    <p>
+      <strong>Fecha Estimada de Término:</strong>
+      <%= @case_coordination.estimated_end_date %>
+    </p>
+
+    <p>
+      <strong>Fecha de Término:</strong>
+      <%= @case_coordination.end_date %>
+    </p>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h4 class="text-white">Bitácora</h4>
+      </div>
+      <div class="card-body">
+        <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
+          <% @log.log_entries.reverse_each do |log_entry| %>
+            <div class="card" style="width: 100%">
+              <div class="card-body">
+                <p style="padding-left: 1vw">
+                  <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+                  <i style="font-size: small"><%= log_entry.message %></i><br/>
+                  <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Volver', case_coordinations_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_case_coordination_path(@case_coordination), :class => "btn btn-success" %>
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@case_coordination.id,theme_name:CaseCoordination.NAME), :class => "btn btn-info"%>

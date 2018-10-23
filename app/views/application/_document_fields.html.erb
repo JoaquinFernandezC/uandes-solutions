@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= f.label :name, 'Nombre' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= f.label :file, 'Archivo' %>
+      <%= f.file_field :file %>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div class="form-group">
+      <%= f.label :docType, 'Tipo' %>
+      <%= f.text_field :docType, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div class="form-group">
+      <%= f.label :version, 'Versión' %>
+      <%= f.text_field :version, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div class="form-group">
+      <%= f.label :classification, 'Clasificación' %>
+      <%= f.text_field :classification, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+<%= f.hidden_field :_destroy %>
+<%= link_to "remove", '#', class: "remove_fields" %>
+<br/>

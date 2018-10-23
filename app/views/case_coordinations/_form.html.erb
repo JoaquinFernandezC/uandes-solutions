@@ -11,37 +11,72 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, 'Nombre' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="form-group">
+    <%= form.label :description, 'Descripción' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= form.label :users, 'Encargados' %><br/>
+        <%= collection_select :case_coordination, :user_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :rucs, 'Rucs asociados' %><br/>
+        <%= collection_select :case_coordination, :ruc_ids, Ruc.all, :id, :number, {}, { id: 'ruc_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :people, 'Personas' %><br/>
+        <%= collection_select :case_coordination, :person_ids, Person.all, :id, :name, {}, { id: 'people_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :legal_people, 'Personas Legales' %><br/>
+        <%= collection_select :case_coordination, :legal_person_ids, LegalPerson.all, :id, :name, {}, { id: 'legal_people_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :prosecutor, 'Fiscales' %><br/>
+        <%= collection_select :case_coordination, :prosecutor_ids, Prosecutor.all, :id, :name, {}, { id: 'prosecutor_multiselect', :multiple => true } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :regional_pros_office, 'Oficinas Regionales' %><br/>
+        <%= collection_select :case_coordination, :regional_pros_office_ids, RegionalProsOffice.all, :id, :region, {}, { id: 'office_multiselect', :multiple => true } %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      
+      <div class="form-group">
+        <%= form.label :state, 'Estado' %>
+        <%= form.select :state, (1..@status.count).map {|i| [@status[i - 1],i] }, {}, { class: 'form-control' }  %>
+      </div>
+      <div class="form-group">
+        <%= form.label :privacy, 'Privacidad' %>
+        <%= form.select :privacy, (1..@privacy_levels.count).map {|i| [@privacy_levels[i - 1],i] }, {}, { class: 'form-control' } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :estimated_end_date, 'Fecha Estimada de Término'%><br/>
+        <%= form.datetime_select :estimated_end_date %>
+      </div>
+      <% if params[:id].present? %>
+        <div class="form-group">
+          <%= form.label :end_date, 'Fecha de Término'%><br/>
+          <%= form.datetime_select :end_date %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :estimated_end_date %>
-    <%= form.datetime_select :estimated_end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :log %>
-    <%= form.text_field :log %>
-  </div>
-
-  <div class="field">
-    <%= form.label :privacy %>
-    <%= form.number_field :privacy %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="float-right float-down">
+    <%= link_to 'Cancelar', case_coordinations_path, class: 'btn btn-danger' %>
+    <% if params[:id].present? %>
+      <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+    <% else %>
+      <%= form.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

@@ -17,6 +17,7 @@
               <th>Fecha de inicio</th>
               <th>Fecha estimada de término</th>
               <th>Nivel de Privacidad</th>
+              <th>Acción</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -27,7 +28,7 @@
                 <td><%= cause.state %></td>
                 <td>Caso</td>
                 <td>Default</td>
-                <td><%= t(cause.created_at.strftime("%B %d, %Y")) %></td>
+                <td><%= cause.created_at.strftime("%B %d, %Y") %></td>
                 <td><%= cause.estimated_end_date.strftime("%B %d, %Y") %></td>
                 <td><%= cause.privacy %></td>
                 <td><%= link_to 'Ver', cause %></td>
