@@ -6,11 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
-tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'In progress', needs_checking: true}])
 
-=======
->>>>>>> 908a8d803f7b83694a5db63d94dbba86603fa569
 institutions = Institution.create([{ name: 'Burger King' }, { name: 'Nike' }, { name: 'Reebok' }, { name: 'Uandes' }, { name: 'Google' },
                                    { name: 'Wallmart' }, { name: 'Amazon' }, { name: 'Copec' }, { name: 'Falabella' }, { name: 'HP' },
                                    { name: 'Microsoft' }])
@@ -50,6 +46,8 @@ user = User.create!([
                      password_confirmation: '123456'}]),
 
 ruc = Ruc.create(number: 420)
+
+
 
 prosecutor = Prosecutor.create(name: 'Guillermo Toro', rut: '8547962-8', local_office: 'My office')
 

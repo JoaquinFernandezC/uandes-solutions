@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
     @log = Log.find(@task.log_id)
     enter_log_message('Se accedió a la tarea de nombre "' + @task.name + '".', @task.log_id, @task.privacy)
-
+    @get_theme_name = get_theme(@task.id)
   end
 
   # GET /tasks/new
@@ -140,16 +140,33 @@ class TasksController < ApplicationController
       end
     end
 
+
+    def get_theme(id)
+      iicId = IicTask.where(task_id: id).select(:iic_id).first
+      causeId = CaseTask.where(task_id: id).select(:cause_id).first
+      ccId = CcTask.where(task_id: id).select(:case_coordination_id).first
+
+      if IicTask.where(task_id: id).exists?
+         return Iic.find(iicId.iic_id).name
+      end
+      if CaseTask.where(task_id: id).exists?
+        return  Cause.find(causeId.cause_id).name
+      end
+      if CcTask.where(task_id: id).exists?
+        return CaseCoordination.find(ccId.case_coordination_id).name
+      end
+    end
+
     def set_task
       @task = Task.find(params[:id])
 
       @privacy_level =PrivacyLevel.find(@task.privacy)
-      @state = Status.find(@task.state)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       set_theme
       params.require(:task).permit(:name, :description, :user_id, :start_date, :estimated_end_date, :end_date, :privacy, :priority, :state, :needs_checking,  documents_attributes: [:name, :file, :version, :docType, :classification])
+
     end
 end

@@ -3,69 +3,68 @@
 <div class="row">
   <div class="col-sm-8">
     <p>
-      <strong>Name:</strong>
+      <strong>Nombre:</strong>
       <%= @iic.name %>
     </p>
 
     <p>
-      <strong>Description:</strong>
+      <strong>Descripción:</strong>
       <%= @iic.description %>
     </p>
 
     <p>
-      <strong>State:</strong>
-      <%= @iic.state %>
+      <strong>Tipo:</strong>
+      <% if @iic.multilateral %>
+        Multilateral
+      <% else %>
+        Bilateral
+      <% end %>
     </p>
 
     <p>
-      <strong>Start date:</strong>
-      <%= @iic.start_date %>
+      <strong>Encargados:</strong>
+      <% @iic.managers.each do |manager| %>
+        <p style="padding-left: 1vw"><%= manager.name %></p>
+      <% end %>
     </p>
 
     <p>
-      <strong>Estimated end date:</strong>
-      <%= @iic.estimated_end_date %>
+      <strong>Miembros Internos:</strong>
+      <% @iic.internal_members.each do |member| %>
+        <p style="padding-left: 1vw"><%= member.name %></p>
+      <% end %>
     </p>
 
     <p>
-      <strong>End date:</strong>
-      <%= @iic.end_date %>
+      <strong>Miembros Externos:</strong>
+      <% @iic.external_members.each do |member| %>
+        <p style="padding-left: 1vw"><%= member.info %></p>
+      <% end %>
     </p>
 
     <p>
-      <strong>Log:</strong>
-      <%= @iic.log_id %>
-    </p>
-
-    <p>
-      <strong>Privacy:</strong>
+      <strong>Privacidad:</strong>
       <%= @iic.privacy %>
     </p>
 
     <p>
-      <strong>Multilateral:</strong>
-      <%= @iic.multilateral %>
+      <strong>Estado:</strong>
+      <%= @iic.state %>
     </p>
 
     <p>
-      <strong>Managers:</strong>
-      <% @iic.managers.each do |manager| %>
-      <p style="padding-left: 1vw"><%= manager.name %></p>
-    <% end %>
+      <strong>Fecha Inicio:</strong>
+      <%= @iic.start_date %>
     </p>
 
     <p>
-      <strong>Internal members:</strong>
-      <% @iic.internal_members.each do |member| %>
-      <p style="padding-left: 1vw"><%= member.name %></p>
-    <% end %>
+      <strong>Fecha Estimada de Término:</strong>
+      <%= @iic.estimated_end_date %>
     </p>
 
     <p>
-      <strong>External members:</strong>
-      <% @iic.external_members.each do |member| %>
-      <p style="padding-left: 1vw"><%= member.info %></p>
-    <% end %>
+      <strong>Fecha de Término:</strong>
+      <%= @iic.end_date %>
     </p>
 
     <p>
@@ -79,7 +78,7 @@
   <div class="col-sm-4">
     <div class="card">
       <div class="card-header bg-info">
-        <h4 class="text-white">Bitacora</h4>
+        <h4 class="text-white">Bitácora</h4>
       </div>
       <div class="card-body">
         <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
@@ -98,14 +97,8 @@
       </div>
     </div>
   </div>
-
-
-
-
 </div>
 
-
-
-<%= link_to 'Agregar Tarea', new_task_url(theme_id:@iic.id,theme_name:Iic.NAME)%>|
-<%= link_to 'Edit', edit_iic_path(@iic) %> |
-<%= link_to 'Back', iics_path %>
+<%= link_to 'Volver', iics_path, :class => "btn btn-danger"%>
+<%= link_to 'Editar', edit_iic_path(@iic), :class => "btn btn-success" %>
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@iic.id,theme_name:Iic.NAME), :class => "btn btn-info"%>

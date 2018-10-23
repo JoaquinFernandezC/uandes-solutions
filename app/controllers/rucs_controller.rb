@@ -25,10 +25,17 @@ class RucsController < ApplicationController
   # POST /rucs.json
   def create
     @ruc = Ruc.new(ruc_params)
-
+    params[:ruc][:felony_ids].each do |felony_id|
+      unless felony_id.empty?
+        felony = Felony.find(felony_id)
+        unless felony.nil?
+          @ruc.felonies << felony unless @ruc.felonies.include?(felony)
+        end
+      end
+    end
     respond_to do |format|
       if @ruc.save
-        format.html { redirect_to ruc_path, notice: 'Ruc was successfully created.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Ruc was successfully created.' }
         format.json { render :show, status: :created, location: @ruc }
       else
         format.html { render :new }
@@ -38,11 +45,20 @@ class RucsController < ApplicationController
   end
 
   # PATCH/PUT /rucs/1
-  # PATCH/PUT /rucs/1.json
+  # PATCH/PUT /rucs/1.j
   def update
+    @ruc.felonies.delete_all
+    params[:ruc][:felony_ids].each do |felony_id|
+      unless felony_id.empty?
+        felony = Felony.find(felony_id)
+        unless felony.nil?
+          @ruc.felonies << felony unless @ruc.felonies.include?(felony)
+        end
+      end
+    end
     respond_to do |format|
       if @ruc.update(ruc_params)
-        format.html { redirect_to ruc_path, notice: 'Ruc was successfully updated.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Ruc was successfully updated.' }
         format.json { render :show, status: :ok, location: @ruc }
       else
         format.html { render :edit }

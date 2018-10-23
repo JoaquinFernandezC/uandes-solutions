@@ -10,7 +10,6 @@ class Task < ApplicationRecord
   validates :state, presence: true
 
 
-
   has_one :project_task
   has_one :project, through: :project_task
   has_one :task_goal
