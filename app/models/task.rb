@@ -11,22 +11,23 @@ class Task < ApplicationRecord
 
 
 
-  has_one :project_task
+  has_one :project_task, dependent:  :destroy
   has_one :project, through: :project_task
-  has_one :task_goal
+  has_one :task_goal, dependent:  :destroy
   has_one :goal, through: :task_goal
   has_one :iic_task, dependent:  :destroy
   has_one :iic, through: :iic_task
-  has_one :cc_task
+  has_one :cc_task, dependent:  :destroy
   has_one :case_coordination, through: :cc_task
-  has_one :case_task
+  has_one :case_task,  dependent:  :destroy
   has_one :cause, through: :case_task
-  has_one :derivation_task
+  has_one :derivation_task, dependent:  :destroy
   has_one :derivation, through: :derivation_task
   has_many :commentaries
   has_many :commenters, through: :commentaries, source: :users
-  has_many :task_documents
+  has_many :task_documents, dependent:  :destroy
   has_many :documents, through: :task_documents
+  accepts_nested_attributes_for :documents
   validate :estimated_end_date_cannot_be_in_the_past
   validate :end_date_cannot_be_in_the_past
 
@@ -87,8 +88,13 @@ class Task < ApplicationRecord
   def documents_attributes=(documents_attributes)
     documents_attributes.values.each do |document_attribute|
       document = Document.new(document_attribute)
-      document.save
-      self.documents << document
+      if !document.errors.any? and document.file.attached?
+        document.save
+        self.documents << document
+      else
+        puts document.errors
+      end
+
     end
   end
 end
