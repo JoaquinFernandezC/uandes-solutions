@@ -30,7 +30,8 @@ class TasksController < ApplicationController
       statuses= Array(filter[:status])
       statuses.delete("")
       if !statuses.empty?
-        @tasks=@tasks.where(state:statuses)
+        statuses_tags=Status.where(id:statuses).collect{|r| r.tag}
+        @tasks=@tasks.where(state:statuses_tags)
       end
 
       privacy = Array(filter[:privacy])
@@ -53,7 +54,7 @@ class TasksController < ApplicationController
         puts "FILTERING dATE"
 
         puts @tasks.length
-        @tasks= @tasks.where("start_date>?",min_start_date)
+        @tasks= @tasks.where("start_date>=?",min_start_date)
 
         puts @tasks.length
       end
@@ -62,7 +63,7 @@ class TasksController < ApplicationController
         puts "FILTERING dATE"
 
         max_start_date=max_start_date.to_date.end_of_day
-       @tasks= @tasks.where("start_date::date <?",max_start_date.to_date.to_datetime)
+       @tasks= @tasks.where("start_date::date <=?",max_start_date.to_date.to_datetime)
 
 
       end
@@ -102,7 +103,7 @@ class TasksController < ApplicationController
     else
       @posible_state = Status.all
     end
-    if Status.find(@task.state).tag == "Cerrado"
+    if Status.find_by_tag(@task.state).tag == "Cerrado"
 
       redirect_to(root_path, notice: 'No puede trabajar una tarea cerrada' )
     end
@@ -122,7 +123,11 @@ class TasksController < ApplicationController
 
         log= Log.create()
         @task.update(log_id:log.id)
-        @theme.tasks<<@task
+        if !@theme.nil?
+
+          @theme.tasks<<@task
+
+        end
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
 
@@ -192,7 +197,7 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
 
       @privacy_level =PrivacyLevel.find(@task.privacy)
-      @state = Status.find(@task.state)
+      @state = Status.find_by_tag(@task.state)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

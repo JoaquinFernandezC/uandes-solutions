@@ -3,7 +3,7 @@
 <div class="card-header bg-info">
 <h2 class="text-white">Buscar tareas</h2>
 </div>
-  <div class="card-body", style="background: #FFFFFF;padding: 0% 5% 0% 5%">
+  <div class="card-body", style="background: #FFFFFF;padding: 0% 2% 0% 2%">
     <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
       Filtrar contenido
     </a>
@@ -28,7 +28,7 @@
 
     <div class="filter_field", id="status_filter_div", style="display:none">
       <%#=form.label :status, "Estado"%>
-      <%= form.collection_select :status,  Status.all, :id, :tag, {}, { id: 'manager_multiselect', :multiple => true } %>
+      <%= collection_select :filter,:status,  Status.all, :id, :tag, {}, { id: 'manager_multiselect', :multiple => true } %>
 
 
     </div>
@@ -72,6 +72,7 @@
 
 <div class="col-sm">
   <%= form.submit "Filtrar", class:"btn btn-info"%>
+  <%=button_to "Limpiar",tasks_url, class:"btn btn-warning"%>
 </div>
 
 <% end %>
@@ -129,8 +130,13 @@
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 
 
-            <%end%>
-          <%= link_to 'Work', "/tasks/"+task.id.to_s+"/work" %>
+            <%end%>            |
+
+          <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+
+
+          <%end%>
             </td>
 
       </tr>

@@ -6,11 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
-tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'In progress', needs_checking: true}])
 
-=======
->>>>>>> 908a8d803f7b83694a5db63d94dbba86603fa569
+tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'Abierto', needs_checking: true}])
+
+
 institutions = Institution.create([{ name: 'Burger King' }, { name: 'Nike' }, { name: 'Reebok' }, { name: 'Uandes' }, { name: 'Google' },
                                    { name: 'Wallmart' }, { name: 'Amazon' }, { name: 'Copec' }, { name: 'Falabella' }, { name: 'HP' },
                                    { name: 'Microsoft' }])
@@ -47,6 +46,9 @@ user = User.create!([
                      password_confirmation: '123456'},
                     {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 'Funcionario',
                      position: 'Secretaria', email: 'adaldunate@miuandes.cl', password: '123456',
+                     password_confirmation: '123456'},
+                    {first_name: 'Juan', last_name: 'Vejar', rut: '18.476.921-1', rol: 'Funcionario',
+                     position: 'Secretario', email: 'jvejar1@miuandes.cl', password: '123456',
                      password_confirmation: '123456'}]),
 
 ruc = Ruc.create(number: 420)
@@ -76,7 +78,7 @@ status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisió
 
 task = Task.create([
     {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
-    estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Reviso', needs_checking: true},
+    estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Revisión', needs_checking: true},
     {name: 'Arriendo Centro de Eventos', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 
     estimated_end_date: '03/04/2019', privacy: 2, priority: 0, state: 'Abierto', needs_checking: true},
     {name: 'Audiencia Juridica', description: 'Dar informacion sobre el gangster mas peligroso al publico.', user_id: 1, 

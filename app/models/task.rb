@@ -31,7 +31,6 @@ class Task < ApplicationRecord
   validate :end_date_cannot_be_in_the_past
 
   before_save :set_defaults
-
   def get_theme
     if !self.cause.nil?
       return self.cause
@@ -54,8 +53,19 @@ class Task < ApplicationRecord
       self.needs_checking= false
 
     end
-    puts "hola"
-    puts self.needs_checking
+
+    if self.state==0 or self.state.nil?
+      self.state=Status.first.tag
+    end
+
+    if self.privacy==0 or self.privacy.nil?
+      self.privacy=1
+    end
+
+    if self.log_id==0 or self.log_id.nil?
+      log=Log.create()
+      self.log_id=log.id
+    end
   end
 
   @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}

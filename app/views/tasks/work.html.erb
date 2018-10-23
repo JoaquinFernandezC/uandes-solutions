@@ -28,10 +28,10 @@
                 <table id="dtBasicExample" class="table table-hover">
                   <thead>
                   <tr>
-                    <th>Tema: <%=  @task.get_theme.name%> </th>
+                    <th>Tema: <%=  if !@task.get_theme.nil? then @task.get_theme.name else "Sin nombre" end%> </th>
                     <th>Prioridad: <%= @priority_task %></th>
                     <th>Privacidad: <%= PrivacyLevel.find(@task.privacy).tag %> </th>
-                    <th>Estado: <%= Status.find(@task.state).tag %></th>
+                    <th>Estado: <%= Status.find_by_tag(@task.state).tag %></th>
                     <th></th>
                     <th colspan="300"></th>
                   </tr>
