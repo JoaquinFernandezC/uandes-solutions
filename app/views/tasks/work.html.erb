@@ -50,7 +50,11 @@
       <p>
         <strong>Documents:</strong>
         <% @task.documents.each do |document| %>
+
+          <%if document.file.attached?%>
           <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+
+            <%end%>
         <% end %>
       </p>
     </div>
@@ -58,7 +62,7 @@
 
   <div class="field">
     <%= form.label :state , 'Estado'%>
-    <%= form.select :state, @posible_state.collect{|s| [s.tag,s.id]} %>
+    <%= form.select :state, Status.all.collect{|s| [s.tag,s.tag]} %>
   </div>
 
   <!--<div class="field">-->

@@ -100,7 +100,7 @@ class TasksController < ApplicationController
 
     if !@task.needs_checking
       @posible_state = Status.where.not(tag: "Revisión")
-    elsif @task.needs_checking and Status.find(@task.state).tag == "Revisión"
+    elsif @task.needs_checking and Status.find_by_tag(@task.state).tag == "Revisión"
       @posible_state =Status.where.not(tag: "Revisión")
     else
       @posible_state =Status.all

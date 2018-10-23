@@ -60,7 +60,7 @@
   </div>
   <div class="field">
     <%= form.label :state , 'Estado'%>
-    <%= form.select :state, Status.all.collect{|s| [s.tag,s.id]} %>
+    <%= form.select :state, Status.all.collect{|s| [s.tag,s.tag]} %>
   </div>
 
   <div class="field">
@@ -86,6 +86,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit 'Crear tarea' %>
+    <%= form.submit 'Guardar' %>
   </div>
 <% end %>
