@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-header bg-info">
+    <h2 class="text-white"><b>Instancias de Temas</b></h2>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF;">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <table id="myTable" class="table table-responsive table-striped display" style="width: 100%">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Tema</th>
+              <th>Encargado</th>
+              <th>Fecha de inicio</th>
+              <th>Fecha estimada de término</th>
+              <th>Nivel de Privacidad</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <% @causes.each do |cause| %>
+              <tr>
+                <td><%= cause.name %></td>
+                <td><%= cause.description %></td>
+                <td><%= cause.state %></td>
+                <td>Caso</td>
+                <td>Default</td>
+                <td><%= t(cause.created_at.strftime("%B %d, %Y")) %></td>
+                <td><%= cause.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= cause.privacy %></td>
+                <td><%= link_to 'Ver', cause %></td>
+              </tr>
+            <% end %>
+            <% @case_coordinations.each do |cc| %>
+              <tr>
+                <td><%= cc.name %></td>
+                <td><%= cc.description %></td>
+                <td><%= cc.state %></td>
+                <td>Coordinación Caso</td>
+                <td>Default</td>
+                <td><%= cc.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= cc.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= cc.privacy %></td>
+                <td><%= link_to 'Ver', cc %></td>
+              </tr>
+            <% end %>
+            <% @iics.each do |iic| %>
+              <tr>
+                <td><%= iic.name %></td>
+                <td><%= iic.description %></td>
+                <td><%= iic.state %></td>
+                <td>C. Interinstitucional</td>
+                <td>Default</td>
+                <td><%= iic.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= iic.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= iic.privacy %></td>
+                <td><%= link_to 'Ver', iic %></td>
+              </tr>
+            <% end %>
+            <% @derivations.each do |derivation| %>
+              <tr>
+                <td><%= derivation.name %></td>
+                <td><%= derivation.description %></td>
+                <td><%= derivation.state %></td>
+                <td>Derivación</td>
+                <td>Default</td>
+                <td><%= derivation.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= derivation.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= derivation.privacy %></td>
+                <td><%= link_to 'Ver', derivation %></td>
+              </tr>
+            <% end %>
+            <% @goals.each do |goal| %>
+              <tr>
+                <td><%= goal.name %></td>
+                <td><%= goal.description %></td>
+                <td><%= goal.state %></td>
+                <td>Caso</td>
+                <td>Meta Ues</td>
+                <td><%= goal.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= goal.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= goal.privacy %></td>
+                <td><%= link_to 'Ver', goal %></td>
+              </tr>
+            <% end %>
+            <% @projects.each do |project| %>
+              <tr>
+                <td><%= project.name %></td>
+                <td><%= project.description %></td>
+                <td><%= project.state %></td>
+                <td>Caso</td>
+                <td>Proyecto</td>
+                <td><%= project.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= project.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= project.privacy %></td>
+                <td><%= link_to 'Ver', project %></td>
+              </tr>
+            <% end %>
+            </tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>
+
