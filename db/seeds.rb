@@ -49,7 +49,7 @@ user = User.create!([
                      password_confirmation: '123456'},
                     {first_name: 'Juan', last_name: 'Vejar', rut: '18.476.921-1', rol: 'Funcionario',
                      position: 'Secretario', email: 'jvejar1@miuandes.cl', password: '123456',
-                     password_confirmation: '123456'}]),
+                     password_confirmation: '123456'}])
 
 ruc = Ruc.create(number: 420)
 

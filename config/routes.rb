@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'application#index'
   resources :employees
+
+  get 'theme_finder', to: 'theme_finder#index'
   get '/tasks/:id/work', to: "tasks#work"
 
 end
