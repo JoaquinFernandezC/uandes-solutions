@@ -8,34 +8,60 @@
     <h2 class="text-white"><b><%= @task.name %></b></h2>
   </div>
   <div class="card-body">
-      <div class="col-sm-9 hidden-xs">
+      <div class="col-sm-12 hidden-xs">
         <div class="container">
-          <div class="tab-content">
-            <div id="home" class="tab-pane active">
-              <div class="table-responsive">
-                <table id="dtBasicExample" class="table table-hover">
+                <table id="MyTable" class="table table-striped display" style="width: 100%">
                   <thead>
                   <tr>
-                    <th>Tema: </th>
+                    <th>Tema: <%= @get_theme_name %></th>
                     <th>Prioridad: <%= @task.priority %></th>
                     <th>Privacidad: <%= PrivacyLevel.find(@task.privacy).tag %> </th>
                     <th>Estado: <%= @task.state %></th>
-                    <th></th>
-                    <th colspan="300"></th>
                   </tr>
                   </thead>
                 </table>
-                <div>
-                  <%= @task.description %>
+                <div><br>
                 </div>
-              </div>
-            </div>
+                <p style="text-align:center">
+                  <%= @task.description %>
+                </p>
+                <div><br>
+                </div>
+          <div class="table-of-contents" style="float: left;">
+            <p class="font-weight-bold" align="left">
+              Usuario Asignado:
+            </p>
+            <p>
+              <%= User.find(@task.user_id).name %>
+            </p>
           </div>
-        </div>
-      </div>
+                <table align="right" cellpadding="5px" border="1px solid black" style="width: 30%;">
+                  <thead>
+                  <tr>
+                    <th>Documento  </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <td><%= @task.documents.name %></td>
+                  </tbody>
+                </table>
+
+
+          <div><br>
+          </div>
+
     </div>
   </div>
+    <div><br>
 
+    </div>
+  </div>
+  <p style="text-align: center; font-size: small">
+    Fecha Limite: <%= @task.end_date %>
+  </p>
+</div>
+<div><br>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Editar', edit_task_path(@task), class: 'btn btn-primary' %> |
+<%= link_to 'Volver', tasks_path, class: 'btn btn-danger' %>

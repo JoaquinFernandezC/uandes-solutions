@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Persona Jurídica</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @legal_people.each do |legal_person| %>
+      <tr>
+        <td><%= legal_person.name %></td>
+        <td><%= link_to 'Show', legal_person %></td>
+        <td><%= link_to 'Edit', edit_legal_person_path(legal_person) %></td>
+        <td><%= link_to 'Destroy', legal_person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Legal Person', new_legal_person_path %>
