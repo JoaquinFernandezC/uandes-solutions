@@ -14,6 +14,7 @@
               <th>Versión</th>
               <th>Clasificación</th>
               <th>Tipo</th>
+              <th>Acción</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -24,8 +25,7 @@
                 <td><%= document.version %></td>
                 <td><%= document.classification %></td>
                 <td><%= document.docType %></td>
-                <td><%= link_to 'Ver', document %></td>
-                <td><%= link_to 'Editar', edit_document_path(document) %></td>
+                <td><%= link_to 'Ver', document %> | <%= link_to 'Editar', edit_document_path(document) %></td>
               </tr>
             <% end %>
             </tbody>
