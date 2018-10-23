@@ -1,0 +1,23 @@
+<%= form_with(model: ruc, local: true) do |form| %>
+  <% if ruc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ruc.errors.count, "error") %> prohibited this ruc from being saved:</h2>
+
+      <ul>
+      <% ruc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :number, 'Número Identificador' %><br />
+    <%= form.text_field :number, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>

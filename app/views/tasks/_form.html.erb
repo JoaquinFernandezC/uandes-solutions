@@ -72,6 +72,21 @@
     <!--<%= form.text_field :log %>-->
   <!--</div>-->
 
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form.label :documents, 'Documentos de entrada', class: 'card-title' %>
+          <%= form.fields_for :documents do |documents_fields| %>
+            <%= render 'document_fields', f: documents_fields %>
+          <% end %>
+          <br/>
+          <%= link_to_add_fields "Add Document", form, :documents %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Crear tarea' %>
   </div>

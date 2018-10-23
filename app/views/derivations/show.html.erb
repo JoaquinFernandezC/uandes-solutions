@@ -51,14 +51,11 @@
 </p>
 
 <p>
-  <strong>Log:</strong>
-  <%= @derivation.log %>
-</p>
-
-<p>
   <strong>Privacy:</strong>
   <%= @derivation.privacy %>
 </p>
+
+<%= link_to 'Agregar Tarea', new_task_url(theme_id:@derivation.id,theme_name:Derivation.NAME)%>|
 
 <%= link_to 'Edit', edit_derivation_path(@derivation) %> |
 <%= link_to 'Back', derivations_path %>

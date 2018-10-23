@@ -29,7 +29,6 @@
                       <th>Description</th>
                       <th>Petitioner</th>
                       <th>State</th>
-                      <th>Priority</th>
                       <th>Derivation date</th>
                       <th>Work start date</th>
                       <th>Estimated work start date</th>
@@ -45,9 +44,8 @@
                       <tr>
                         <td><%= derivation.name %></td>
                         <td><%= derivation.description %></td>
-                        <td><%= derivation.petitioner %></td>
+                        <td><%= derivation.petitioner.person.name %></td>
                         <td><%= derivation.state %></td>
-                        <td><%= derivation.priority %></td>
                         <td><%= derivation.derivation_date %></td>
                         <td><%= derivation.work_start_date %></td>
                         <td><%= derivation.estimated_work_start_date %></td>

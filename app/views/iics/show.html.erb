@@ -1,70 +1,110 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @iic.name %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <p>
+      <strong>Name:</strong>
+      <%= @iic.name %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @iic.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @iic.description %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @iic.state %>
-</p>
+    <p>
+      <strong>State:</strong>
+      <%= @iic.state %>
+    </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @iic.start_date %>
-</p>
+    <p>
+      <strong>Start date:</strong>
+      <%= @iic.start_date %>
+    </p>
 
-<p>
-  <strong>Estimated end date:</strong>
-  <%= @iic.estimated_end_date %>
-</p>
+    <p>
+      <strong>Estimated end date:</strong>
+      <%= @iic.estimated_end_date %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @iic.end_date %>
-</p>
+    <p>
+      <strong>End date:</strong>
+      <%= @iic.end_date %>
+    </p>
 
-<p>
-  <strong>Log:</strong>
-  <%= @iic.log_id %>
-</p>
+    <p>
+      <strong>Log:</strong>
+      <%= @iic.log_id %>
+    </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @iic.privacy %>
-</p>
+    <p>
+      <strong>Privacy:</strong>
+      <%= @iic.privacy %>
+    </p>
 
-<p>
-  <strong>Multilateral:</strong>
-  <%= @iic.multilateral %>
-</p>
+    <p>
+      <strong>Multilateral:</strong>
+      <%= @iic.multilateral %>
+    </p>
 
-<p>
-  <strong>Managers:</strong>
-  <% @iic.managers.each do |manager| %>
-    <p style="padding-left: 1vw"><%= manager.name %></p>
-  <% end %>
-</p>
+    <p>
+      <strong>Managers:</strong>
+      <% @iic.managers.each do |manager| %>
+      <p style="padding-left: 1vw"><%= manager.name %></p>
+    <% end %>
+    </p>
 
-<p>
-  <strong>Internal members:</strong>
-  <% @iic.internal_members.each do |member| %>
-  <p style="padding-left: 1vw"><%= member.name %></p>
-<% end %>
-</p>
+    <p>
+      <strong>Internal members:</strong>
+      <% @iic.internal_members.each do |member| %>
+      <p style="padding-left: 1vw"><%= member.name %></p>
+    <% end %>
+    </p>
 
-<p>
-  <strong>External members:</strong>
-  <% @iic.external_members.each do |member| %>
-  <p style="padding-left: 1vw"><%= member.info %></p>
-<% end %>
-</p>
+    <p>
+      <strong>External members:</strong>
+      <% @iic.external_members.each do |member| %>
+      <p style="padding-left: 1vw"><%= member.info %></p>
+    <% end %>
+    </p>
+
+    <p>
+      <strong>Documents:</strong>
+      <% @iic.documents.each do |document| %>
+        <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h4 class="text-white">Bitacora</h4>
+      </div>
+      <div class="card-body">
+        <div class="row" style="background: #FFFFFF; max-height: 720px; overflow: auto">
+          <% @log.log_entries.reverse_each do |log_entry| %>
+            <div class="card" style="width: 100%">
+              <div class="card-body">
+                <p style="padding-left: 1vw">
+                  <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+                  <i style="font-size: small"><%= log_entry.message %></i><br/>
+                  <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
 
 <%= link_to 'Agregar Tarea', new_task_url(theme_id:@iic.id,theme_name:Iic.NAME)%>|
 <%= link_to 'Edit', edit_iic_path(@iic) %> |

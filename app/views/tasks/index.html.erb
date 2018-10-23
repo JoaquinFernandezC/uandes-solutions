@@ -130,7 +130,9 @@
 
 
             <%end%>
+          <%= link_to 'Work', "/tasks/"+task.id.to_s+"/work" %>
             </td>
+
       </tr>
     <% end %>
   </tbody>
@@ -156,7 +158,7 @@
       document.getElementById('filter_type').onchange = function() {
           filter_divs = document.getElementsByClassName("filter_field");
           for (var i = 0; i < filter_divs.length; i++) {
-     //         filter_divs[i].style.display="none";
+              filter_divs[i].style.display="none";
 
               //Do something
           }

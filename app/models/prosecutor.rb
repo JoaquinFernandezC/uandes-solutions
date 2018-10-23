@@ -1,7 +1,6 @@
 class Prosecutor < ApplicationRecord
-	validates :rut, uniqueness: true
+  validates :rut, uniqueness: true
 
-  has_many :cc_prosecutors
-  has_many :case_coordinations, :through => :cc_prosecutors
+  has_and_belongs_to_many :case_coordinations
   has_one :regional_pros_office
 end
