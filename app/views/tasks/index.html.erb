@@ -1,39 +1,68 @@
 <p id="notice"><%= notice %></p>
+<div clas="card">
+<div class="card-header bg-info">
+<h2 class="text-white">Buscar tareas</h2>
+</div>
+  <div class="card-body", style="background: #FFFFFF;padding: 0% 5% 0% 5%">
+    <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
+      Filtrar contenido
+    </a>
+    <div class="collapse" id="collapseExample">
 
-<h1>Tasks</h1>
 
-<div class="filter">
+<div class="row", id="filter_row">
+  <div class="col-sm">
   <%=select_tag :filter_type,options_for_select([[ "Por nombre", 1],[ "Por asignados", 2],[ "Por estado", 3],[ "Por privacidad", 4],[ "Por Fecha inicio", 5]]),class:"form-control"%>
-<%= form_with url: tasks_path,local:true,:html => { :method => 'GET' } do |form| %>
+  </div>
+  <div class="col-sm">
+    <%= form_with url: tasks_path,local:true,:html => { :method => 'GET' } do |form| %>
 
     <div class="filter_field" id="name_filter_div" style="display:none">
-      <label for="name">Nombre</label>
-      <%= collection_select :filter, :tasks_ids, Task.all, :id, :name, {}, { id: 'task_name_multiselect', :multiple => true } %>
+      <!--<label for="name">Nombre</label>-->
+      <%= collection_select :filter, :tasks_ids, Task.all, :id, :name,  {:selected=>[12]}, { id: 'task_name_multiselect', :multiple => true  } %>
     </div>
     <div class="filter_field", id="assigned_filter_div", style="display:none">
-      <label for="manager_multiselect">Asignado(s)</label>
-      <%= collection_select :filter, :assigned_ids, User.all, :id, :name, {}, { id: 'manager_multiselect', :multiple => true } %>
+      <!--<label for="manager_multiselect">Asignado(s)</label>-->
+      <%= collection_select :filter, :assigned_ids, User.all, :id, :name, {}, { id: 'status_multiselect', :multiple => true } %>
     </div>
 
     <div class="filter_field", id="status_filter_div", style="display:none">
-      <%=form.label :status, "Estado"%>
-      <%= form.select :status, Status.all.collect{|r| [r.tag,r.id]}.insert(0,["Todos",0])%>
+      <%#=form.label :status, "Estado"%>
+      <%= form.collection_select :status,  Status.all, :id, :tag, {}, { id: 'manager_multiselect', :multiple => true } %>
 
 
     </div>
     <div class = "filter_field", id="privacy_filter_div", style="display:none" >
-      <label for="manager_multiselect">Privacidad</label>
-      <%= form.select :estado, PrivacyLevel.all.collect{|r| [r.tag,r.id]}.insert(0,["Todas",0])%>
-    </div>
-      <br>
-    <div class = "filter_field", id="start_date_filter_div", style="display:none">
-     <%=form.label :min_start_date, "Inicio desde"%>
-    <%= form.date_field :min_start_date%>
+      <!--<label for="manager_multiselect">Privacidad</label>-->
+      <%= collection_select :filter, :privacy,  PrivacyLevel.all, :id, :tag, {}, { id: 'privacy_multiselect', :multiple => true } %>
 
-    <%=form.label :max_start_date, "hasta"%>
-    <%= form.date_field :max_start_date%>
     </div>
-      <br>
+
+
+
+    <div class = "filter_field", id="start_date_filter_div", style="display:none">
+      <div class="form-group row">
+
+        <%=form.label :min_start_date, "Desde",class:"col-2 col-form-label"%>
+        <div class="col-sm">
+
+          <%= date_field :filter, :min_start_date, class:'form-control'%>
+        </div>
+      </div>
+
+      <div class="form-group row">
+
+        <%=form.label :max_start_date, "hasta",class:"col-2 col-form-label"%>
+        <div class="col-sm">
+
+          <%= date_field :filter, :max_start_date, class:'form-control'%>
+        </div>
+      </div>
+
+
+
+    </div>
+
   </div>
 
 
@@ -41,13 +70,16 @@
 
 
 
-
-
-
-  <%= form.submit "Filtrar"%>
+<div class="col-sm">
+  <%= form.submit "Filtrar", class:"btn btn-info"%>
+</div>
 
 <% end %>
 
+    </div>
+      <br>
+      <hr>
+    </div>
 
 <table id="myTable" class="table table-responsive table-striped">
   <thead>
@@ -77,8 +109,8 @@
         <td><%= task.start_date %></td>
         <td><%= task.estimated_end_date %></td>
         <td><%= task.end_date %></td>
-        <td><%= task.privacy %></td>
-        <td><%= task.priority %></td>
+        <td><%= @privacy_by_id[task.privacy] %></td>
+        <td><%= Task.priority[task.priority] %></td>
         <td><%= task.state %></td>
         <td><%= task.needs_checking %></td>
 
@@ -86,15 +118,35 @@
         <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
         <!--<td><%= task.log_id %></td>-->
 
-        <td><%= link_to 'Show', task %> |
-          <%= link_to 'Edit', edit_task_path(task) %>| <%= link_to 'Work', "/tasks/"+task.id.to_s+"/work" %>|
-          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to task do%>
+            <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%end%> |
+          <%= link_to  edit_task_path(task)do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%end%>
+            |
+          <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+
+
+            <%end%>
+          <%= link_to 'Work', "/tasks/"+task.id.to_s+"/work" %>
+            </td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<style>
+  .filter_field{
+    white-space:nowrap;
+    overflow: visible;
+    display: block;
+  }
+  </style>
   <script>
     $(document).ready(function(){
         $('#example').DataTable();
@@ -131,7 +183,11 @@
   </script>
 <%= link_to 'New Task', new_task_path %>
 
+
   </div>
+</div>
+</div>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>

@@ -1,3 +1,4 @@
+require 'date'
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_theme, only: :new
@@ -5,6 +6,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+
+    @privacy_by_id = Hash[PrivacyLevel.all.collect{|p| [p.id,p.tag]} ]
+
+    puts @privacy_by_id
+    puts "hola"
     filter=params[:filter]
     @tasks=Task.all
     if !filter.nil?
@@ -20,6 +26,48 @@ class TasksController < ApplicationController
       if !assigned_ids.empty?
         @tasks= @tasks.where(user:assigned_ids)
       end
+
+      statuses= Array(filter[:status])
+      statuses.delete("")
+      if !statuses.empty?
+        @tasks=@tasks.where(state:statuses)
+      end
+
+      privacy = Array(filter[:privacy])
+      privacy.delete("")
+      puts privacy
+
+
+
+      puts "FILTERING PRIVACY"
+      if !privacy.empty?
+        @tasks=@tasks.where(privacy:privacy)
+      end
+
+      min_start_date, max_start_date = filter[:min_start_date],filter[:max_start_date]
+
+      if min_start_date!="" and !min_start_date.nil?
+
+        min_start_date = min_start_date.to_date.beginning_of_day
+        puts min_start_date
+        puts "FILTERING dATE"
+
+        puts @tasks.length
+        @tasks= @tasks.where("start_date>?",min_start_date)
+
+        puts @tasks.length
+      end
+
+      if max_start_date!="" and !max_start_date.nil?
+        puts "FILTERING dATE"
+
+        max_start_date=max_start_date.to_date.end_of_day
+       @tasks= @tasks.where("start_date::date <?",max_start_date.to_date.to_datetime)
+
+
+      end
+
+
 
     else
 
