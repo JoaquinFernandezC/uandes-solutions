@@ -64,19 +64,19 @@
   <div class="row">
     <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :regional_pros_office_id %>
+        <%= form.label :regional_pros_office_id, 'Oficina Regional' %>
         <%= form.select(:regional_pros_office_id, RegionalProsOffice.all.collect {|r| [ r.region, r.id ] }, { include_blank: true }, { class: 'form-control' }) %>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :ruc_id %>
+        <%= form.label :ruc_id, 'RUC' %>
         <%= form.select(:ruc_id, Ruc.all.collect {|r| [ r.number, r.id ] }, { include_blank: true }, { class: 'form-control' }) %>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :prosecutor_id %>
+        <%= form.label :prosecutor_id, 'Fiscal'%>
         <%= form.select(:prosecutor_id, Prosecutor.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control' }) %>
       </div>
     </div>

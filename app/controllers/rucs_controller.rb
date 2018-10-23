@@ -28,7 +28,7 @@ class RucsController < ApplicationController
 
     respond_to do |format|
       if @ruc.save
-        format.html { redirect_to ruc_path, notice: 'Ruc was successfully created.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Ruc was successfully created.' }
         format.json { render :show, status: :created, location: @ruc }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class RucsController < ApplicationController
   def update
     respond_to do |format|
       if @ruc.update(ruc_params)
-        format.html { redirect_to ruc_path, notice: 'Ruc was successfully updated.' }
+        format.html { redirect_to entity_selection_index_path, notice: 'Ruc was successfully updated.' }
         format.json { render :show, status: :ok, location: @ruc }
       else
         format.html { render :edit }
