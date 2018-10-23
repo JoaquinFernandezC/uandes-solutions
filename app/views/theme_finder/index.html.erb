@@ -29,8 +29,8 @@
                 <td><%= cause.state %></td>
                 <td>Caso</td>
                 <td>Default</td>
-                <td><%= cause.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= cause.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= cause.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= cause.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= cause.privacy %></td>
                 <td><%= link_to 'Ver', cause %></td>
               </tr>
@@ -42,8 +42,8 @@
                 <td><%= cc.state %></td>
                 <td>Coordinación Caso</td>
                 <td>Default</td>
-                <td><%= cc.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= cc.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= cc.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= cc.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= cc.privacy %></td>
                 <td><%= link_to 'Ver', cc %></td>
               </tr>
@@ -55,8 +55,8 @@
                 <td><%= iic.state %></td>
                 <td>C. Interinstitucional</td>
                 <td>Default</td>
-                <td><%= iic.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= iic.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= iic.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= iic.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= iic.privacy %></td>
                 <td><%= link_to 'Ver', iic %></td>
               </tr>
@@ -68,8 +68,8 @@
                 <td><%= derivation.state %></td>
                 <td>Derivación</td>
                 <td>Default</td>
-                <td><%= derivation.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= derivation.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= derivation.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= derivation.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= derivation.privacy %></td>
                 <td><%= link_to 'Ver', derivation %></td>
               </tr>
@@ -81,8 +81,8 @@
                 <td><%= goal.state %></td>
                 <td>Caso</td>
                 <td>Meta Ues</td>
-                <td><%= goal.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= goal.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= goal.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= goal.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= goal.privacy %></td>
                 <td><%= link_to 'Ver', goal %></td>
               </tr>
@@ -94,8 +94,8 @@
                 <td><%= project.state %></td>
                 <td>Caso</td>
                 <td>Proyecto</td>
-                <td><%= project.created_at.strftime("%B %d, %Y") %></td>
-                <td><%= project.estimated_end_date.strftime("%B %d, %Y") %></td>
+                <td><%= project.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= project.estimated_end_date.strftime("%Y-%m-%d") %></td>
                 <td><%= project.privacy %></td>
                 <td><%= link_to 'Ver', project %></td>
               </tr>
