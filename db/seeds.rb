@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), 
+tasks = Task.create([{name: 'Task', user_id: 1, start_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
     end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"), privacy: 1, priority: 2, state: 'In progress', needs_checking: true}])
 
 institutions = Institution.create([{ name: 'Burger King' }, { name: 'Nike' }, { name: 'Reebok' }, { name: 'Uandes' }, { name: 'Google' },
@@ -52,6 +52,8 @@ user = User.create!([
                      password_confirmation: '123456'}]),
 
 ruc = Ruc.create(number: 420)
+
+
 
 prosecutor = Prosecutor.create(name: 'Guillermo Toro', rut: '8547962-8', local_office: 'My office')
 

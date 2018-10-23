@@ -1,0 +1,33 @@
+<%= form_with(model: petitioner, local: true) do |form| %>
+  <% if petitioner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(petitioner.errors.count, "error") %> prohibited this petitioner from being saved:</h2>
+
+      <ul>
+      <% petitioner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :person_id, 'Persona' %><br />
+    <%= form.select(:person_id, Person.all.collect { |person| [person.name, person.id] }, { prompt: '' }, { class: 'form-control' }) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :position, 'Posición' %><br />
+    <%= form.text_field :position, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :location, 'Localización' %><br />
+    <%= form.text_field :location, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Completar', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', entity_selection_index_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>

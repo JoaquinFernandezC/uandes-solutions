@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Peticionario</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @petitioners.each do |petitioner| %>
+      <tr>
+        <td><%= petitioner.name %></td>
+        <td><%= link_to 'Show', petitioner %></td>
+        <td><%= link_to 'Edit', edit_petitioner_path(petitioner) %></td>
+        <td><%= link_to 'Destroy', petitioner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Petitioner', new_petitioner_path %>
