@@ -1,4 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h1>RUC</h1>
+
+<p>
+   <strong>Número:</strong>
+   <%= @ruc.number %>
+</p>
+
+<p>
+   <strong>Delitos:</strong>
+   <% @ruc.felonies.each do |felony| %>
+      <p style="padding-left: 1vw"><%= felony.name %></p>
+   <% end %>
+</p>
+
 <%= link_to 'Edit', edit_ruc_path(@ruc) %> |
 <%= link_to 'Back', rucs_path %>

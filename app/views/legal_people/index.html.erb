@@ -1,26 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Personas Jurídicas</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_legal_person_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>RUT</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Persona Jurídica</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @legal_people.each do |legal_person| %>
-      <tr>
-        <td><%= legal_person.name %></td>
-        <td><%= link_to 'Show', legal_person %></td>
-        <td><%= link_to 'Edit', edit_legal_person_path(legal_person) %></td>
-        <td><%= link_to 'Destroy', legal_person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Legal Person', new_legal_person_path %>
+                  <tbody>
+                  <% @legal_people.each do |legal_person| %>
+                    <tr>
+                      <td style="text-align: center;"><%= legal_person.name %></td>
+                      <td style="text-align: center;"><%= legal_person.rut %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_legal_person_path(legal_person) %> <%= link_to 'Eliminar', legal_person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
