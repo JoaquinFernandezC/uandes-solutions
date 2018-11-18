@@ -7,7 +7,5 @@ class CreateManagerIics < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :manager_iics, :iic
-    add_index :manager_iics, :user
   end
 end
