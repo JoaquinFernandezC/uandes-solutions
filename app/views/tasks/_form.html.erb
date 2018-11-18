@@ -63,14 +63,11 @@
     <%= form.select :state, Status.all.collect{|s| [s.tag,s.tag]} %>
   </div>
 
-  <!--<div class="field">-->
-    <!--
-  <!--</div>-->
+  <div class="field">
+    <%= form.label :log_id %>
+    <%= form.text_field :log_id %>
+  </div>
 
-  <!--<div class="field">-->
-    <!--<%= form.label :log %>-->
-    <!--<%= form.text_field :log %>-->
-  <!--</div>-->
 
   <div class="row">
     <div class="col-sm-12">
@@ -85,6 +82,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="actions">

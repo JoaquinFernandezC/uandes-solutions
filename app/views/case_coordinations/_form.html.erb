@@ -36,7 +36,7 @@
         <%= collection_select :case_coordination, :person_ids, Person.all, :id, :name, {}, { id: 'people_multiselect', :multiple => true } %>
       </div>
       <div class="form-group">
-        <%= form.label :legal_people, 'Personas Legales' %><br/>
+        <%= form.label :legal_people, 'Personas Jurídicas' %><br/>
         <%= collection_select :case_coordination, :legal_person_ids, LegalPerson.all, :id, :name, {}, { id: 'legal_people_multiselect', :multiple => true } %>
       </div>
       <div class="form-group">
