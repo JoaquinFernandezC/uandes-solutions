@@ -90,6 +90,36 @@ class TasksController < ApplicationController
     puts(@filter)
   end
 
+  def report
+    open_status_tag=Status.find_by_tag("Abierto").tag
+    @users = User.all.collect{|u| [u.email,u.tasks.where(state:open_status_tag).count,tasks_path(:filter=>{assigned_ids:[u.id]})]}
+
+  end
+
+
+  def report_csv
+    open_status =Status.find_by_tag("Abierto")
+
+    @users = User.all
+    csv = ""
+    @users.each do |user|
+
+      row = user.email
+      row +=","
+      open_task_count = user.tasks.where(state:open_status.tag).count
+      if open_task_count == 0
+
+        #next
+      end
+
+      row += "#{open_task_count}"
+      csv += row
+      csv +="\n"
+
+    end
+    send_data csv, filename: "tasks-report-#{Date.today}.csv"
+  end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show

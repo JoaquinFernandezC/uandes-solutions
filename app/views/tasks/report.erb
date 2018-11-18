@@ -1,0 +1,60 @@
+<div class="card">
+
+  <div class="card-header bg-info">
+    <h2 class="text-white"><b>Reporte tareas</b></h2>
+  </div>
+  <div class="card-body">
+
+<div class="row">
+
+  <div class="col-sm-12">
+<table class="table table-striped" id="myTable">
+<thead>
+  <tr>
+    <th>
+
+      Usuario
+    </th>
+  <th>
+    Cantidad
+
+  </th>
+
+  <th>
+    Acciones
+
+  </th>
+  </tr>
+</thead>
+
+  <tbody id="myTable">
+
+
+  <%@users.each do |user|%>
+  <tr>
+
+    <td align="center">
+      <%=user[0]%>
+
+    </td>
+    <td align="center">
+      <%=user[1]%>
+
+    </td>
+    <td align="center">
+
+      <%= link_to user[2] do%>
+        ver
+        <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+      <%end%>
+    </td>
+  </tr>
+  <%end%>
+  </tbody>
+</table>
+<hr>
+     </div>
+</div>
+    <%=button_to "Excel",{:action =>'report_csv'}, method: :get,form: { "data-type" => "json" }, class:"btn btn-info", style:"margin-left:90%" %>
+
+  </div></div>
