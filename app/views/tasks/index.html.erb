@@ -83,68 +83,69 @@
       <br>
       <hr>
     </div>
-
-<table id="myTable" class="table table-responsive table-striped">
-  <thead>
-    <tr role="row">
-      <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Start date</th>
-      <th>Estimated end date</th>
-      <th>End date</th>
-      <th>Privacy</th>
-      <th>Priority</th>
-      <th>State</th>
-      <th>Needs checking</th>
-      <th>Tema</th>
-      <th>Acciones</th>
-
-    </tr>
-  </thead>
-
-  <tbody id="myTable">
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= task.description %></td>
-        <td><%= task.user.first_name+" "+task.user.last_name %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.estimated_end_date %></td>
-        <td><%= task.end_date %></td>
-        <td><%= @privacy_by_id[task.privacy] %></td>
-        <td><%= Task.priority[task.priority] %></td>
-        <td><%= task.state %></td>
-        <td><%= task.needs_checking %></td>
-
-
-        <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
-        <!--<td><%= task.log_id %></td>-->
-
-        <td><%= link_to task do%>
-            <span class="fas fa-eye" aria-hidden="true"></span>
-            <%end%> |
-          <%= link_to  edit_task_path(task)do %>
-            <span class="fas fa-edit" aria-hidden="true"></span>
-            <%end%>
-            |
-          <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
-            <span class="fas fa-times" aria-hidden="true"></span>
-
-
-            <%end%>            |
-
-          <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
-            <span class="fas fa-wrench" aria-hidden="true"></span>
-
-
-          <%end%>
-            </td>
+<div class="table table-responsive">
+  <table id="myTable" class="table table-striped">
+    <thead>
+      <tr role="row">
+        <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Nombre</th>
+        <th>Descripción</th>
+        <th>Usuario</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Estimada</th>
+        <th>Fecha Termino</th>
+        <th>Privacidad</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Revisión</th>
+        <th>Tema</th>
+        <th>Acciones</th>
 
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody id="myTable">
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.name %></td>
+          <td><%= task.description %></td>
+          <td><%= task.user.first_name+" "+task.user.last_name %></td>
+          <td><%= task.start_date %></td>
+          <td><%= task.estimated_end_date %></td>
+          <td><%= task.end_date %></td>
+          <td><%= @privacy_by_id[task.privacy] %></td>
+          <td><%= Task.priority[task.priority] %></td>
+          <td><%= task.state %></td>
+          <td><%= task.needs_checking %></td>
+
+
+          <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
+          <!--<td><%= task.log_id %></td>-->
+
+          <td><%= link_to task do%>
+              <span class="fas fa-eye" aria-hidden="true"></span>
+              <%end%> |
+            <%= link_to  edit_task_path(task)do %>
+              <span class="fas fa-edit" aria-hidden="true"></span>
+              <%end%>
+              |
+            <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
+              <span class="fas fa-times" aria-hidden="true"></span>
+
+
+              <%end%>            |
+
+            <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
+              <span class="fas fa-wrench" aria-hidden="true"></span>
+
+
+            <%end%>
+              </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
