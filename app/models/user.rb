@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :tasks
   has_and_belongs_to_many :causes
   has_and_belongs_to_many :case_coordinations
   has_and_belongs_to_many :derivation_management, class_name: 'Derivation', join_table: 'derivations_users', foreign_key: 'user_id'

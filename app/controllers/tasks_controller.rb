@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
+  require 'ostruct'
   def index
 
 
@@ -13,25 +14,34 @@ class TasksController < ApplicationController
     puts @privacy_by_id
 
     filter=params[:filter]
+
     puts "FILTRO PRIVACIDAD"
-    @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
+   # @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
+
+
+    @filtered = false
+    @tasks=Task.all
+
     if !filter.nil?
-      tasks_ids = filter[:tasks_ids]
-
-      tasks_ids.delete("")
-      if !tasks_ids.empty?
-        @tasks= @tasks.where(id:tasks_ids)
+      task_name = filter[:name]
+      if !task_name.nil? && task_name!=""
+        @filtered = true
+        task_name = task_name.strip()
+        @tasks =  @tasks.where("name LIKE '%#{task_name}%'")
       end
-
+      puts "task name: #{task_name}"
       assigned_ids = Array(filter[:assigned_ids])
       assigned_ids.delete("")
       if !assigned_ids.empty?
+        @filtered = true
+
         @tasks= @tasks.where(user:assigned_ids)
       end
-
       statuses= Array(filter[:status])
       statuses.delete("")
       if !statuses.empty?
+        @filtered = true
+
         statuses_tags=Status.where(id:statuses).collect{|r| r.tag}
         @tasks=@tasks.where(state:statuses_tags)
       end
@@ -42,41 +52,78 @@ class TasksController < ApplicationController
 
 
 
-      puts "FILTERING PRIVACY"
+
       if !privacy.empty?
+        @filtered = true
+
+        puts "FILTERING PRIVACY"
         @tasks=@tasks.where(privacy:privacy)
       end
 
       min_start_date, max_start_date = filter[:min_start_date],filter[:max_start_date]
 
       if min_start_date!="" and !min_start_date.nil?
+        @filtered = true
 
         min_start_date = min_start_date.to_date.beginning_of_day
         puts min_start_date
-        puts "FILTERING dATE"
+        puts "FILTERING BEGIN DATE"
 
         puts @tasks.length
-        @tasks= @tasks.where("start_date>=?",min_start_date)
+        puts @tasks.count
 
+        @tasks= @tasks.where("start_date>=?",min_start_date)
+        puts @tasks.count
         puts @tasks.length
       end
 
       if max_start_date!="" and !max_start_date.nil?
-        puts "FILTERING dATE"
+        puts "FILTERING END DATE"
+        @filtered = true
 
         max_start_date=max_start_date.to_date.end_of_day
-       @tasks= @tasks.where("start_date::date <=?",max_start_date.to_date.to_datetime)
+        @tasks= @tasks.where("start_date::date <=?",max_start_date.to_date.to_datetime)
 
 
       end
-
-
 
     else
 
       @tasks = Task.all
 
     end
+    @filter = if filter.nil? then nil else OpenStruct.new(filter) end
+    puts(@filter)
+  end
+
+  def report
+    open_status_tag=Status.find_by_tag("Abierto").tag
+    @users = User.all.collect{|u| [u.email,u.tasks.where(state:open_status_tag).count,tasks_path(:filter=>{assigned_ids:[u.id]})]}
+
+  end
+
+
+  def report_csv
+    open_status =Status.find_by_tag("Abierto")
+
+    @users = User.all
+    csv = ""
+    @users.each do |user|
+
+      row = user.email
+      row +=","
+      open_task_count = user.tasks.where(state:open_status.tag).count
+      if open_task_count == 0
+
+        #next
+      end
+
+      row += "#{open_task_count}"
+      csv += row
+      csv +="\n"
+
+    end
+    send_data csv, filename: "tasks-report-#{Date.today}.csv"
   end
 
   # GET /tasks/1
