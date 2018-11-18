@@ -7,12 +7,14 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
 
+
     @privacy_by_id = Hash[PrivacyLevel.all.collect{|p| [p.id,p.tag]} ]
 
     puts @privacy_by_id
-    puts "hola"
+
     filter=params[:filter]
-    @tasks=Task.all
+    puts "FILTRO PRIVACIDAD"
+    @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
     if !filter.nil?
       tasks_ids = filter[:tasks_ids]
 
