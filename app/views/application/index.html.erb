@@ -10,10 +10,9 @@
 
         <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
           <%= link_to "Agregar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary btn-block"  ,method: :get %>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
-          <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
           <%= link_to 'Instancias de Temas', theme_finder_path, class: "btn btn-outline-secondary"%>
+          <%= link_to 'Buscardor de Tareas',tasks_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
         </div>
 			</div>
 			<div class="col-sm-9 hidden-xs">
@@ -45,13 +44,19 @@
 									<% elsif task.iic_task.present? %>
 										<td><%= task.iic.name %></td>
 									<% else  %>
-										<td>None</td>										
+										<td>None</td>	
 									<% end %>
 									<td><%= task.estimated_end_date.to_date %></td>
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', 'tasks/' + task.id.to_s + '/work' %><% end %>
+									<td><%= link_to task do %>
+							            <span class="fas fa-eye"></span>
+							            <%end%> |
+							          <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
+							            <span class="fas fa-wrench" aria-hidden="true"></span>
+							          <%end%>
+            						</td>
 								</tr>
 							<% end %>
 						</tbody>

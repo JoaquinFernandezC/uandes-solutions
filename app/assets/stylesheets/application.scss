@@ -14,12 +14,14 @@
  *= require selectize.default
  *= require_tree .
  *= require_self
+ *= require font-awesome
  *
  */
 
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import "bootstrap-multiselect";
+@import "font-awesome";
 
 div.paddedSides {
   padding-right: 15vw;
