@@ -35,7 +35,13 @@ module Adapters
         all_tasks =all_tasks+ tasks_private
         all_tasks.push(public_tasks)
         all_tasks.push(my_secret_tasks)
-        all_tasks
+        all_tasks_final = []
+        all_tasks.each do |task|
+          task.each do |t|
+            all_tasks_final.push(t)
+          end
+        end
+        all_tasks_final
       end
 
     end

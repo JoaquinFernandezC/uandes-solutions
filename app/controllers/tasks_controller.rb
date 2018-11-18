@@ -16,11 +16,12 @@ class TasksController < ApplicationController
     filter=params[:filter]
 
     puts "FILTRO PRIVACIDAD"
-   # @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
+    #@tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
 
 
     @filtered = false
     @tasks=Task.all
+
 
     if !filter.nil?
       task_name = filter[:name]
@@ -90,6 +91,7 @@ class TasksController < ApplicationController
     else
 
       @tasks = Task.all
+
 
     end
     @filter = if filter.nil? then nil else OpenStruct.new(filter) end
