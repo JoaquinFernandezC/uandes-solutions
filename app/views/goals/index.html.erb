@@ -46,9 +46,16 @@
                         <td><%= goal.privacy %></td>
                         <td><%= goal.state %></td>
                         <td><%= goal.estimated_end_date %></td>
-                        <td><%= link_to 'Ver', goal %></td>
-                        <td><%= link_to 'Editar', edit_goal_path(goal) %></td>
-                        <td><%= link_to 'Eliminar', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to goal do%>
+                            <span class="fas fa-eye" aria-hidden="true"></span>
+                            <%end%> |
+                          <%= link_to  edit_goal_path(goal)do %>
+                            <span class="fas fa-edit" aria-hidden="true"></span>
+                            <%end%> |
+                          <%= link_to goal, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                            <span class="fas fa-times" aria-hidden="true"></span>
+                            <%end%>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>

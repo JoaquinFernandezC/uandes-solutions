@@ -50,9 +50,16 @@
                       <td><%= iic.privacy %></td>
                       <td><%= iic.state %></td>
                       <td><%= iic.estimated_end_date %></td>
-                      <td><%= link_to 'Ver', iic %></td>
-                      <td><%= link_to 'Editar', edit_iic_path(iic) %></td>
-                      <td><%= link_to 'Eliminar', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to iic do%>
+                          <span class="fas fa-eye" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to edit_iic_path(iic)do %>
+                          <span class="fas fa-edit" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to iic, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                          <span class="fas fa-times" aria-hidden="true"></span>
+                          <%end%>
+                      </td>
                     </tr>
                   <% end %>
                   </tbody>

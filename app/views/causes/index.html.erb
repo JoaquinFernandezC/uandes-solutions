@@ -48,9 +48,16 @@
                       <td><%= cause.privacy %></td>
                       <td><%= cause.state %></td>
                       <td><%= cause.estimated_end_date %></td>
-                      <td><%= link_to 'Ver', cause %></td>
-                      <td><%= link_to 'Editar', edit_cause_path(cause) %></td>
-                      <td><%= link_to 'Eliminar', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to cause do%>
+                          <span class="fas fa-eye" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to edit_cause_path(cause)do %>
+                          <span class="fas fa-edit" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to cause, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                          <span class="fas fa-times" aria-hidden="true"></span>
+                          <%end%>
+                      </td>
                     </tr>
                   <% end %>
                   </tbody>

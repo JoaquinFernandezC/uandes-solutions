@@ -164,14 +164,11 @@
             <%end%> |
           <%= link_to  edit_task_path(task)do %>
             <span class="fas fa-edit" aria-hidden="true"></span>
-            <%end%>
-            |
+            <%end%> |
           <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
             <span class="fas fa-times" aria-hidden="true"></span>
-
-
             <%end%>
-            </td>
+        </td>
 
       </tr>
     <% end %>
