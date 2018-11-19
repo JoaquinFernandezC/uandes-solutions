@@ -15,7 +15,7 @@ class Task < ApplicationRecord
   has_one :task_goal, dependent:  :destroy
   has_one :goal, through: :task_goal
   has_one :iic_task, dependent:  :destroy
-  has_one :iic, through: :iic_task
+  has_one :iic, through: :iic_task, dependent:  :destroy
   has_one :cc_task, dependent:  :destroy
   has_one :case_coordination, through: :cc_task
   has_one :case_task,  dependent:  :destroy
@@ -88,6 +88,10 @@ class Task < ApplicationRecord
     documents_attributes.values.each do |document_attribute|
       document = Document.new(document_attribute)
       if !document.errors.any? and document.file.attached?
+        document.classification = privacy
+        log = Log.new
+        log.save
+        document.log_id = log.id
         document.save
         self.documents << document
       else

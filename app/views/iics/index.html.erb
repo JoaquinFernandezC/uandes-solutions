@@ -32,7 +32,7 @@
                     <th>Privacidad</th>
                     <th>Estado</th>
                     <th>Fecha Estimada Término</th>
-                    <th colspan="3">Acciones</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
 
@@ -50,9 +50,13 @@
                       <td><%= iic.privacy %></td>
                       <td><%= iic.state %></td>
                       <td><%= iic.estimated_end_date %></td>
-                      <td><%= link_to 'Ver', iic %></td>
-                      <td><%= link_to 'Editar', edit_iic_path(iic) %></td>
-                      <td><%= link_to 'Eliminar', iic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <%= link_to iic, class: 'btn btn-outline-secondary btn-sm' do %><i class="fas fa-eye"></i><% end %>
+                          <%= link_to edit_iic_path(iic), class: 'btn btn-outline-secondary btn-sm' do %><i class="far fa-edit"></i><% end %>
+                          <%= link_to iic, method: :delete, class: 'btn btn-outline-secondary btn-sm', data: { confirm: 'Are you sure?' } do %><i class="fas fa-trash"></i><% end %>
+                        </div>
+                      </td>
                     </tr>
                   <% end %>
                   </tbody>

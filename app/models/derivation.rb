@@ -3,8 +3,8 @@ class Derivation < ApplicationRecord
   has_many :derivations_documents
   has_many :documents, :through => :derivations_documents
   has_many :derivation_reports
-  has_many :derivation_tasks
-  has_many :tasks, :through => :derivation_tasks
+  has_many :derivation_tasks, dependent:  :destroy
+  has_many :tasks, :through => :derivation_tasks, dependent:  :destroy
   
   validates :name, presence: true
   validates :petitioner_id, presence: true

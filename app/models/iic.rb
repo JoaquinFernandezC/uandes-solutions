@@ -12,8 +12,8 @@ class Iic < ApplicationRecord
   has_and_belongs_to_many :managers, association_foreign_key: 'user_id', join_table: 'iics_managers', class_name: 'User'
   has_and_belongs_to_many :internal_members, association_foreign_key: 'user_id', join_table: 'iics_internal_members', class_name: 'User'
   has_and_belongs_to_many :external_members, class_name: 'Employee'
-  has_many :iic_tasks
-  has_many :tasks, through: :iic_tasks
+  has_many :iic_tasks, dependent:  :destroy
+  has_many :tasks, through: :iic_tasks, dependent:  :destroy
   has_one :log
   has_many :log_entries, through: :log
 
@@ -42,6 +42,11 @@ class Iic < ApplicationRecord
     documents_attributes.values.each do |document_attribute|
       unless document_attribute[:file].nil?
         document = Document.new(document_attribute)
+        document.classification = privacy
+        document.docType = 'Entrance'
+        log = Log.new
+        log.save
+        document.log_id = log.id
         document.save
         self.documents << document
       end
