@@ -90,6 +90,7 @@ class Task < ApplicationRecord
       if !document.errors.any? and document.file.attached?
         document.classification = privacy
         user = document_attribute[:user_id]
+        puts user
         log = Log.new
         log.save
         document.log_id = log.id

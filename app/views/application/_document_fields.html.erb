@@ -17,7 +17,7 @@
       <%= f.text_field :version, class: 'form-control' %>
     </div>
   </div>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: @current_user_id %>
   <div class="col-sm-2">
     <br/>
     <%= link_to '#', class: "remove_fields btn btn-outline-secondary btn-block" do %>
