@@ -5,8 +5,11 @@ class CausesController < ApplicationController
   # GET /causes
   # GET /causes.json
   def index
-    @causes = Cause.all
-    #@causes = Adapters::CausePrivacyFilter.get_causes(current_user)
+    if current_user.rol < 4
+      @causes = Cause.all
+    else
+      @causes = Adapters::CausePrivacyFilter.get_causes(current_user)
+    end
   end
 
   # GET /causes/1

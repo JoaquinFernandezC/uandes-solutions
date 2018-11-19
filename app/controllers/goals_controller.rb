@@ -5,8 +5,11 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
-    #@goals = Adapters::GoalPrivacyFilter.get_goals(current_user)
+    if current_user.rol < 4
+      @goals = Goal.all
+    else
+      @goals = Adapters::GoalPrivacyFilter.get_goals(current_user)
+    end
   end
 
   # GET /goals/1

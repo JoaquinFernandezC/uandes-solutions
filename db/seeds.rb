@@ -38,16 +38,16 @@ employees = Employee.create([
                             ])
 
 user = User.create!([
-                    {first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 'Funcionario',
+                    {first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 4,
                      position: 'Secretario', email: 'jflores@ulddeco.cl', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Alfonso', last_name: 'Zúñiga', rut: '19.475.275-K', rol: 'Funcionario',
+                    {first_name: 'Alfonso', last_name: 'Zúñiga', rut: '19.475.275-K', rol: 4,
                      position: 'Gerencia', email: 'ajzuniga1@miuandes.cl', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 'Funcionario',
+                    {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 4,
                      position: 'Secretaria', email: 'adaldunate@miuandes.cl', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Juan', last_name: 'Vejar', rut: '18.476.921-1', rol: 'Funcionario',
+                    {first_name: 'Juan', last_name: 'Vejar', rut: '18.476.921-1', rol: 4,
                      position: 'Secretario', email: 'jvejar1@miuandes.cl', password: '123456',
                      password_confirmation: '123456'}])
 

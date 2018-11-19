@@ -5,8 +5,11 @@ class IicsController < ApplicationController
   # GET /iics
   # GET /iics.json
   def index
-    @iics = Iic.all
-    #@iics = Adapters::IicPrivacyFilter.get_iic(current_user)
+    if current_user.rol < 4
+      @iics = Iic.all
+    else
+      @iics = Adapters::IicPrivacyFilter.get_iic(current_user)
+    end
   end
 
   # GET /iics/1
