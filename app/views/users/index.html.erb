@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Usuarios</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_admin_user_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>RUT</th>
+                    <th>Posición</th>
+                    <th>ROL</th>
+                    <th colspan="3">Acciones</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td style="text-align: center;"><%= user.name %></td>
+                      <td style="text-align: center;"><%= user.email %></td>
+                      <td style="text-align: center;"><%= user.rut %></td>
+                      <td style="text-align: center;"><%= user.position %></td>
+                      <td style="text-align: center;"><%= user.rol %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_admin_user_path(user) %> <%= link_to 'Eliminar', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
