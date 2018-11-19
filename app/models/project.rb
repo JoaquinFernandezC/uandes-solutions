@@ -6,8 +6,8 @@ class Project < ApplicationRecord
   has_and_belongs_to_many :employees, class_name: 'Employee', association_foreign_key: 'employee_id', join_table: 'project_responsables'
   has_and_belongs_to_many :users, class_name: 'User', association_foreign_key: 'user_id', join_table: 'project_users'
   has_many :project_stages
-  has_many :project_tasks
-  has_many :tasks, through: :project_tasks
+  has_many :project_tasks, dependent:  :destroy
+  has_many :tasks, through: :project_tasks,  dependent:  :destroy
 
 
   validate :estimated_end_date_cannot_be_in_the_past

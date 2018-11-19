@@ -13,8 +13,8 @@ class Goal < ApplicationRecord
   has_many :goal_documents
   has_many :documents, through: :goal_documents
 
-  has_many :task_goals
-  has_many :tasks, through: :task_goals
+  has_many :task_goals, dependent:  :destroy
+  has_many :tasks, through: :task_goals, dependent:  :destroy
 
   def self.NAME
     'goal'
