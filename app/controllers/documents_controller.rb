@@ -5,6 +5,36 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+    @filtered = false
+    filter = params[:filter]
+
+    if !filter.nil?
+      document_name = filter[:name]
+      if !document_name.nil? && document_name != ""
+        @filtered = true
+        document_name = document_name.strip()
+        @documents = @documents.where("name LIKE '%#{document_name}'")
+      end
+      puts "document name: #{document_name}"
+      document_classification = filter[:classification]
+      if !document_classification.nil? && document_classification != ""
+        @filtered = true
+        document_classification = document_classification.strip()
+        @documents = @documents.where("classification LIKE '%#{document_classification}'")
+      end
+      puts "document classification: #{document_classification}"
+      document_type = filter[:docType]
+      if !document_type.nil? && document_type != ""
+        @filtered = true
+        document_type = document_type.strip()
+        @documents = @documents.where("docType LIKE '#{document_type}'")
+      end
+      puts "document type: #{document_type}"
+    else
+      @documents = Document.all
+    end
+    @filter = if filter.nil? then nil else OpenStruct.new(filter) end
+    puts(@filter)
   end
 
   # GET /documents/1
