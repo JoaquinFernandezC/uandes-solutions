@@ -15,7 +15,7 @@
         <div class="container">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item ">
-              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Derivaciones<b>(3)</b></a>
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Derivaciones</a>
             </li>
           </ul>
 
@@ -45,12 +45,16 @@
                         <td><%= derivation.petitioner.person.name %></td>
                         <td><%= derivation.privacy %></td>
                         <td><%= derivation.state %></td>
-                        <td><%= derivation.derivation_date %></td>
-                        <td><%= derivation.work_start_date %></td>
-                        <td><%= derivation.estimated_end_date %></td>
-                        <td><%= link_to 'Ver', derivation %></td>
-                        <td><%= link_to 'Editar', edit_derivation_path(derivation) %></td>
-                        <td><%= link_to 'Eliminar', derivation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= derivation.derivation_date.to_date %></td>
+                        <td><%= derivation.work_start_date.to_date %></td>
+                        <td><%= derivation.estimated_end_date.to_date %></td>
+                        <td><%= link_to derivation do%>
+                            <span class="fas fa-eye" aria-hidden="true"></span>
+                            <%end%> |
+                          <%= link_to  edit_derivation_path(derivation)do %>
+                            <span class="fas fa-edit" aria-hidden="true"></span>
+                            <%end%>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>

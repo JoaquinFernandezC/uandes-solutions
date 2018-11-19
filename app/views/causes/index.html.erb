@@ -15,7 +15,7 @@
         <div class="container">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item ">
-              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Casos <b>(3)</b></a>
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Casos</a>
             </li>
           </ul>
 
@@ -48,9 +48,13 @@
                       <td><%= cause.privacy %></td>
                       <td><%= cause.state %></td>
                       <td><%= cause.estimated_end_date %></td>
-                      <td><%= link_to 'Ver', cause %></td>
-                      <td><%= link_to 'Editar', edit_cause_path(cause) %></td>
-                      <td><%= link_to 'Eliminar', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to cause do%>
+                          <span class="fas fa-eye" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to edit_cause_path(cause)do %>
+                          <span class="fas fa-edit" aria-hidden="true"></span>
+                          <%end%>
+                      </td>
                     </tr>
                   <% end %>
                   </tbody>

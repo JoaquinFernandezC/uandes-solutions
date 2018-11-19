@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div clas="card">
 <div class="card-header bg-info">
-<h2 class="text-white">Buscar tareas</h2>
+<h2 class="text-white"><b>Tareas</b></h2>
 </div>
   <div class="card-body", style="background: #FFFFFF;padding: 0% 2% 0% 2%">
 
@@ -126,7 +126,6 @@
   <thead>
     <tr role="row">
       <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Name</th>
-      <th>Description</th>
       <th>User</th>
       <th>Start date</th>
       <th>Estimated end date</th>
@@ -145,7 +144,6 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
-        <td><%= task.description %></td>
         <td><%= task.user.first_name+" "+task.user.last_name %></td>
         <td><%= task.start_date %></td>
         <td><%= task.estimated_end_date %></td>
@@ -154,31 +152,14 @@
         <td><%= Task.priority[task.priority] %></td>
         <td><%= task.state %></td>
         <td><%= task.needs_checking %></td>
-
-
         <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
-        <!--<td><%= task.log_id %></td>-->
-
         <td><%= link_to task do%>
-            <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <span class="fas fa-eye" aria-hidden="true"></span>
             <%end%> |
           <%= link_to  edit_task_path(task)do %>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span class="fas fa-edit" aria-hidden="true"></span>
             <%end%>
-            |
-          <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-
-
-            <%end%>            |
-
-          <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-
-
-          <%end%>
-            </td>
-
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -235,6 +216,5 @@
 </div>
 </div>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>
