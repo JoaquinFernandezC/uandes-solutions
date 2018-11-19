@@ -6,6 +6,7 @@ class GoalsController < ApplicationController
   # GET /goals.json
   def index
     @goals = Goal.all
+    #@goals = Adapters::GoalPrivacyFilter.get_goals(current_user)
   end
 
   # GET /goals/1

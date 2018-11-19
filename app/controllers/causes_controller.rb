@@ -6,6 +6,7 @@ class CausesController < ApplicationController
   # GET /causes.json
   def index
     @causes = Cause.all
+    #@causes = Adapters::CausePrivacyFilter.get_causes(current_user)
   end
 
   # GET /causes/1

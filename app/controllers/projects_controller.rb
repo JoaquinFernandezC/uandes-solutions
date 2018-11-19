@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    #@projects = Adapters::ProjectPrivacyFilter.get_projects(current_user)
   end
 
   # GET /projects/1

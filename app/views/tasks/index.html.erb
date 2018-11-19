@@ -1,61 +1,99 @@
 <p id="notice"><%= notice %></p>
 <div clas="card">
 <div class="card-header bg-info">
-<h2 class="text-white"><b>Tareas</b></h2>
+<h2 class="text-white">Buscar tareas</h2>
 </div>
   <div class="card-body", style="background: #FFFFFF;padding: 0% 2% 0% 2%">
-    <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
-      Filtrar contenido
-    </a>
-    <div class="collapse" id="collapseExample">
 
+<%if @filtered%>
+      <a class="btn btn-warning btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
+        Filtrando contenido
+      </a>
+
+  <%else%>
+      <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
+        Filtrar contenido
+      </a>
+
+      <%end%>
+
+    <%if @filter.nil? %>
+      <div class="collapse show" id="collapseExample">
+      <h4>
+      Antes de continuar, por favor aplique algún filtro y presione 'Filtrar'
+      </h4>
+<br>
+
+  <%else%>
+
+      <div class="collapse" id="collapseExample">
+
+
+  <%end%>
 
 <div class="row", id="filter_row">
-  <div class="col-sm">
-  <%=select_tag :filter_type,options_for_select([[ "Por nombre", 1],[ "Por asignados", 2],[ "Por estado", 3],[ "Por privacidad", 4],[ "Por Fecha inicio", 5]]),class:"form-control"%>
-  </div>
-  <div class="col-sm">
-    <%= form_with url: tasks_path,local:true,:html => { :method => 'GET' } do |form| %>
 
-    <div class="filter_field" id="name_filter_div" style="display:none">
-      <!--<label for="name">Nombre</label>-->
-      <%= collection_select :filter, :tasks_ids, Task.all, :id, :name,  {:selected=>[12]}, { id: 'task_name_multiselect', :multiple => true  } %>
-    </div>
-    <div class="filter_field", id="assigned_filter_div", style="display:none">
+  <div class="col-sm col-sm-offset-2">
+    <%= form_tag tasks_path, :method => :get do -%>
+
+      <div class="form-group row">
+        <%=label_tag  :name, "Nombre", class:"col-sm-2 col-form-label"%>
+        <div class="filter_field col-sm-10 " id="name_filter_div">
+          <!--<label for="name">Nombre</label>-->
+
+          <%=text_field :filter, :name, class:"form-control"%>
+          <!--<%= collection_select :filter, :tasks_ids, Task.all, :id, :name,  {:selected=>[1]}, { id: 'task_name_multiselect', :multiple => true  } %>-->
+        </div>
+
+      </div>
+
+
+      <div class="form-group row">
+
+        <%=label_tag :assigned_ids, "Asignados",class:"col-sm-2 col-form-label"%>
+        <div class="filter_field col-sm-10", id="assigned_filter_div">
       <!--<label for="manager_multiselect">Asignado(s)</label>-->
-      <%= collection_select :filter, :assigned_ids, User.all, :id, :name, {}, { id: 'status_multiselect', :multiple => true } %>
-    </div>
-
-    <div class="filter_field", id="status_filter_div", style="display:none">
-      <%#=form.label :status, "Estado"%>
-      <%= collection_select :filter,:status,  Status.all, :id, :tag, {}, { id: 'manager_multiselect', :multiple => true } %>
+      <%= collection_select :filter, :assigned_ids, User.all, :id, :name,  {}, { id: 'status_multiselect', :multiple => true } %>
+        </div>
+      </div>
 
 
-    </div>
-    <div class = "filter_field", id="privacy_filter_div", style="display:none" >
+      <div class="form-group row">
+        <%=label :status, "Estado",class: "col-sm-2 col-form-label"%>
+        <div class="filter_field col-sm-10", id="status_filter_div">
+          <%#=form.label :status, "Estado"%>
+          <%= collection_select :filter, :status,  Status.all, :id, :tag, {}, { id: 'manager_multiselect', :multiple => true } %>
+        </div>
+
+
+      </div>
+
+      <div class="form-group row">
+
+        <%=label :privacy, "Privacidad", class:"col-sm-2 col-form-label"%>
+        <div class = "filter_field col-sm-10", id="privacy_filter_div" >
       <!--<label for="manager_multiselect">Privacidad</label>-->
-      <%= collection_select :filter, :privacy,  PrivacyLevel.all, :id, :tag, {}, { id: 'privacy_multiselect', :multiple => true } %>
+      <%= collection_select  :filter, :privacy,  PrivacyLevel.all, :id, :tag, {}, { id: 'privacy_multiselect', :multiple => true } %>
+      </div>
+      </div>
 
-    </div>
 
-
-
-    <div class = "filter_field", id="start_date_filter_div", style="display:none">
+    <div class = "filter_field", id="start_date_filter_div">
       <div class="form-group row">
 
-        <%=form.label :min_start_date, "Desde",class:"col-2 col-form-label"%>
+        <%=label :min_start_date, "Desde",class:"col-2 col-form-label"%>
         <div class="col-sm">
 
-          <%= date_field :filter, :min_start_date, class:'form-control'%>
+          <%=date_field :filter, :min_start_date, class:'form-control',:value=>if @filter.nil? then "" else @filter[:min_start_date] end%>
         </div>
       </div>
 
       <div class="form-group row">
 
-        <%=form.label :max_start_date, "hasta",class:"col-2 col-form-label"%>
+        <%=label :max_start_date, "Hasta",class:"col-2 col-form-label"%>
         <div class="col-sm">
 
-          <%= date_field :filter, :max_start_date, class:'form-control'%>
+          <%= date_field :filter, :max_start_date, class:'form-control',:value=>if @filter.nil? then "" else @filter[:max_start_date] end%>
         </div>
       </div>
 
@@ -63,7 +101,7 @@
 
     </div>
 
-      <%= form.submit "Filtrar", class:"btn btn-info", style:"margin: 2% 1% 2% 80%"%>
+      <%= submit_tag "Filtrar", class:"btn btn-info", style:"margin: 2% 1% 2% 80%"%>
 
     <% end %>
   </div>
@@ -83,69 +121,63 @@
       <br>
       <hr>
     </div>
-<div class="table table-responsive">
-  <table id="myTable" class="table table-striped">
-    <thead>
-      <tr role="row">
-        <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Nombre</th>
-        <th>Descripción</th>
-        <th>Usuario</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Estimada</th>
-        <th>Fecha Termino</th>
-        <th>Privacidad</th>
-        <th>Prioridad</th>
-        <th>Estado</th>
-        <th>Revisión</th>
-        <th>Tema</th>
-        <th>Acciones</th>
+<%if !@filter.nil? %>
+<table id="myTable" class="table table-responsive table-striped">
+  <thead>
+    <tr role="row">
+      <th class="sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Start date</th>
+      <th>Estimated end date</th>
+      <th>End date</th>
+      <th>Privacy</th>
+      <th>Priority</th>
+      <th>State</th>
+      <th>Needs checking</th>
+      <th>Tema</th>
+      <th>Acciones</th>
 
-      </tr>
-    </thead>
+    </tr>
+  </thead>
 
-    <tbody id="myTable">
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= task.name %></td>
-          <td><%= task.description %></td>
-          <td><%= task.user.first_name+" "+task.user.last_name %></td>
-          <td><%= task.start_date %></td>
-          <td><%= task.estimated_end_date %></td>
-          <td><%= task.end_date %></td>
-          <td><%= @privacy_by_id[task.privacy] %></td>
-          <td><%= Task.priority[task.priority] %></td>
-          <td><%= task.state %></td>
-          <td><%= task.needs_checking %></td>
-
-
-          <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
-          <!--<td><%= task.log_id %></td>-->
-
-          <td><%= link_to task do%>
-              <span class="fas fa-eye" aria-hidden="true"></span>
-              <%end%> |
-            <%= link_to  edit_task_path(task)do %>
-              <span class="fas fa-edit" aria-hidden="true"></span>
-              <%end%>
-              |
-            <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
-              <span class="fas fa-times" aria-hidden="true"></span>
+  <tbody id="myTable">
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.user.first_name+" "+task.user.last_name %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.estimated_end_date %></td>
+        <td><%= task.end_date %></td>
+        <td><%= @privacy_by_id[task.privacy] %></td>
+        <td><%= Task.priority[task.priority] %></td>
+        <td><%= task.state %></td>
+        <td><%= task.needs_checking %></td>
 
 
-              <%end%>            |
+        <td><%= if task.get_theme.nil? then "Sin tema" else task.get_theme.name end  %></td>
+        <!--<td><%= task.log_id %></td>-->
 
-            <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
-              <span class="fas fa-wrench" aria-hidden="true"></span>
+        <td><%= link_to task do%>
+            <span class="fas fa-eye" aria-hidden="true"></span>
+            <%end%> |
+          <%= link_to  edit_task_path(task)do %>
+            <span class="fas fa-edit" aria-hidden="true"></span>
+            <%end%>
+            |
+          <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
+            <span class="fas fa-times" aria-hidden="true"></span>
 
 
             <%end%>
-              </td>
+            </td>
 
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+      <%end%>
 
 <br>
 
