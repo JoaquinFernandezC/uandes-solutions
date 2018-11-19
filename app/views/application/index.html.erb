@@ -51,7 +51,7 @@
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', 'tasks/' + task.id.to_s + '/work' %><% end %>
+									<td width="100%" align="center"><%= link_to '<span class="far fa-eye"></span>'.html_safe, task_path(task.id), class: "btn btn-sm btn-default" %>  | <%= link_to '<span class="fa fa-pencil"></span>'.html_safe, edit_task_path(task.id), class: "btn btn-sm btn-default" %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to '<span class="fas fa-exclamation"></span>'.html_safe, edit_task_path(task.id), class: "btn btn-sm btn-danger" %><% else  %><%= link_to '<span class="fa fa-bolt"></span>'.html_safe ,'tasks/' + task.id.to_s + '/work', class: "btn btn-sm btn-default" %><% end %>
 								</tr>
 							<% end %>
 						</tbody>
