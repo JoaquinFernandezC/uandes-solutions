@@ -1,26 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Peticionarios</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_petitioner_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Posición</th>
+                    <th>Localización</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Peticionario</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @petitioners.each do |petitioner| %>
-      <tr>
-        <td><%= petitioner.name %></td>
-        <td><%= link_to 'Show', petitioner %></td>
-        <td><%= link_to 'Edit', edit_petitioner_path(petitioner) %></td>
-        <td><%= link_to 'Destroy', petitioner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Petitioner', new_petitioner_path %>
+                  <tbody>
+                  <% @petitioners.each do |petitioner| %>
+                    <tr>
+                      <td style="text-align: center;"><%= petitioner.person.name %></td>
+                      <td style="text-align: center;"><%= petitioner.position %></td>
+                      <td style="text-align: center;"><%= petitioner.location %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_petitioner_path(petitioner) %> <%= link_to 'Eliminar', petitioner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
