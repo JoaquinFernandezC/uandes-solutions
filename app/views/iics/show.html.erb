@@ -72,6 +72,8 @@
       <% @iic.documents.each do |document| %>
         <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
       <% end %>
+      <br/>
+
     </p>
   </div>
 
