@@ -5,8 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
-    #@projects = Adapters::ProjectPrivacyFilter.get_projects(current_user)
+    if current_user.rol < 4
+      @projects = Project.all
+    else
+      @projects = Adapters::ProjectPrivacyFilter.get_projects(current_user)
+    end
   end
 
   # GET /projects/1

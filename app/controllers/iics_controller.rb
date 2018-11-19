@@ -5,8 +5,7 @@ class IicsController < ApplicationController
   # GET /iics
   # GET /iics.json
   def index
-    @iics = Iic.all
-    #@iics = Adapters::IicPrivacyFilter.get_iic(current_user)
+    @iics = Adapters::IicPrivacyFilter.get_iic(current_user)
   end
 
   # GET /iics/1

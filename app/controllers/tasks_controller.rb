@@ -10,18 +10,10 @@ class TasksController < ApplicationController
 
 
     @privacy_by_id = Hash[PrivacyLevel.all.collect{|p| [p.id,p.tag]} ]
-
-    puts @privacy_by_id
-
     filter=params[:filter]
-
-    puts "FILTRO PRIVACIDAD"
-    #@tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
-
-
     @filtered = false
-    @tasks=Task.all
-
+      
+    @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
 
     if !filter.nil?
       task_name = filter[:name]
