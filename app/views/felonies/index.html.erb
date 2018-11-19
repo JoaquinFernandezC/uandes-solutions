@@ -1,27 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Delitos</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_felony_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Felonies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @felonies.each do |felony| %>
-      <tr>
-        <td><%= felony.name %></td>
-        <td><%= link_to 'Show', felony %></td>
-        <td><%= link_to 'Edit', edit_felony_path(felony) %></td>
-        <td><%= link_to 'Destroy', felony, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Felony', new_felony_path %>
-<%= link_to 'Back', root_path %>
+                  <tbody>
+                  <% @felonies.each do |felony| %>
+                    <tr>
+                      <td style="text-align: center;"><%= felony.name %></td>
+                      <td style="text-align: center;"><%= felony.description %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_felony_path(felony) %> <%= link_to 'Eliminar', felony, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

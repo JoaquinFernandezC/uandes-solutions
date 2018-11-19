@@ -1,27 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Fiscales</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_prosecutor_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>RUT</th>
+                    <th>Localía</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Prosecutors</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @prosecutors.each do |prosecutor| %>
-      <tr>
-        <td><%= prosecutor.name %></td>
-        <td><%= link_to 'Show', prosecutor %></td>
-        <td><%= link_to 'Edit', edit_prosecutor_path(prosecutor) %></td>
-        <td><%= link_to 'Destroy', prosecutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Prosecutor', new_prosecutor_path %>
-<%= link_to 'Back', root_path %>
+                  <tbody>
+                  <% @prosecutors.each do |prosecutor| %>
+                    <tr>
+                      <td style="text-align: center;"><%= prosecutor.name %></td>
+                      <td style="text-align: center;"><%= prosecutor.rut %></td>
+                      <td style="text-align: center;"><%= prosecutor.local_office %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_prosecutor_path(prosecutor) %> <%= link_to 'Eliminar', prosecutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
