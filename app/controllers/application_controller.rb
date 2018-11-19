@@ -46,7 +46,9 @@ class ApplicationController < ActionController::Base
   end
 
   def get_user_id
-    @current_user_id = current_user.id
+    if user_signed_in?
+      @current_user_id = current_user.id
+    end
   end
 
 end
