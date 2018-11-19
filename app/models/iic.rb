@@ -42,6 +42,11 @@ class Iic < ApplicationRecord
     documents_attributes.values.each do |document_attribute|
       unless document_attribute[:file].nil?
         document = Document.new(document_attribute)
+        document.classification = privacy
+        document.docType = 'Entrance'
+        log = Log.new
+        log.save
+        document.log_id = log.id
         document.save
         self.documents << document
       end
