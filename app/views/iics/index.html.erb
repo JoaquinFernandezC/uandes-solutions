@@ -24,16 +24,16 @@
               <div class="table-responsive">
                 <table class="table table-hover">
                   <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Encargados</th>
-                    <th>Tipo</th>
-                    <th>Fecha inicio</th>
-                    <th>Privacidad</th>
-                    <th>Estado</th>
-                    <th>Fecha Estimada Término</th>
-                    <th>Acciones</th>
-                  </tr>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Encargados</th>
+                      <th>Tipo</th>
+                      <th>Fecha inicio</th>
+                      <th>Privacidad</th>
+                      <th>Estado</th>
+                      <th>Fecha Estimada Término</th>
+                      <th>Acciones</th>
+                    </tr>
                   </thead>
 
                   <tbody>
@@ -46,18 +46,15 @@
                       <% else %>
                         <td>Bilateral</td>
                       <% end %>
-                      <td><%= iic.start_date %></td>
+                      <td><%= iic.start_date.to_date %></td>
                       <td><%= iic.privacy %></td>
                       <td><%= iic.state %></td>
-                      <td><%= iic.estimated_end_date %></td>
+                      <td><%= iic.estimated_end_date.to_date %></td>
                       <td><%= link_to iic do%>
                           <span class="fas fa-eye" aria-hidden="true"></span>
                           <%end%> |
                         <%= link_to edit_iic_path(iic)do %>
                           <span class="fas fa-edit" aria-hidden="true"></span>
-                          <%end%> |
-                        <%= link_to iic, method: :delete, data: { confirm: 'Are you sure?' } do%>
-                          <span class="fas fa-times" aria-hidden="true"></span>
                           <%end%>
                       </td>
                     </tr>
