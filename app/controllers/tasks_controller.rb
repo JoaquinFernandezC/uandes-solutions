@@ -12,13 +12,8 @@ class TasksController < ApplicationController
     @privacy_by_id = Hash[PrivacyLevel.all.collect{|p| [p.id,p.tag]} ]
     filter=params[:filter]
     @filtered = false
-
-    if current_user.rol < 4
-      @tasks=Task.all
-    else
-      @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
-    end
-
+      
+    @tasks= Adapters::TaskPrivacyFilter.get_tasks(current_user)
 
     if !filter.nil?
       task_name = filter[:name]

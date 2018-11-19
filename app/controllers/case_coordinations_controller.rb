@@ -5,11 +5,7 @@ class CaseCoordinationsController < ApplicationController
   # GET /case_coordinations
   # GET /case_coordinations.json
   def index
-    if current_user.rol < 4
-      @case_coordinations = CaseCoordination.all
-    else
-      @case_coordinations = Adapters::CcPrivacyFilter.get_cc(current_user)
-    end
+    @case_coordinations = Adapters::CcPrivacyFilter.get_cc(current_user)
   end
 
   # GET /case_coordinations/1
