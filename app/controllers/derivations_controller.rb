@@ -5,8 +5,11 @@ class DerivationsController < ApplicationController
   # GET /derivations
   # GET /derivations.json
   def index
-    @derivations = Derivation.all
-    #@derivations = Adapters::DerivationPrivacyFilter.get_derivations(current_user)
+    if current_user.rol < 4
+      @derivations = Derivation.all
+    else
+      @derivations = Adapters::DerivationPrivacyFilter.get_derivations(current_user)
+    end
   end
 
   # GET /derivations/1
