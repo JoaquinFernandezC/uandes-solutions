@@ -8,20 +8,16 @@
 				<%= image_tag("logo_fiscalia.png", class: 'img-thumbnail', width: '70%', style: 'margin: auto; display: block; margin-top: 10%') %>
 				<h2 class="text-center" style="margin-bottom: 10%"><strong><%= current_user.name %></strong></h2>
 
-        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
-          <%= link_to "Administrar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary btn-block"  ,method: :get %>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se ven las tareas historicas.')">Tareas Historicas</button>
-					<button class="btn btn-outline-secondary" onclick="alert('Aqui se administran los usuarios.')">Administrar Usuarios</button>
-          <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
-          <%= link_to 'Instancias de Temas', theme_finder_path, class: "btn btn-outline-secondary"%>
-          <% if current_user.rol < 4 %>
-          	<%= link_to 'Administración de Usuarios', admin_users_path, class: "btn btn-outline-secondary"%>
-          <% end %>
-        </div>
+		        <div class="btn-group-vertical btn-block" style="padding-top: 0.1vw; overflow: auto;">
+		          <%= link_to "Agregar Entidades", entity_selection_index_path, class: "btn btn-outline-secondary btn-block"  ,method: :get %>
+		          <%= link_to 'Instancias de Temas', theme_finder_path, class: "btn btn-outline-secondary"%>
+		          <%= link_to 'Buscardor de Tareas',tasks_path, class: 'btn btn-outline-secondary' %>
+		          <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
+		        </div>
 			</div>
 			<div class="col-sm-9 hidden-xs">
-				<div class="container">
-					<table id="myTable" class="table table-responsive table-striped">
+				<div class="table table-responsive">
+					<table id="myTable" class="table table-striped">
 						<thead>
 							<tr>
 								<th>Tarea</th>
@@ -37,24 +33,18 @@
 							<% @user_tasks.each do |task| %>
 								<tr>
 									<td><%= task.name %></td>
-									<% if task.case_task.present? %>
-										<td><%= task.cause.name %></td>
-									<% elsif task.cc_task.present? %>
-										<td><%= task.case_coordination.name %></td>
-									<% elsif task.derivation_task.present? %>
-										<td><%= task.derivation.name %></td>
-									<% elsif task.task_goal.present? %>
-										<td><%= task.goal.name %></td>
-									<% elsif task.iic_task.present? %>
-										<td><%= task.iic.name %></td>
-									<% else  %>
-										<td>None</td>										
-									<% end %>
+									<td><%= if task.get_theme.nil? then "Sin Tema" else task.get_theme.name end  %></td>
 									<td><%= task.estimated_end_date.to_date %></td>
 									<td><%= task.priority %></td>
 									<td><%= task.privacy %></td>
 									<td><%= task.state %></td>
-									<td><%= link_to 'V', task_path(task.id) %> | <%= link_to 'E', edit_task_path(task.id) %> | <% if task.needs_checking && task.state=='Revisión' %><%= link_to 'R', edit_task_path(task.id) %><% else  %><%= link_to 'T', 'tasks/' + task.id.to_s + '/work' %><% end %>
+									<td><%= link_to task do %>
+							            <span class="fas fa-eye"></span>
+							            <%end%> |
+							          <%= link_to  "/tasks/"+task.id.to_s+"/work" do %>
+							            <span class="fas fa-wrench"></span>
+							          <%end%>
+							        </td>
 								</tr>
 							<% end %>
 						</tbody>
@@ -67,4 +57,5 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js">
+</script>
