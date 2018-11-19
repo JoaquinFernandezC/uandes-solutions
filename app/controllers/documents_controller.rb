@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = Adapters::DocumentPrivacyFilter.get_docs(current_user)
   end
 
   # GET /documents/1

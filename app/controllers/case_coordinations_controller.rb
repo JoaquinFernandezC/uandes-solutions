@@ -5,8 +5,7 @@ class CaseCoordinationsController < ApplicationController
   # GET /case_coordinations
   # GET /case_coordinations.json
   def index
-    @case_coordinations = CaseCoordination.all
-    #@case_coordinations = Adapters::CcPrivacyFilter.get_cc(current_user)
+    @case_coordinations = Adapters::CcPrivacyFilter.get_cc(current_user)
   end
 
   # GET /case_coordinations/1
