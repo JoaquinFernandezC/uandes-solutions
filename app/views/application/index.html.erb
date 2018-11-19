@@ -13,6 +13,9 @@
 		          <%= link_to 'Instancias de Temas', theme_finder_path, class: "btn btn-outline-secondary"%>
 		          <%= link_to 'Buscardor de Tareas',tasks_path, class: 'btn btn-outline-secondary' %>
 		          <%= link_to 'Buscador de Documentos', documents_path, class: "btn btn-outline-secondary"%>
+		          <% if current_user.rol < 4 %>
+				    <%= link_to 'Administración de Usuarios', admin_users_path, class: "btn btn-outline-secondary"%>
+				  <% end %>
 		        </div>
 			</div>
 			<div class="col-sm-9 hidden-xs">

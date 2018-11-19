@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def index
     if user_signed_in?
-    	@user_tasks = Task.where('user_id = ?', current_user.id)
+    	@user_tasks = Task.where('user_id = ?', current_user.id).where('state = ?', "Abierto")
     end
   end
 

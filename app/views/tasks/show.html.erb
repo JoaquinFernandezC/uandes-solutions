@@ -27,7 +27,8 @@
                 </p>
                 <div><br>
                 </div>
-          <div class="table-of-contents" style="float: left;">
+
+          <div class="col-sm-4 hidden-xs" style="float: left;">
             <p class="font-weight-bold" align="left">
               Usuario Asignado:
             </p>
@@ -35,19 +36,13 @@
               <%= User.find(@task.user_id).name %>
             </p>
           </div>
-                <table align="right" cellpadding="5px" border="1px solid black" style="width: 30%;">
-                  <thead>
-                  <tr>
-                    <th>Documento  </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <td><%= @task.documents.name %></td>
-                  </tbody>
-                </table>
-
-
-          <div><br>
+          <div>
+            <strong>Documents:</strong>
+            <% @task.documents.each do |document| %>
+            <br>
+              <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+            <% end %>
+            <br/>
           </div>
 
     </div>
