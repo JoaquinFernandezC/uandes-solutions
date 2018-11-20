@@ -21,14 +21,6 @@ class DocumentsController < ApplicationController
         document_classification = document_classification.strip()
         @documents = @documents.where("classification LIKE '%#{document_classification}'")
       end
-      document_type = filter[:docType]
-      if !document_type.nil? && document_type != ""
-        @filtered = true
-        document_type = document_type.strip()
-        @documents = @documents.where("docType LIKE '#{document_type}'")
-      end
-    else
-      @documents = Document.all
     end
     @filter = if filter.nil? then nil else OpenStruct.new(filter) end
   end
