@@ -159,7 +159,37 @@
           <%= link_to  edit_task_path(task)do %>
             <span class="fas fa-edit" aria-hidden="true"></span>
             <%end%>
-        </td>
+
+            |
+
+          <!--<%if !task.get_theme.nil?%>-->
+
+            <!--<% if task.get_theme.class.method_defined? :users%>-->
+              <!--<%= link_to_if ( task.user == current_user), "<span class='fas fa-bolt' aria-hidden='true'></span>".html_safe, "/tasks/"+task.id.to_s+"/work" %>-->
+
+              <!--<%if task.get_theme.users.include?(current_user )%>-->
+                <!--a-->
+              <!--<%end%>-->
+              <!--<%elsif  task.get_theme.class.method_defined? :managers%>-->
+
+              <!--<%= link_to_if ( task.get_theme.managers.include?(current_user )), "<span class='fas fa-remove' aria-hidden='true'></span>".html_safe,task, method: :delete, data: { confirm: 'Are you sure?' } %>-->
+
+<!--<%end%>-->
+
+
+              <!--&lt;!&ndash;<%#if  task.get_theme.class.method_defined? :managers then (if task.get_theme.managers.include?(current_user) then  a end) end%>&ndash;&gt;-->
+          <!--<%end%>-->
+          <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' } do%>
+            <span class="fas fa-remove" aria-hidden="true"></span>
+
+
+            <%end%>
+
+          <!--<%= link_to_if ( task.user == current_user), "<span class='fas fa-bolt' aria-hidden='true'></span>".html_safe, "/tasks/"+task.id.to_s+"/work" %>-->
+
+
+            </td>
+
       </tr>
     <% end %>
   </tbody>

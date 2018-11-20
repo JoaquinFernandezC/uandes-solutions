@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       if !task_name.nil? && task_name!=""
         @filtered = true
         task_name = task_name.strip()
-        @tasks =  @tasks.where("name LIKE '%#{task_name}%'")
+        @tasks =  @tasks.where("LOWER(name) LIKE LOWER('%#{task_name}%')")
       end
       puts "task name: #{task_name}"
       assigned_ids = Array(filter[:assigned_ids])
@@ -65,7 +65,7 @@ class TasksController < ApplicationController
         puts @tasks.length
         puts @tasks.count
 
-        @tasks= @tasks.where("start_date>=?",min_start_date)
+        @tasks= @tasks.where("start_date>=? OR start_date IS NULL",min_start_date)
         puts @tasks.count
         puts @tasks.length
       end
@@ -75,7 +75,7 @@ class TasksController < ApplicationController
         @filtered = true
 
         max_start_date=max_start_date.to_date.end_of_day
-        @tasks= @tasks.where("start_date::date <=?",max_start_date.to_date.to_datetime)
+        @tasks= @tasks.where("end_date::date <=? OR end_date IS NULL",max_start_date.to_date.to_datetime)
 
 
       end
@@ -127,6 +127,7 @@ class TasksController < ApplicationController
     @log = Log.find(@task.log_id)
     enter_log_message('Se accedió a la tarea de nombre "' + @task.name + '".', @task.log_id, @task.privacy)
     @get_theme_name = get_theme(@task.id)
+    @log_entries = LogEntry.where(log_id: @task.log_id)
   end
 
   # GET /tasks/new
