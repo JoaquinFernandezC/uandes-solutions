@@ -214,6 +214,6 @@ task = Task.create([
 
 causeTask = CaseTask.create([{task_id: 1, cause_id: 2}, {task_id: 2, cause_id: 3}, {task_id: 4, cause_id: 1}, {task_id: 3, cause_id: 1}])
 
-ccTask = CcTask.create([{task_id: 5, cc_id: 2}, {task_id: 6, cc_id: 3}, {task_id: 7, cc_id: 1}, {task_id: 8, cc_id: 1}])
+ccTask = CcTask.create([{task_id: 5, case_coordination_id: 2}, {task_id: 6, case_coordination_id: 3}, {task_id: 7, case_coordination_id: 1}, {task_id: 8, case_coordination_id: 1}])
 
 projectTask = ProjectTask.create([{task_id: 9, project_id: 1}, {task_id: 10, project_id: 2}, {task_id: 11, project_id: 4}, {task_id: 12, project_id: 3}])
