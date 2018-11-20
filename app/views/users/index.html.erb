@@ -36,7 +36,13 @@
                       <td style="text-align: center;"><%= user.rut %></td>
                       <td style="text-align: center;"><%= user.position %></td>
                       <td style="text-align: center;"><%= user.rol %></td>
-                      <td style="text-align: center;"><%= link_to 'Editar', edit_admin_user_path(user) %> <%= link_to 'Eliminar', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to edit_user_path(task)do %>
+                        <span class="fas fa-edit" aria-hidden="true"></span>
+                        <%end%> |
+                      <%= link_to admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <span class="fas fa-edit" aria-hidden="true"></span>
+                        <%end%>
+                    </td>
                     </tr>
                   <% end %>
                   </tbody>

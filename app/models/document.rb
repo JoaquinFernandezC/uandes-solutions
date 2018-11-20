@@ -31,6 +31,5 @@ class Document < ApplicationRecord
 
   validates :name, presence: true
   validates :classification, presence: true
-  validates :docType, presence: true
   validates :version, presence: true
 end

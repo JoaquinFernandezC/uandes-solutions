@@ -68,7 +68,7 @@ class Task < ApplicationRecord
     end
   end
 
-  @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 3 => 'Urgente'}
+  @@priority = { 1 => 'Baja', 2 => 'Media', 3 => 'Alta', 4 => 'Urgente'}
   def self.priority
     @@priority
   end
@@ -90,16 +90,17 @@ class Task < ApplicationRecord
       if !document.errors.any? and document.file.attached?
         document.classification = privacy
         user = document_attribute[:user_id]
+        puts user
         log = Log.new
         log.save
         document.log_id = log.id
         document.save
         self.documents << document
         log_message = 'Se añadió el documento "' + document.name + '" a la tarea "' + name + '".'
-        entry = LogEntry.new(log_id: log.id, user_id: user.id, privacy: privacy, message: log_message)
+        entry = LogEntry.new(log_id: log.id, user_id: user, privacy: privacy, message: log_message)
         entry.save
       else
-        puts document.errors
+        next
       end
 
     end

@@ -8,6 +8,7 @@ module Adapters
           my_theme = current.case_coordinations
           all_public = CaseCoordination.all().where(privacy:1)
           all_theme = (my_theme + all_public).uniq
+          all_theme = CaseCoordination.where(id: all_theme.map(&:id))
         end
         all_theme
       end

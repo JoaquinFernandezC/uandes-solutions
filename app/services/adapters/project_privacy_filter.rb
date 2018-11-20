@@ -8,6 +8,7 @@ module Adapters
           my_theme = current.projects
           all_public = Project.all().where(privacy:1)
           all_theme = (my_theme + all_public).uniq
+          all_theme = Project.where(id: all_theme.map(&:id))
         end
         all_theme
       end
