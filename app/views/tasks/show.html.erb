@@ -49,9 +49,27 @@
           </div>
 
     </div>
+
   </div>
     <div><br>
-
+      <div class="row">
+        <a class="btn btn-outline-secondary btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Historial
+        </a>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="collapse" id="collapseExample">
+          <div class="card card-block card-body " style="width: available">
+            <% @log_entries.each do |log_entry| %>
+              <strong style="font-size: small"><%= log_entry.user.name %>:</strong><br/>
+              <i style="font-size: small"><%= log_entry.message %></i><br/>
+              <b style="font-size: x-small; float: right"><%= log_entry.created_at.strftime('%d/%m/%Y %H:%M') %></b>
+              <hr>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <p style="text-align: center; font-size: small">
