@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   resources :employees
 
   get 'theme_finder', to: 'theme_finder#index'
+  get 'theme_finder/report', to: 'theme_finder#report', as:'themes_report'
+  get 'theme_finder/report_csv', to: 'theme_finder#report_csv'
   get '/tasks/:id/work', to: "tasks#work"
 
 
