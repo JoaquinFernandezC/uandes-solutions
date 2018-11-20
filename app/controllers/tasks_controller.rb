@@ -168,6 +168,9 @@ class TasksController < ApplicationController
 
         log= Log.create()
         @task.update(log_id:log.id)
+        entry = LogEntry.new(log_id: log.id, user_id: current_user.id, privacy: @task.privacy)
+        entry.message = "Se ha creado la tarea " + @task.name
+        entry.save
         if !@theme.nil?
 
           @theme.tasks<<@task

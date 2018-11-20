@@ -1,26 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">RUCs</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_ruc_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Número</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Rucs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rucs.each do |ruc| %>
-      <tr>
-        <td><%= ruc.number %></td>
-        <td><%= link_to 'Show', ruc %></td>
-        <td><%= link_to 'Edit', edit_ruc_path(ruc) %></td>
-        <td><%= link_to 'Destroy', ruc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Ruc', new_ruc_path %>
+                  <tbody>
+                  <% @rucs.each do |ruc| %>
+                    <tr>
+                      <td style="text-align: center;"><%= ruc.number %></td>
+                      <td style="text-align: center;"> <%= link_to 'Ver', ruc_path(ruc) %> <%= link_to 'Editar', edit_ruc_path(ruc) %> <%= link_to 'Eliminar', ruc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

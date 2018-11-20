@@ -46,9 +46,13 @@ class Iic < ApplicationRecord
         document.docType = 'Entrance'
         log = Log.new
         log.save
+        user = document_attribute[:user_id]
         document.log_id = log.id
         document.save
         self.documents << document
+        log_message = 'Se añadió el documento "' + document.name + '" a la coordinación insterinstitucional "' + name + '".'
+        entry = LogEntry.new(log_id: log.id, user_id: user, privacy: privacy, message: log_message)
+        entry.save
       end
     end
   end

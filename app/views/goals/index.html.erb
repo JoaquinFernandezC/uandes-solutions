@@ -15,7 +15,7 @@
         <div class="container">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item ">
-              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Metas<b>(3)</b></a>
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis Metas</a>
             </li>
           </ul>
 
@@ -46,9 +46,13 @@
                         <td><%= goal.privacy %></td>
                         <td><%= goal.state %></td>
                         <td><%= goal.estimated_end_date %></td>
-                        <td><%= link_to 'Ver', goal %></td>
-                        <td><%= link_to 'Editar', edit_goal_path(goal) %></td>
-                        <td><%= link_to 'Eliminar', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to goal do%>
+                            <span class="fas fa-eye" aria-hidden="true"></span>
+                            <%end%> |
+                          <%= link_to  edit_goal_path(goal)do %>
+                            <span class="fas fa-edit" aria-hidden="true"></span>
+                            <%end%>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>

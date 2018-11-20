@@ -1,27 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-11">
+        <h1 class="text-white">Empleados</h1>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to (fa_icon 'plus lg', style: 'color: #17a2b8'), new_employee_path, class: 'btn btn-light btn-lg float-right', style: 'margin: auto; display: block' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" style="background: #FFFFFF">
+      <div class="col-sm-12 hidden-xs">
+        <div class="container">
+          <div class="tab-content">
+            <div id="home" class="tab-pane active">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Institución</th>
+                    <th>Cargo</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
 
-<h1>Employees</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.person_id %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Employee', new_employee_path %>
-<%= link_to 'Back', root_path %>
+                  <tbody>
+                  <% @employees.each do |employee| %>
+                    <tr>
+                      <td style="text-align: center;"><%= employee.person.name %></td>
+                      <td style="text-align: center;"><%= employee.institution.name %></td>
+                      <td style="text-align: center;"><%= employee.position %></td>
+                      <td style="text-align: center;"><%= link_to 'Editar', edit_employee_path(employee) %> <%= link_to 'Eliminar', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

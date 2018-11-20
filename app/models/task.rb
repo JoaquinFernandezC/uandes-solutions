@@ -89,11 +89,15 @@ class Task < ApplicationRecord
       document = Document.new(document_attribute)
       if !document.errors.any? and document.file.attached?
         document.classification = privacy
+        user = document_attribute[:user_id]
         log = Log.new
         log.save
         document.log_id = log.id
         document.save
         self.documents << document
+        log_message = 'Se añadió el documento "' + document.name + '" a la tarea "' + name + '".'
+        entry = LogEntry.new(log_id: log.id, user_id: user.id, privacy: privacy, message: log_message)
+        entry.save
       else
         puts document.errors
       end

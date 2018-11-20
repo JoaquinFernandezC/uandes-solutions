@@ -5,42 +5,44 @@
   <div class="card-body">
     <div class="row" style="background: #FFFFFF;">
       <div class="col-sm-12 hidden-xs">
-        <div class="container">
-          <table id="myTable" class="table table-striped display" style="width: 100%">
+        <div class="table table-responsive ">
+          <table id="myTable" class="table table-striped">
             <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Identificador</th>
-              <th>Versión</th>
-              <th>Clasificación</th>
-              <th>Tipo</th>
-              <th>Acción</th>
-            </tr>
+              <tr>
+                <th>Nombre</th>
+                <th>Versión</th>
+                <th>Clasificación</th>
+                <th>Tipo</th>
+                <th>Acción</th>
+              </tr>
             </thead>
             <tbody id="myTable">
-            <% @documents.each do |document| %>
-              <tr>
-                <td><%= document.name %></td>
-                <td><%= document.log %></td>
-                <td><%= document.version %></td>
-                <td><%= document.classification %></td>
-                <td><%= document.docType %></td>
-                <td><%= link_to 'Ver', document %> | <%= link_to 'Editar', edit_document_path(document) %></td>
-              </tr>
-            <% end %>
-            </tbody>
+              <% @documents.each do |document| %>
+                <tr>
+                  <td><%= document.name %></td>
+                  <td><%= document.version %></td>
+                  <td><%= document.classification %></td>
+                  <td><%= document.docType %></td>
+                  <td><%= link_to document do %>
+                      <span class="fas fa-eye"></span>
+                    <%end%> |
+                    <%= link_to  "/documents/"+document.id.to_s+"/edit" do %>
+                      <span class="fas fa-edit"></span>
+                    <%end%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>  
           </table>
         </div>
       </div>
     </div>
-    <div class="text-center">
-      <%= link_to 'Nuevo Documento', new_document_path, class: "btn btn-primary"%>
-    </div>
-
   </div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>
 
 
 

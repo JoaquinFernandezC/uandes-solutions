@@ -35,16 +35,13 @@
               <%= User.find(@task.user_id).name %>
             </p>
           </div>
-                <table align="right" cellpadding="5px" border="1px solid black" style="width: 30%;">
-                  <thead>
-                  <tr>
-                    <th>Documento  </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <td><%= @task.documents.name %></td>
-                  </tbody>
-                </table>
+
+          <p align="right">
+            <strong>Documents:</strong>
+            <% @task.documents.each do |document| %>
+              <%= link_to document.name, rails_blob_path(document.file, disposition: 'attachment') %>
+            <% end %>
+          </p>
 
 
           <div><br>

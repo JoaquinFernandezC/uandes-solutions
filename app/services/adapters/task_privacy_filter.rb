@@ -51,6 +51,7 @@ module Adapters
             end
           end
           all_tasks_final = all_tasks_final.uniq
+          all_tasks_final = Task.where(id: all_tasks_final.map(&:id))
         end
         all_tasks_final
       end

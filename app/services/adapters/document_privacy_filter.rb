@@ -39,6 +39,7 @@ module Adapters
           all_docs = all_docs.uniq
         end
         all_docs
+        all_docs = Document.where(id: all_docs.map(&:id))
       end
     end
   end

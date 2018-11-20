@@ -15,7 +15,7 @@
         <div class="container">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item ">
-              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis CC <b>(3)</b></a>
+              <a class="nav-link active makeOrange" data-toggle="pill" href="#home">Mis CC</a>
             </li>
           </ul>
 
@@ -48,9 +48,13 @@
                       <td><%= case_coordination.privacy %></td>
                       <td><%= case_coordination.state %></td>
                       <td><%= case_coordination.estimated_end_date %></td>
-                      <td><%= link_to 'Ver', case_coordination %></td>
-                      <td><%= link_to 'Editar', edit_case_coordination_path(case_coordination) %></td>
-                      <td><%= link_to 'Eliminar', case_coordination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= link_to case_coordination do%>
+                          <span class="fas fa-eye" aria-hidden="true"></span>
+                          <%end%> |
+                        <%= link_to edit_case_coordination_path(case_coordination)do %>
+                          <span class="fas fa-edit" aria-hidden="true"></span>
+                          <%end%>
+                      </td>
                     </tr>
                   <% end %>
                   </tbody>
