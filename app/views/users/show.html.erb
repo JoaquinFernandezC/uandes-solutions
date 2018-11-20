@@ -1,0 +1,158 @@
+<div class="card">
+
+  <div class="card-header bg-info">
+    <h2 class="text-white"><b>Reporte de funcionario</b></h2>
+  </div>
+  <div class="card-body">
+
+
+    <%if @filtered%>
+      <a class="btn btn-warning btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
+        Filtrando contenido
+      </a>
+
+    <%else%>
+      <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample", style="margin-top: 2%;margin-bottom: 2%;">
+        Filtrar contenido
+      </a>
+
+    <%end%>
+
+
+      <div class="collapse" id="collapseExample">
+
+
+
+        <div class="col-sm-6 col-sm-offset-2">
+
+    <div class="row", id="filter_row">
+
+      <div class="col-sm col-sm-offset-2">
+        <%= form_tag admin_users_report_path, :method => :get do -%>
+
+
+
+
+
+
+
+          <div class = "filter_field", id="start_date_filter_div">
+            <div class="form-group row">
+
+              <%=label :date_from, "Desde",class:"col-2 col-form-label"%>
+              <div class="col-sm">
+
+                <%=date_field :filter, :date_from, class:'form-control',:value=>if @filter.nil? then "" else @filter[:date_from] end%>
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+              <%=label :date_until, "Hasta",class:"col-2 col-form-label"%>
+              <div class="col-sm">
+
+                <%= date_field :filter, :date_until, class:'form-control',:value=>if @filter.nil? then "" else @filter[:date_until] end%>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <%= submit_tag "Filtrar", class:"btn btn-info", style:"margin: 2% 1% 2% 80%"%>
+
+        <% end %>
+      </div>
+
+
+
+
+
+
+
+    </div>
+        </div>
+    <br>
+    <hr>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-sm-12">
+        <table class="table table-striped" id="myTable">
+          <thead>
+          <tr>
+            <th>
+
+              Funcionario
+            </th>
+            <th>
+
+              Tarea
+            </th>
+            <th>
+
+              Tema
+            </th>
+
+            <th>
+              Fecha inicio
+
+            </th>
+
+
+            <th>
+              Fecha término
+
+            </th>
+            <th>
+              Tiempo
+
+            </th>
+          </tr>
+          </thead>
+
+          <tbody id="myTable">
+
+
+          <%@tasks.each do |task|%>
+            <tr>
+
+              <td align="center">
+                <%=task.user.name%>
+
+              </td>
+
+              <td align="center">
+                <%=task.name%>
+
+              </td>
+              <td align="center">
+                <%=if !task.get_theme.nil? then task.get_theme.name else "Sin definir" end%>
+
+              </td>
+              <td align="center">
+                <%=if task.class.method_defined? :start_date then ( if !task.start_date.nil? then task.start_date.to_date else "Sin definir" end) else "N/A" end%>
+
+              </td>
+              <td align="center">
+                <%=if !task.end_date.nil? then task.end_date.to_date else "Sin definir" end%>
+
+              </td>
+              <td align="center">
+                <%=if !task.end_date.nil? and !task.start_date.nil? then (((task.end_date-task.start_date).to_i)/86400).to_s else "N/A" end%> Dias
+
+              </td>
+            </tr>
+          <%end%>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+    </div>
+    <%=button_to "Excel","#{admin_users_report_path}.csv", method: :get, params:@query_parameters, class:"btn btn-info", style:"margin-left:90%" %>
+
+  </div></div>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/datatables.min.js"></script>

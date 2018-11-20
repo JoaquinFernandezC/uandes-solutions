@@ -40,6 +40,14 @@
                   <%= link_to 'Derivaciones de Gabinete', derivations_path, class: 'dropdown-item makeOrange'%>
                  </div>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle makeOrange" href="#" data-toggle="dropdown">Reportes</a>
+                <div class="dropdown-menu">
+                  <%= link_to 'Temas', themes_report_path, class: 'dropdown-item makeOrange'%>
+                  <%= link_to 'Tareas', tasks_report_path, class: 'dropdown-item makeOrange'%>
+                  <%= link_to 'Funcionario', admin_users_report_path, class: 'dropdown-item makeOrange'%>
+                </div>
+              </li>
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 <li class="nav-item padded">

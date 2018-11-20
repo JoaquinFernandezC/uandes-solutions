@@ -27,21 +27,15 @@
       <div class="col-sm col-sm-offset-2">
         <%= form_tag documents_path, :method => :get do -%>
           <div class="form-group row">
-            <%= label_tag :name, "Nombre", class:"col-sm-2 col-form-label" %>
-            <div class="filter_field col-sm-10" id="name_filter_div">
+            <%= label_tag :name, "Nombre", class:"col-sm-4 col-form-label" %>
+            <div class="filter_field col-sm-8" id="name_filter_div">
               <%= text_field :filter, :name, class:"form-control" %>
             </div>
           </div>
           <div class="form-group row">
-            <%= label_tag :classification, "Clasificación", class:"col-sm-2 col-form-label" %>
-            <div class="filter_field col-sm-10" id="class_filter_div">
+            <%= label_tag :classification, "Clasificación", class:"col-sm-4 col-form-label" %>
+            <div class="filter_field col-sm-8" id="class_filter_div">
               <%= text_field :filter, :classification, class:"form-control" %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= label_tag :docType, "Tipo de documento", class:"col-sm-2 col-form-label" %>
-            <div class="filter_field col-sm-10" id="type_filter_div">
-              <%= text_field :filter, :docType, class:"form-control" %>
             </div>
           </div>
           <%= submit_tag "Filtrar", class:"btn btn-info", style:"margin 2% 1% 2% 80%" %>
@@ -59,7 +53,6 @@
             <th class="sorting_desc" tabindex="0", aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 62px;" aria-sort="descending">Nombre</th>
             <th> Versión </th>
             <th> Clasificación </th>
-            <th> Tipo de documento </th>
             <th> Acciones </th>
           </tr>
         </thead>
@@ -69,7 +62,6 @@
               <td><%= document.name %></td>
               <td><%= document.version %></td>
               <td><%= document.classification %></td>
-              <td><%= document.docType %></td>
               <td>
                 <%= link_to document do %>
                   <span class="fas fa-eye" aria-hidden="true"></span>

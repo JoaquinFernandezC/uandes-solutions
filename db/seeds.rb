@@ -40,17 +40,17 @@ employees = Employee.create([
                             ])
 
 user = User.create!([
-                    {first_name: 'Josefina', last_name: 'Flores', rut: '15.265.385-K', rol: 4,
-                     position: 'Secretario', email: 'jflores@ulddeco.cl', password: '123456',
+                    {first_name: 'Camila', last_name: 'Torres', rut: '16.265.385-K', rol: 1,
+                     position: 'Director', email: 'ctor@ulddeco.com', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Alfonso', last_name: 'Zúñiga', rut: '19.475.275-K', rol: 4,
-                     position: 'Gerencia', email: 'ajzuniga1@miuandes.cl', password: '123456',
+                    {first_name: 'Jose', last_name: 'Marmól', rut: '14.475.275-K', rol: 4,
+                     position: 'Funcionario', email: 'jmar@ulddeco.com', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Ángeles', last_name: 'Aldunate', rut: '18.476.921-6', rol: 4,
-                     position: 'Secretaria', email: 'adaldunate@miuandes.cl', password: '123456',
+                    {first_name: 'Veronica', last_name: 'Dominguez', rut: '13.476.921-6', rol: 3,
+                     position: 'Secretaria', email: 'vdom@ulddeco.com', password: '123456',
                      password_confirmation: '123456'},
-                    {first_name: 'Juan', last_name: 'Vejar', rut: '18.476.921-1', rol: 4,
-                     position: 'Secretario', email: 'jvejar1@miuandes.cl', password: '123456',
+                    {first_name: 'Geronimo', last_name: 'Escudero', rut: '12.476.921-1', rol: 2,
+                     position: 'TI', email: 'gesc@ulddeco.com', password: '123456',
                      password_confirmation: '123456'}])
 
 ruc = Ruc.create(number: 420)
@@ -63,36 +63,157 @@ rpo = RegionalProsOffice.create(region: 'Metropolitana', prosecutor: prosecutor)
 
 log = Log.create
 
-cause = Cause.create(
-    name: 'PENTA',
+privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
+
+status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])
+
+cause = Cause.create([
+    {name: 'PENTA',
     regional_pros_office_id: rpo.id,
-    description: 'This case is really f*cked up yall',
+    description: 'Este es un caso complicado',
     privacy: 2,
     state: 'Open',
     prosecutor_id: prosecutor.id,
     estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
     end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
     ruc_id: ruc.id,
-    log_id: log.id
-)
+    log_id: log.id},
+    {name: 'OCTO',
+    regional_pros_office_id: rpo.id,
+    description: 'Este es un caso demasiado complicado',
+    privacy: 1,
+    state: 'Open',
+    prosecutor_id: prosecutor.id,
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    ruc_id: ruc.id,
+    log_id: log.id},
+    {name: 'HEXA',
+    regional_pros_office_id: rpo.id,
+    description: 'Este es un caso muy complicado',
+    privacy: 3,
+    state: 'Open',
+    prosecutor_id: prosecutor.id,
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    ruc_id: ruc.id,
+    log_id: log.id}])
 
-privacy = PrivacyLevel.create([{ tag: 'Público' }, { tag: 'Privado' }, { tag: 'Secreto' }])
+cc = CaseCoordination.create([
+    {name: 'Robo Andino',
+    description: 'Se sospechan muchas cosas',
+    privacy: 1,
+    state: 'Abierto',
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+	{name: 'Coalición Confort',
+    description: 'Nadie encuentra sus 7 lucas',
+    privacy: 2,
+    state: 'Cerrado',
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+    {name: 'Lavado de dinero',
+    description: 'Nadie sospechara de nosotros',
+    privacy: 3,
+    state: 'Revisión',
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id}])
 
-status = Status.create([{ tag: 'Abierto' }, { tag: 'Cerrado' }, { tag: 'Revisión' }, { tag: 'Abortado' }])
+iic = Iic.create([
+    {name: 'Iic Generica',
+    description: 'Descripcion generica',
+    privacy: 1,
+    state: 'Abierto',
+    multilateral: false,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+	{name: 'Iic bastante Generica',
+    description: 'Muy generico',
+    privacy: 2,
+    state: 'Cerrado',
+    multilateral: false,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+    {name: 'Iic mas Generica',
+    description: 'Descripcion demasiado generica',
+    privacy: 3,
+    state: 'Revisión',
+    multilateral: false,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id}])
+
+project = Project.create([
+{name: 'Proyecto alfa',
+    objective: 'Descripcion generica',
+    privacy: 1,
+    state: 'Abierto',
+    year: 2019,
+    project_number: 2,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+	{name: 'Proyecto gamma',
+    objective: 'Muy generico',
+    privacy: 2,
+    state: 'Cerrado',
+    year: 2019,
+    project_number: 1,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id},
+    {name: 'Proyecto betta',
+    objective: 'Descripcion demasiado generica',
+    privacy: 3,
+    state: 'Revisión',
+    year: 2019,
+    project_number: 3,
+    start_date: DateTime.strptime("12/22/2018 8:00", "%m/%d/%Y %H:%M"),
+    estimated_end_date: DateTime.strptime("09/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    end_date: DateTime.strptime("11/14/2019 8:00", "%m/%d/%Y %H:%M"),
+    log_id: log.id}])
+
+
 
 task = Task.create([
     {name: 'Conferencia de Prensa', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
      user_id: 1, estimated_end_date: '21/12/2018', privacy: 0, priority: 1, state: 'Revisión', needs_checking: true},
     {name: 'Arriendo Centro de Eventos', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
-     user_id: 1, estimated_end_date: '03/04/2019', privacy: 2, priority: 0, state: 'Abierto', needs_checking: true},
+     user_id: 2, estimated_end_date: '03/04/2019', privacy: 2, priority: 0, state: 'Abierto', needs_checking: true},
     {name: 'Audiencia Juridica', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
-     user_id: 1, estimated_end_date: '17/02/2019', privacy: 0, priority: 1, state: 'Abierto', needs_checking: false},
+     user_id: 3, estimated_end_date: '17/02/2019', privacy: 0, priority: 1, state: 'Abierto', needs_checking: false},
     {name: 'Imprimir Flyers', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
-     user_id: 1, estimated_end_date: '07/02/2019', privacy: 0, priority: 0, state: 'Abierto', needs_checking: false},
+     user_id: 4, estimated_end_date: '07/02/2019', privacy: 0, priority: 0, state: 'Abierto', needs_checking: false},
     {name: 'Reunion con Comisario', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
-     user_id: 1, estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Abierto', needs_checking: true},
+     user_id: 2, estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Abierto', needs_checking: true},
     {name: 'Reunion Fica-Com', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
      user_id: 1, estimated_end_date: '05/11/2018', privacy: 2, priority: 2, state: 'Abierto', needs_checking: false},
     {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
-     user_id: 1, estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
+     user_id: 3, estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
+    {name: 'Final Finalisimo', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
+     user_id: 4, estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true}, {name: 'Terminar Presentacion', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
+     user_id: 2, estimated_end_date: '21/04/2019', privacy: 1, priority: 1, state: 'Abierto', needs_checking: true},
+    {name: 'Comprar comida para convivencia', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
+     user_id: 1, estimated_end_date: '05/11/2018', privacy: 2, priority: 2, state: 'Abierto', needs_checking: false},
+    {name: 'Entrega Final', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
+     user_id: 3, estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true},
+    {name: 'Final Finalisimo', description: 'Dar informacion sobre el gangster mas peligroso al publico.',
+     user_id: 4, estimated_end_date: '10/11/2018', privacy: 0, priority: 1, state: 'Abierto', needs_checking: true}
     ])
+
+
+causeTask = CaseTask.create([{task_id: 1, cause_id: 2}, {task_id: 2, cause_id: 3}, {task_id: 4, cause_id: 1}, {task_id: 3, cause_id: 1}])
+
+ccTask = CcTask.create([{task_id: 5, case_coordination_id: 2}, {task_id: 6, case_coordination_id: 3}, {task_id: 7, case_coordination_id: 1}, {task_id: 8, case_coordination_id: 1}])
+
+projectTask = ProjectTask.create([{task_id: 9, project_id: 1}, {task_id: 10, project_id: 2}, {task_id: 11, project_id: 4}, {task_id: 12, project_id: 3}])

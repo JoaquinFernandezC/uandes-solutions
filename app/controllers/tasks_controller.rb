@@ -127,6 +127,7 @@ class TasksController < ApplicationController
     @log = Log.find(@task.log_id)
     enter_log_message('Se accedió a la tarea de nombre "' + @task.name + '".', @task.log_id, @task.privacy)
     @get_theme_name = get_theme(@task.id)
+    @log_entries = LogEntry.where(log_id: @task.log_id)
   end
 
   # GET /tasks/new
